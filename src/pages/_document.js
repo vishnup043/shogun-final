@@ -17,38 +17,13 @@ class MyDocument extends Document {
       <Html lang="en">
         <Head>
           <link rel="icon" href={setting?.favicon || "/favicon.png"} />
-          <meta
-            property="og:title"
-            content={
-              setting?.meta_title ||
-              "KachaBazar - React Grocery & Organic Food Store e-commerce Template"
-            }
-          />
+          <meta/>
           <meta property="og:type" content="eCommerce Website" />
-          <meta
-            property="og:description"
-            content={
-              setting?.meta_description ||
-              "React Grocery & Organic Food Store e-commerce Template"
-            }
-          />
-          <meta
-            name="keywords"
-            content={setting?.meta_keywords || "ecommenrce online store"}
-          />
-          <meta
-            property="og:url"
-            content={
-              setting?.meta_url || "https://kachabazar-store.vercel.app/"
-            }
-          />
-          <meta
-            property="og:image"
-            content={
-              setting?.meta_img ||
-              "https://res.cloudinary.com/ahossain/image/upload/v1636729752/facebook-page_j7alju.png"
-            }
-          />
+          <meta/>
+          <meta/>
+          <meta/>
+
+          <meta/>
         </Head>
         <body>
           <Main />
