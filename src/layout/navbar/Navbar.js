@@ -103,7 +103,7 @@ const Navbar = () => {
 							<Link href="/news" className="block">
 								<p>News & Publications</p>
 							</Link>
-							<Link href="/" className="block">
+							<Link href="allergen-information" className="block">
 								<p>Allergen Information</p>
 							</Link>
 							<Link href="/contact-us" className="block">
