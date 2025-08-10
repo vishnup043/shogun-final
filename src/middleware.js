@@ -1,34 +1,34 @@
-import { getToken } from "next-auth/jwt";
 import { NextResponse } from "next/server";
 
-// This function can be marked `async` if using `await` inside
 export async function middleware(request) {
-  const userInfo = await getToken({
-    req: request,
-    // NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
-  });
-
-  // console.log(
-  //   "middleware ran>>>>]]]",
-  //   request.nextUrl.pathname,
-
-  //   "userInfo",
-  //   userInfo?.email
-  // );
-
-  if (!userInfo) {
-    return NextResponse.redirect(new URL(`/auth/login`, request.url));
+  // Skip authentication check for /checkout
+  if (request.nextUrl.pathname.startsWith('/checkout')) {
+    return NextResponse.next();
   }
 
+  // Authentication check for other routes
+  const isAuthenticated = checkAuth(request);
+  if (!isAuthenticated) {
+    // Redirect unauthenticated users to login page
+    return NextResponse.redirect(new URL('/login', request.url));
+  }
+
+  // Allow authenticated users to proceed
   return NextResponse.next();
 }
 
-// See "Matching Paths" below to learn more
+// Helper function to check authentication (example)
+function checkAuth(request) {
+  // Example: Check for an auth token in cookies
+  // Replace with your actual authentication logic (e.g., JWT, session, etc.)
+  const token = request.cookies.get('auth-token')?.value;
+  return !!token; // Return true if token exists, false otherwise
+}
+
 export const config = {
   matcher: [
     "/user/:path*",
     "/order/:path*",
     "/checkout/:path*",
-    // "/auth/login/:path*",
   ],
 };
