@@ -13,38 +13,34 @@ const withPWA = require("next-pwa")({
 });
 
 module.exports = withPWA({
+  env: {
+    NEXT_PUBLIC_API_BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL,
+    NEXT_PUBLIC_API_SOCKET_URL: process.env.NEXT_PUBLIC_API_SOCKET_URL,
+    NEXT_PUBLIC_STRIPE_KEY: process.env.NEXT_PUBLIC_STRIPE_KEY,
+    NEXT_PUBLIC_CLOUDINARY_URL: process.env.NEXT_PUBLIC_CLOUDINARY_URL,
+    NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET:
+    process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET,
+    NEXT_PUBLIC_STORE_DOMAIN: process.env.NEXT_PUBLIC_STORE_DOMAIN,
+    NEXTAUTH_URL: process.env.NEXT_PUBLIC_NEXTAUTH_URL,
+    NEXTAUTH_SECRET: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
+    GOOGLE_CLIENT_ID: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+    GOOGLE_CLIENT_SECRET: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
+    NEXT_PUBLIC_AWS_REGION: process.env.NEXT_PUBLIC_AWS_REGION,
+    NEXT_PUBLIC_AWS_ACCESS_KEY_ID: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID,
+    NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY:
+    process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY,
+    NEXT_PUBLIC_AWS_S3_BUCKET: process.env.NEXT_PUBLIC_AWS_S3_BUCKET,
+    NEXT_PUBLIC_PAYPAL_CLIENT_ID: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
+  },
   reactStrictMode: true,
   eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
     ignoreDuringBuilds: true,
   },
   i18n: {
-    // These are all the locales you want to support in
-    // your application
     locales: ["en", "es", "fr", "de"],
-    // This is the default locale you want to be used when visiting
-    // a non-locale prefixed path e.g. `/hello`
     defaultLocale: "en",
-    // This is a list of locale domains and the default locale they
-    // should handle (these are only required when setting up domain routing)
   },
 
-  // images: {
-  //   domains: [
-  //     "images.unsplash.com",
-  //     "img.icons8.com",
-  //     "i.ibb.co",
-  //     "i.postimg.cc",
-  //     "fakestoreapi.com",
-  //     "res.cloudinary.com",
-  //     "lh3.googleusercontent.com",
-  //     "res.cloudinary.com",
-  //     "lh3.googleusercontent.com",
-  //     "",
-  //     "images.dashter.com",
-  //   ],
-  // },
   images: {
     remotePatterns: [
       {
@@ -56,9 +52,3 @@ module.exports = withPWA({
 
   ...nextTranslate(),
 });
-
-// const withBundleAnalyzer = require('@next/bundle-analyzer')({
-//   enabled: process.env.ANALYZE === 'true',
-// });
-
-// module.exports = withBundleAnalyzer({});
