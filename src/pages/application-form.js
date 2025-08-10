@@ -1,23 +1,11 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import Navbar from "@layout/navbar/Navbar";
-import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useForm } from "react-hook-form";
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
-
-const s3Config = {
-	region: process.env.NEXT_PUBLIC_AWS_REGION,
-	credentials: {
-		accessKeyId: process.env.NEXT_PUBLIC_AWS_ACCESS_KEY_ID,
-		secretAccessKey: process.env.NEXT_PUBLIC_AWS_SECRET_ACCESS_KEY,
-	},
-};
-const s3Bucket = process.env.NEXT_PUBLIC_AWS_S3_BUCKET;
+import * as XLSX from "xlsx";
 
 const OrderNow = () => {
 	const [files, setFiles] = useState([]);
@@ -44,55 +32,62 @@ const OrderNow = () => {
 		setFiles((prevFiles) => [...prevFiles, ...selectedFiles]);
 	};
 
-	// Helper to convert a Blob/File to a Buffer (for browsers that don't support getReader)
-	const fileToArrayBuffer = (file) => {
-		return new Promise((resolve, reject) => {
-			const reader = new FileReader();
-			reader.onload = () => resolve(reader.result);
-			reader.onerror = reject;
-			reader.readAsArrayBuffer(file);
-		});
-	};
-
-	const uploadSingleFileToS3 = async (file) => {
-		const s3 = new S3Client(s3Config);
-		const fileName = `${Date.now()}-${file.name}`;
-		let fileBody = file;
-
-		// Some environments (older browsers, React Native, etc) may not support ReadableStream.getReader
-		// The AWS SDK v3 for JS supports Blob, Buffer, and ArrayBuffer for Body
-		// We'll use ArrayBuffer for maximum compatibility
-		if (typeof file.arrayBuffer === "function") {
-			fileBody = await file.arrayBuffer();
-		} else {
-			fileBody = await fileToArrayBuffer(file);
-		}
-
-		const params = {
-			Bucket: s3Bucket,
-			Key: fileName,
-			Body: fileBody,
-			ContentType: file.type,
-			ACL: "public-read",
-		};
-		const command = new PutObjectCommand(params);
-		await s3.send(command);
-		return `https://${s3Bucket}.s3.${s3Config.region}.amazonaws.com/${fileName}`;
+	// Generate Excel file from form data
+	const generateExcel = (data, fileUrls) => {
+		const worksheetData = [{
+			Email: data.email,
+			"First Name": data.firstName,
+			"Last Name": data.lastName,
+			"Personal Information": data.personalInfo,
+			"Date of Birth": data.dob,
+			Sex: data.sex,
+			Practitioner: data.practitioner,
+			Address: data.address,
+			City: data.city,
+			"Postal Code": data.postalCode,
+			"Province/State": data.province,
+			"Cancer Stage": data.cancerStage,
+			"Cancer Type": data.cancerType,
+			"Other Treatments": data.otherTreatments || "",
+			"Other Medications": data.otherMedications || "",
+			"File URLs": fileUrls.join(", "),
+		}];
+		const worksheet = XLSX.utils.json_to_sheet(worksheetData);
+		const workbook = XLSX.utils.book_new();
+		XLSX.utils.book_append_sheet(workbook, worksheet, "Form Data");
+		return XLSX.write(workbook, { bookType: "xlsx", type: "buffer" });
 	};
 
 	const onSubmitForm = async (data) => {
 		setUploading(true);
 		try {
-			let urls = [];
-			if (files.length > 0) {
-				urls = await Promise.all(files.map(uploadSingleFileToS3));
-				setUploadedUrls(urls);
+			const formData = new FormData();
+			// Append form data
+			Object.keys(data).forEach(key => formData.append(key, data[key]));
+			// Append files
+			files.forEach(file => formData.append("files", file));
+			// Generate and append Excel file
+			const excelBuffer = generateExcel(data, []);
+			const excelBlob = new Blob([excelBuffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+			formData.append("excel", excelBlob, `FormData_${Date.now()}.xlsx`);
+
+			const response = await fetch("/api/upload", {
+				method: "POST",
+				body: formData,
+			});
+
+			if (!response.ok) {
+				const errorData = await response.json();
+				throw new Error(errorData.message || "Upload failed");
 			}
-			// Here you can send the form data and uploaded file URLs to your backend if needed
-			alert("Form submitted successfully!");
+
+			const { fileUrls, excelUrl } = await response.json();
+			setUploadedUrls([...fileUrls, excelUrl]);
+
+			alert(`Form submitted successfully! Excel file uploaded: ${excelUrl}`);
 		} catch (err) {
-			console.error("Error uploading files:", err);
-			alert("Error uploading files. Please try again.");
+			console.error("Error processing form:", err);
+			alert("Error uploading files or Excel. Please try again.");
 		}
 		setUploading(false);
 	};
@@ -229,7 +224,6 @@ const OrderNow = () => {
 								</div>
 							</div>
 						</div>
-
 						<div className="grid grid-cols-2 items-center mb-4 gap-12">
 							<div className="grid grid-cols-6 grid-flow-col items-center mb-4 gap-12">
 								<div className="col-span-2">

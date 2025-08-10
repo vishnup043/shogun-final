@@ -208,7 +208,7 @@ const shortgunProducts = [
 		id: 2,
 		name: "EX TABLETS",
 		displayPrice: "$ 120",
-		isComboTherapyAvailable: true,
+		isComboTherapyAvailable: false,
 		bundleTypes: [
 			{ id: "ExTabletsB1", price: 150, unit: "Bottle (140 ml)", purchaseMode: "ONE_TIME" },
 			{ id: "ExTabletsB2", price: 120, unit: "Bottle (140 ml) (2 Bottles/Mo)", purchaseMode: "SUBSCRIPTION", finalPrice: 2800.0 },
@@ -232,7 +232,7 @@ const shortgunProducts = [
 		name: "Synergy Extract",
 		type: "Liquid",
 		displayPrice: "$ 109.99",
-		isComboTherapyAvailable: true,
+		isComboTherapyAvailable: false,
 		highlighted: true,
 		bundleTypes: [
 			{ id: "SynergyExtractLiquidB1", price: 109.99, unit: "Bottle (140 ml)", purchaseMode: "ONE_TIME" },

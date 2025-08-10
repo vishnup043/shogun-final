@@ -1,310 +1,438 @@
-import React from "react";
-import dynamic from "next/dynamic";
-import Link from "next/link";
-import { IoReturnUpBackOutline, IoArrowForward, IoBagHandle, IoWalletSharp } from "react-icons/io5";
-import { useQuery } from "@tanstack/react-query";
-import { ImCreditCard } from "react-icons/im";
-import useTranslation from "next-translate/useTranslation";
-import Navbar from "@layout/navbar/Navbar";
-import Footer from "@layout/footer/Footer";
-
-//internal import
-
-import Label from "@components/form/Label";
-import Error from "@components/form/Error";
-import CartItem from "@components/cart/CartItem";
-import InputArea from "@components/form/InputArea";
-import useGetSetting from "@hooks/useGetSetting";
-import InputShipping from "@components/form/InputShipping";
-import InputPayment from "@components/form/InputPayment";
-import useCheckoutSubmit from "@hooks/useCheckoutSubmit";
-import useUtilsFunction from "@hooks/useUtilsFunction";
-import SettingServices from "@services/SettingServices";
-import SwitchToggle from "@components/form/SwitchToggle";
-import PaymentFormComponent from "@components/payment/PaymentForm";
+import React, { useCallback, useState, useEffect } from "react";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import useProducts from "@hooks/custom/useProducts";
+import { useRouter } from 'next/router';
 
-const Checkout = () => {
-	const { t } = useTranslation();
-	const { storeCustomizationSetting } = useGetSetting();
-	const { showingTranslateValue } = useUtilsFunction();
-	const { getCartTotal } = useProducts();
+const CheckoutPage = () => {
+	const router = useRouter();
+	const { cart, getCartItemTotal, productList } = useProducts();
 
-	const { data: storeSetting } = useQuery({
-		queryKey: ["storeSetting"],
-		queryFn: async () => await SettingServices.getStoreSetting(),
-		staleTime: 4 * 60 * 1000, // Api request after 4 minutes
+	const totalItems = cart.reduce((sum, item) => sum + item.itemCount, 0);
+	const subtotal = cart.reduce(
+		(sum, item) =>
+			sum + getCartItemTotal(item.productId, item.bundleId, item.itemCount),
+		0
+	);
+	const total = subtotal;
+
+	const getProductDetails = useCallback(
+		(productId) => {
+			if (!productList || productList.length === 0) return null;
+			return productList.find((product) => product.id === productId);
+		},
+		[productList]
+	);
+
+	// Initialize billingDetails with data from local storage if available
+	const [billingDetails, setBillingDetails] = useState(() => {
+		const savedDetails = localStorage.getItem('billingDetails');
+		return savedDetails
+			? JSON.parse(savedDetails)
+			: {
+					firstName: "",
+					lastName: "",
+					country: "",
+					streetAddress: "",
+					city: "",
+					state: "",
+					postcode: "",
+					phone: "",
+					email: "",
+			  };
 	});
 
-	const {
-		error,
-		couponInfo,
-		couponRef,
-		total,
-		isEmpty,
-		items,
-		cartTotal,
-		currency,
-		register,
-		errors,
-		showCard,
-		setShowCard,
-		handleSubmit,
-		submitHandler,
-		handleShippingCost,
-		handleCouponCode,
-		discountAmount,
-		shippingCost,
-		isCheckoutSubmit,
-		useExistingAddress,
-		hasShippingAddress,
-		isCouponAvailable,
-		handleDefaultShippingAddress,
-	} = useCheckoutSubmit();
+	// Save billing details to local storage whenever they change
+	useEffect(() => {
+		try {
+			localStorage.setItem('billingDetails', JSON.stringify(billingDetails));
+			console.log("Billing details updated in local storage:", billingDetails);
+		} catch (error) {
+			console.error("Error saving billing details to local storage:", error);
+		}
+	}, [billingDetails]);
+
+	const handleOrderSuccess = async (details, data) => {
+		console.log("Payment details received:", details);
+
+		// 1️⃣ Validate payment success
+		const isPaymentCompleted =
+			details?.status === "COMPLETED" &&
+			details?.purchase_units?.[0]?.payments?.captures?.[0]?.status === "COMPLETED";
+
+		if (!isPaymentCompleted) {
+			console.error("Payment validation failed. Status:", details?.status);
+			try {
+				if (router?.push) {
+					router.push("/payment-failed");
+				} else {
+					window.location.href = "/payment-failed";
+				}
+			} catch (err) {
+				console.error("Redirect to failure page failed:", err);
+			}
+			return; // Stop execution if payment not completed
+		}
+
+		// 2️⃣ Validate billing details before saving
+		const isBillingValid = Object.values(billingDetails).every(
+			(value) => value.trim() !== ""
+		);
+		if (!isBillingValid) {
+			console.error("Billing details incomplete:", billingDetails);
+			// Optionally redirect to an error page or show an alert
+			try {
+				if (router?.push) {
+					router.push("/payment-failed?error=incomplete-billing");
+				} else {
+					window.location.href = "/payment-failed?error=incomplete-billing";
+				}
+			} catch (err) {
+				console.error("Redirect to failure page failed:", err);
+			}
+			return;
+		}
+
+		// 3️⃣ Store billing details in local storage
+		try {
+			localStorage.setItem('billingDetails', JSON.stringify(billingDetails));
+			console.log("Billing details saved to local storage:", billingDetails);
+		} catch (error) {
+			console.error("Error saving billing details to local storage:", error);
+		}
+
+		// 4️⃣ Extract details safely from PayPal response
+		const payerName = `${billingDetails.firstName} ${billingDetails.lastName}`.trim() || 
+			`${details?.payer?.name?.given_name || ""} ${details?.payer?.name?.surname || ""}`.trim() || 
+			"Valued Customer";
+		const payerEmail = billingDetails.email || details?.payer?.email_address || "customer@example.com";
+		const orderDate = new Date(details?.update_time || new Date()).toLocaleDateString();
+		const totalAmount = Number(details?.purchase_units?.[0]?.amount?.value) || total || 0;
+		const currency = details?.purchase_units?.[0]?.amount?.currency_code || "USD";
+
+		// 5️⃣ Generate order items for email
+		const orderItems = cart.map(item => {
+			const productDetails = getProductDetails(item.productId);
+			return {
+				name: productDetails?.name || "N/A",
+				quantity: item.itemCount || 1,
+				price: getCartItemTotal(item.productId, item.bundleId, item.itemCount) / (item.itemCount || 1)
+			};
+		});
+
+		// 6️⃣ Retrieve billing details from local storage for email
+		const storedBillingDetails = JSON.parse(localStorage.getItem('billingDetails') || '{}');
+
+		// 7️⃣ HTML template generator
+		const generateOrderConfirmationHtml = ({
+			customerName = "Valued Customer",
+			orderDate = new Date().toLocaleDateString(),
+			items = [],
+			totalAmount = 0,
+			currency = "USD",
+			billingDetails = {}
+		} = {}) => `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8" />
+      <title>Order Confirmation</title>
+      <style>
+        body { font-family: Arial, sans-serif; color: #333; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { text-align: left; padding: 8px; border-bottom: 1px solid #ddd; }
+        h1 { color: #4CAF50; }
+        .footer { font-size: 0.9em; color: #777; text-align: center; margin-top: 30px; }
+        .address { margin: 15px 0; }
+      </style>
+    </head>
+    <body>
+      <div style="max-width: 600px; margin: 30px auto; background: #fff; padding: 20px; border-radius: 8px;">
+        <h1>Thank you for your order, ${customerName}!</h1>
+        <p>Your order has been confirmed on ${orderDate}.</p>
+        <h3>Billing Address:</h3>
+        <div class="address">
+          <p>${billingDetails.firstName || 'N/A'} ${billingDetails.lastName || ''}</p>
+          <p>${billingDetails.streetAddress || 'N/A'}</p>
+          <p>${billingDetails.city || 'N/A'}, ${billingDetails.state || 'N/A'} ${billingDetails.postcode || 'N/A'}</p>
+          <p>${billingDetails.country || 'N/A'}</p>
+          <p>Phone: ${billingDetails.phone || 'N/A'}</p>
+          <p>Email: ${billingDetails.email || 'N/A'}</p>
+        </div>
+        <h3>Order Details:</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Qty</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${items.map(item => `
+              <tr>
+                <td>${item.name}</td>
+                <td>${item.quantity}</td>
+                <td>${currency} ${Number(item.price).toFixed(2)}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+        <p style="font-weight: bold; font-size: 1.1em; text-align: right; margin-top: 15px;">
+          Total: ${currency} ${Number(totalAmount).toFixed(2)}
+        </p>
+        <p>If you have any questions, reply to this email or contact our support team.</p>
+        <div class="footer">
+          <p>© 2025 Your Company Name. All rights reserved.</p>
+        </div>
+      </div>
+    </body>
+    </html>
+    `;
+
+		const emailHtml = generateOrderConfirmationHtml({
+			customerName: payerName,
+			orderDate,
+			items: orderItems,
+			totalAmount,
+			currency,
+			billingDetails: storedBillingDetails
+		});
+
+		// 8️⃣ Send email & always redirect
+		try {
+			const response = await fetch("/api/sendEmail", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({
+					to: payerEmail,
+					subject: "Order Confirmation",
+					html: emailHtml,
+				}),
+			});
+
+			if (!response.ok) {
+				console.error("Email send failed:", response.statusText);
+			} else {
+				console.log("Email sent successfully:", await response.json());
+			}
+		} catch (error) {
+			console.error("Error sending email:", error);
+		} finally {
+			try {
+				if (router?.push) {
+					localStorage.removeItem("billingDetails")
+					localStorage.removeItem("orderNowCart")
+					router.push("/payment-success");
+				} else {
+					window.location.href = "/payment-success";
+				}
+			} catch (redirectError) {
+				console.error("Redirect failed:", redirectError);
+				window.location.href = "/payment-success";
+			}
+		}
+	};
+
+	// Validate if all required fields are filled (simple check)
+	const isBillingComplete = Object.values(billingDetails).every(
+		(value) => value.trim() !== ""
+	);
+
+	// Handle input changes for billing form
+	const handleInputChange = (e) => {
+		const { name, value } = e.target;
+		setBillingDetails((prev) => ({ ...prev, [name]: value }));
+	};
 
 	return (
-		<>
-			<Navbar />
-			<div className="mx-auto max-w-screen-2xl px-3 sm:px-10">
-				<div className="py-10 lg:py-12 px-0 2xl:max-w-screen-2xl w-full xl:max-w-screen-xl flex flex-col md:flex-row lg:flex-row">
-					<div className="md:w-full lg:w-3/5 flex h-full flex-col order-2 sm:order-1 lg:order-1">
-						<div className="mt-5 md:mt-0 md:col-span-2">
-							<form onSubmit={handleSubmit(submitHandler)}>
-								{hasShippingAddress && (
-									<div className="flex justify-end my-2">
-										<SwitchToggle id="shipping-address" title="Use Default Shipping Address" processOption={useExistingAddress} handleProcess={handleDefaultShippingAddress} />
-									</div>
-								)}
-								<div className="form-group">
-									<h2 className="font-semibold font-serif text-base text-gray-700 pb-3">01. {showingTranslateValue(storeCustomizationSetting?.checkout?.personal_details)}</h2>
-
-									<div className="grid grid-cols-6 gap-6">
-										<div className="col-span-6 sm:col-span-3">
-											<InputArea register={register} label={showingTranslateValue(storeCustomizationSetting?.checkout?.first_name)} name="firstName" type="text" placeholder="John" />
-											<Error errorName={errors.firstName} />
-										</div>
-
-										<div className="col-span-6 sm:col-span-3">
-											<InputArea register={register} label={showingTranslateValue(storeCustomizationSetting?.checkout?.last_name)} name="lastName" type="text" placeholder="Doe" required={false} />
-											<Error errorName={errors.lastName} />
-										</div>
-
-										<div className="col-span-6 sm:col-span-3">
-											<InputArea
-												register={register}
-												label={showingTranslateValue(storeCustomizationSetting?.checkout?.email_address)}
-												name="email"
-												type="email"
-												readOnly={true}
-												placeholder="youremail@gmail.com"
-											/>
-											<Error errorName={errors.email} />
-										</div>
-
-										<div className="col-span-6 sm:col-span-3">
-											<InputArea register={register} label={showingTranslateValue(storeCustomizationSetting?.checkout?.checkout_phone)} name="contact" type="tel" placeholder="+062-6532956" />
-
-											<Error errorName={errors.contact} />
-										</div>
-									</div>
-								</div>
-
-								<div className="form-group mt-12">
-									<h2 className="font-semibold font-serif text-base text-gray-700 pb-3">02. {showingTranslateValue(storeCustomizationSetting?.checkout?.shipping_details)}</h2>
-
-									<div className="grid grid-cols-6 gap-6 mb-8">
-										<div className="col-span-6">
-											<InputArea
-												register={register}
-												label={showingTranslateValue(storeCustomizationSetting?.checkout?.street_address)}
-												name="address"
-												type="text"
-												placeholder="123 Boulevard Rd, Beverley Hills"
-											/>
-											<Error errorName={errors.address} />
-										</div>
-
-										<div className="col-span-6 sm:col-span-6 lg:col-span-2">
-											<InputArea register={register} label={showingTranslateValue(storeCustomizationSetting?.checkout?.city)} name="city" type="text" placeholder="Los Angeles" />
-											<Error errorName={errors.city} />
-										</div>
-
-										<div className="col-span-6 sm:col-span-3 lg:col-span-2">
-											<InputArea register={register} label={showingTranslateValue(storeCustomizationSetting?.checkout?.country)} name="country" type="text" placeholder="United States" />
-											<Error errorName={errors.country} />
-										</div>
-
-										<div className="col-span-6 sm:col-span-3 lg:col-span-2">
-											<InputArea register={register} label={showingTranslateValue(storeCustomizationSetting?.checkout?.zip_code)} name="zipCode" type="text" placeholder="2345" />
-											<Error errorName={errors.zipCode} />
-										</div>
-									</div>
-
-									<Label label={showingTranslateValue(storeCustomizationSetting?.checkout?.shipping_cost)} />
-									<div className="grid grid-cols-6 gap-6">
-										<div className="col-span-6 sm:col-span-3">
-											<InputShipping
-												currency={currency}
-												handleShippingCost={handleShippingCost}
-												register={register}
-												// value="FedEx"
-												value={showingTranslateValue(storeCustomizationSetting?.checkout?.shipping_name_two)}
-												description={showingTranslateValue(storeCustomizationSetting?.checkout?.shipping_one_desc)}
-												// time="Today"
-												cost={Number(storeCustomizationSetting?.checkout?.shipping_one_cost) || 60}
-											/>
-											<Error errorName={errors.shippingOption} />
-										</div>
-
-										<div className="col-span-6 sm:col-span-3">
-											<InputShipping
-												currency={currency}
-												handleShippingCost={handleShippingCost}
-												register={register}
-												value={showingTranslateValue(storeCustomizationSetting?.checkout?.shipping_name_two)}
-												description={showingTranslateValue(storeCustomizationSetting?.checkout?.shipping_two_desc)}
-												// time="7 Days"
-												cost={Number(storeCustomizationSetting?.checkout?.shipping_two_cost) || 20}
-											/>
-											<Error errorName={errors.shippingOption} />
-										</div>
-									</div>
-								</div>
-					
-								<div className="grid grid-cols-6 gap-4 lg:gap-6 mt-10">
-									<div className="col-span-6 sm:col-span-3">
-										<Link
-											href="/"
-											className="bg-indigo-50 border border-indigo-100 rounded py-3 text-center text-sm font-medium text-gray-700 hover:text-gray-800 hover:border-gray-300 transition-all flex justify-center font-serif w-full"
-										>
-											<span className="text-xl mr-2">
-												<IoReturnUpBackOutline />
-											</span>
-											{showingTranslateValue(storeCustomizationSetting?.checkout?.continue_button)}
-										</Link>
-									</div>
-									<div className="col-span-6 sm:col-span-3">
-										<button
-											type="submit"
-											disabled={isEmpty || isCheckoutSubmit}
-											className="bg-emerald-500 hover:bg-emerald-600 border border-emerald-500 transition-all rounded py-3 text-center text-sm font-serif font-medium text-white flex justify-center w-full"
-										>
-											{isCheckoutSubmit ? (
-												<span className="flex justify-center text-center">
-													{" "}
-													<img src="/loader/spinner.gif" alt="Loading" width={20} height={10} /> <span className="ml-2">{t("common:processing")}</span>
-												</span>
-											) : (
-												<span className="flex justify-center text-center">
-													{showingTranslateValue(storeCustomizationSetting?.checkout?.confirm_button)}
-													<span className="text-xl ml-2">
-														{" "}
-														<IoArrowForward />
-													</span>
-												</span>
-											)}
-										</button>
-									</div>
-
-									<PaymentFormComponent />
-								</div>
-							</form>
+		<PayPalScriptProvider
+			options={{
+				"client-id": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
+				currency: "USD",
+			}}
+		>
+			<div className="">
+				<div className="bg-green-500 min-h-screen p-6">
+					<div className="max-w-6xl mx-auto bg-white rounded-lg shadow-lg grid grid-cols-1 lg:grid-cols-3 gap-8 p-6">
+						{/* Left Column - Billing Details */}
+						<div className="lg:col-span-2 space-y-4">
+							<h2 className="text-lg font-semibold">Billing Details</h2>
+							<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+								<input
+									name="firstName"
+									type="text"
+									placeholder="First name *"
+									className="border border-gray-300 rounded p-2"
+									value={billingDetails.firstName}
+									onChange={handleInputChange}
+								/>
+								<input
+									name="lastName"
+									type="text"
+									placeholder="Last name *"
+									className="border border-gray-300 rounded p-2"
+									value={billingDetails.lastName}
+									onChange={handleInputChange}
+								/>
+								<input
+									name="company"
+									type="text"
+									placeholder="Company name (optional)"
+									className="border border-gray-300 rounded p-2 md:col-span-2"
+									value={billingDetails.company || ""}
+									onChange={handleInputChange}
+								/>
+								<select
+									name="country"
+									className="border border-gray-300 rounded p-2 md:col-span-2"
+									value={billingDetails.country}
+									onChange={handleInputChange}
+								>
+									<option value="">Country / Region *</option>
+									<option value="USA">USA</option>
+									<option value="India">India</option>
+									<option value="UK">UK</option>
+								</select>
+								<input
+									name="streetAddress"
+									type="text"
+									placeholder="Street address *"
+									className="border border-gray-300 rounded p-2 md:col-span-2"
+									value={billingDetails.streetAddress}
+									onChange={handleInputChange}
+								/>
+								<input
+									name="apartment"
+									type="text"
+									placeholder="Apartment, suite, unit (optional)"
+									className="border border-gray-300 rounded p-2 md:col-span-2"
+									value={billingDetails.apartment || ""}
+									onChange={handleInputChange}
+								/>
+								<input
+									name="city"
+									type="text"
+									placeholder="Town / City *"
+									className="border border-gray-300 rounded p-2"
+									value={billingDetails.city}
+									onChange={handleInputChange}
+								/>
+								<input
+									name="state"
+									type="text"
+									placeholder="State / County *"
+									className="border border-gray-300 rounded p-2"
+									value={billingDetails.state}
+									onChange={handleInputChange}
+								/>
+								<input
+									name="postcode"
+									type="text"
+									placeholder="Postcode / Zip *"
+									className="border border-gray-300 rounded p-2"
+									value={billingDetails.postcode}
+									onChange={handleInputChange}
+								/>
+								<input
+									name="phone"
+									type="text"
+									placeholder="Phone *"
+									className="border border-gray-300 rounded p-2"
+									value={billingDetails.phone}
+									onChange={handleInputChange}
+								/>
+								<input
+									name="email"
+									type="email"
+									placeholder="Email address *"
+									className="border border-gray-300 rounded p-2 md:col-span-2"
+									value={billingDetails.email}
+									onChange={handleInputChange}
+								/>
+								<input
+									name="doctorName"
+									type="text"
+									placeholder="Doctor's Name"
+									className="border border-gray-300 rounded p-2 md:col-span-2"
+									value={billingDetails.doctorName || ""}
+									onChange={handleInputChange}
+								/>
+							</div>
 						</div>
-					</div>
 
-					<div className="md:w-full lg:w-2/5 lg:ml-10 xl:ml-14 md:ml-6 flex flex-col h-full md:sticky lg:sticky top-28 md:order-2 lg:order-2">
-						<div className="border p-5 lg:px-8 lg:py-8 rounded-lg bg-white order-1 sm:order-2">
-							<h2 className="font-semibold font-serif text-lg pb-4">{showingTranslateValue(storeCustomizationSetting?.checkout?.order_summary)}</h2>
+						{/* Right Column - Order Summary */}
+						<div className="border border-gray-200 rounded-lg p-4 bg-white shadow-sm h-fit">
+							<h2 className="text-lg font-semibold mb-4">Your order</h2>
 
-							<div className="overflow-y-scroll flex-grow scrollbar-hide w-full max-h-64 bg-gray-50 block">
-								{items.map((item) => (
-									<CartItem key={item.id} item={item} currency={currency} />
-								))}
-
-								{isEmpty && (
-									<div className="text-center py-10">
-										<span className="flex justify-center my-auto text-gray-500 font-semibold text-4xl">
-											<IoBagHandle />
-										</span>
-										<h2 className="font-medium font-serif text-sm pt-2 text-gray-600">No Item Added Yet!</h2>
-									</div>
-								)}
-							</div>
-
-							<div className="flex items-center mt-4 py-4 lg:py-4 text-sm w-full font-semibold text-heading last:border-b-0 last:text-base last:pb-0">
-								<form className="w-full">
-									{couponInfo.couponCode ? (
-										<span className="bg-emerald-50 px-4 py-3 leading-tight w-full rounded-md flex justify-between">
-											{" "}
-											<p className="text-emerald-600">Coupon Applied </p> <span className="text-red-500 text-right">{couponInfo.couponCode}</span>
-										</span>
-									) : (
-										<div className="flex flex-col sm:flex-row items-start justify-end">
-											<input
-												ref={couponRef}
-												type="text"
-												placeholder={t("common:couponCode")}
-												className="form-input py-2 px-3 md:px-4 w-full appearance-none transition ease-in-out border text-input text-sm rounded-md h-12 duration-200 bg-white border-gray-200 focus:ring-0 focus:outline-none focus:border-emerald-500 placeholder-gray-500 placeholder-opacity-75"
-											/>
-											{isCouponAvailable ? (
-												<button
-													disabled={isCouponAvailable}
-													type="submit"
-													className="md:text-sm leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-semibold text-center justify-center border border-gray-200 rounded-md placeholder-white focus-visible:outline-none focus:outline-none px-5 md:px-6 lg:px-8 py-3 md:py-3.5 lg:py-3 mt-3 sm:mt-0 sm:ml-3 md:mt-0 md:ml-3 lg:mt-0 lg:ml-3 hover:text-white hover:bg-emerald-500 h-12 text-sm lg:text-base w-full sm:w-auto"
-												>
-													<img src="/loader/spinner.gif" alt="Loading" width={20} height={10} />
-													<span className=" ml-2 font-light">Processing</span>
-												</button>
-											) : (
-												<button
-													disabled={isCouponAvailable}
-													onClick={handleCouponCode}
-													className="md:text-sm leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 font-semibold text-center justify-center border border-gray-200 rounded-md placeholder-white focus-visible:outline-none focus:outline-none px-5 md:px-6 lg:px-8 py-3 md:py-3.5 lg:py-3 mt-3 sm:mt-0 sm:ml-3 md:mt-0 md:ml-3 lg:mt-0 lg:ml-3 hover:text-white hover:bg-emerald-500 h-12 text-sm lg:text-base w-full sm:w-auto"
-												>
-													{showingTranslateValue(storeCustomizationSetting?.checkout?.apply_button)}
-												</button>
-											)}
-										</div>
-									)}
-								</form>
-							</div>
-							<div className="flex items-center py-2 text-sm w-full font-semibold text-gray-500 last:border-b-0 last:text-base last:pb-0">
-								{showingTranslateValue(storeCustomizationSetting?.checkout?.sub_total)}
-								<span className="ml-auto flex-shrink-0 text-gray-800 font-bold">
-									{currency}
-									{cartTotal?.toFixed(2)}
-								</span>
-							</div>
-							<div className="flex items-center py-2 text-sm w-full font-semibold text-gray-500 last:border-b-0 last:text-base last:pb-0">
-								{showingTranslateValue(storeCustomizationSetting?.checkout?.shipping_cost)}
-								<span className="ml-auto flex-shrink-0 text-gray-800 font-bold">
-									{currency}
-									{shippingCost?.toFixed(2)}
-								</span>
-							</div>
-							<div className="flex items-center py-2 text-sm w-full font-semibold text-gray-500 last:border-b-0 last:text-base last:pb-0">
-								{showingTranslateValue(storeCustomizationSetting?.checkout?.discount)}
-								<span className="ml-auto flex-shrink-0 font-bold text-orange-400">
-									{currency}
-									{discountAmount.toFixed(2)}
-								</span>
-							</div>
-							<div className="border-t mt-4">
-								<div className="flex items-center font-bold font-serif justify-between pt-5 text-sm uppercase">
-									{showingTranslateValue(storeCustomizationSetting?.checkout?.total_cost)}
-									<span className="font-serif font-extrabold text-lg">
-										{currency}
-										{parseFloat(getCartTotal()).toFixed(2)}
-									</span>
+							{!productList || productList.length === 0 ? (
+								<p className="text-gray-500 text-sm mb-4">Loading products...</p>
+							) : (
+								<div className="mb-4">
+									{cart.map((item) => {
+										const productDetails = getProductDetails(item.productId);
+										return (
+											<div
+												key={`${item.productId}-${item.bundleId}`}
+												className="flex justify-between border-b border-gray-200 py-2 text-sm"
+											>
+												<span>{productDetails?.name}</span>
+												<span>
+													$
+													{getCartItemTotal(
+														item.productId,
+														item.bundleId,
+														item.itemCount
+													)}
+												</span>
+											</div>
+										);
+									})}
 								</div>
+							)}
+
+							<div className="flex justify-between border-b border-gray-200 pb-2 mb-4">
+								<span>Items ({totalItems})</span>
+								<span>${subtotal}</span>
 							</div>
+							<div className="flex justify-between border-b border-gray-200 pb-2 mb-4">
+								<span>Shipping</span>
+								<span>Free</span>
+							</div>
+							<div className="flex justify-between font-bold text-lg mb-4">
+								<span>Total</span>
+								<span>${total}</span>
+							</div>
+
+							{/* PayPal Button - only show if billing complete */}
+							<PayPalButtons
+								style={{ layout: "vertical" }}
+								disabled={!isBillingComplete}
+								createOrder={(data, actions) => {
+									return actions.order.create({
+										purchase_units: [
+											{
+												amount: {
+													value: total.toString(),
+												},
+											},
+										],
+										application_context: {
+											shipping_preference: "NO_SHIPPING",
+										},
+									});
+								}}
+								onApprove={(data, actions) => {
+									return actions.order.capture().then((details) => 
+										handleOrderSuccess(details, data)
+									);
+								}}
+							/>
 						</div>
 					</div>
 				</div>
 			</div>
-			<Footer />
-		</>
+		</PayPalScriptProvider>
 	);
 };
 
-export default dynamic(() => Promise.resolve(Checkout), { ssr: false });
+export default CheckoutPage;

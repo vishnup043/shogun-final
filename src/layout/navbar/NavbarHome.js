@@ -85,7 +85,7 @@ const NavbarHome = ({ videoRef }) => {
                     <Link href="/maitake-suppliment" className="block"><p>Maitake Suppliments</p></Link>
                     <Link href="/our-affiliations" className="block"><p>Our Affiliations</p></Link>
                     <Link href="/news" className="block"><p>News & Publications</p></Link>
-                    <Link href="/" className="block"><p>Allergen Information</p></Link>
+                    <Link href="allergen-information" className="block"><p>Allergen Information</p></Link>
                     <Link href="/contact-us" className="block"><p>Contact Us</p></Link>
                   </nav>
                 </div>
