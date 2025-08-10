@@ -22,8 +22,9 @@ export default async function handler(req, res) {
 
   try {
     await transporter.sendMail({
-      from: process.env.GMAIL_USER || "vpmoothikkal@gmail.com",
+      from: "orders@shogunmaitake.com",
       to,
+      cc: "jjacob@shogunmaitake.com",
       subject,
       text,
       html,
