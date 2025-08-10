@@ -6,7 +6,6 @@ import { useRouter } from 'next/router';
 const CheckoutPage = () => {
 	const router = useRouter();
 	const { cart, getCartItemTotal, productList } = useProducts();
-
 	const totalItems = cart.reduce((sum, item) => sum + item.itemCount, 0);
 	const subtotal = cart.reduce(
 		(sum, item) =>
@@ -14,7 +13,6 @@ const CheckoutPage = () => {
 		0
 	);
 	const total = subtotal;
-
 	const getProductDetails = useCallback(
 		(productId) => {
 			if (!productList || productList.length === 0) return null;
