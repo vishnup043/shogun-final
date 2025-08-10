@@ -72,24 +72,6 @@ const CheckoutPage = () => {
 			return; // Stop execution if payment not completed
 		}
 
-		// 2️⃣ Validate billing details before saving
-		const isBillingValid = Object.values(billingDetails).every(
-			(value) => value.trim() !== ""
-		);
-		if (!isBillingValid) {
-			console.error("Billing details incomplete:", billingDetails);
-			try {
-				if (router?.push) {
-					router.push("/payment-failed?error=incomplete-billing");
-				} else {
-					window.location.href = "/payment-failed?error=incomplete-billing";
-				}
-			} catch (err) {
-				console.error("Redirect to failure page failed:", err);
-			}
-			return;
-		}
-
 		// 3️⃣ Store billing details in local storage
 		try {
 			localStorage.setItem('billingDetails', JSON.stringify(billingDetails));
