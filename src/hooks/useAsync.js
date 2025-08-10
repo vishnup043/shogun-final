@@ -50,7 +50,7 @@ const useAsync = (asyncFunction) => {
   useEffect(() => {
     if (errCode === 401) {
       console.log("status 401", errCode);
-      window.location.replace(`${process.env.NEXT_PUBLIC_STORE_DOMAIN}`);
+      window.location.replace("https://shogunmaitake.com");
     }
   }, [errCode]);
 
