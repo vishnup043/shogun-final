@@ -38,6 +38,7 @@ const CheckoutPage = () => {
 					postcode: "",
 					phone: "",
 					email: "",
+					doctorName: "",
 			  };
 	});
 
@@ -79,7 +80,6 @@ const CheckoutPage = () => {
 		);
 		if (!isBillingValid) {
 			console.error("Billing details incomplete:", billingDetails);
-			// Optionally redirect to an error page or show an alert
 			try {
 				if (router?.push) {
 					router.push("/payment-failed?error=incomplete-billing");
@@ -220,8 +220,8 @@ const CheckoutPage = () => {
 		} finally {
 			try {
 				if (router?.push) {
-					localStorage.removeItem("billingDetails")
-					localStorage.removeItem("orderNowCart")
+					localStorage.removeItem("billingDetails");
+					localStorage.removeItem("orderNowCart");
 					router.push("/payment-success");
 				} else {
 					window.location.href = "/payment-success";
@@ -247,7 +247,8 @@ const CheckoutPage = () => {
 	return (
 		<PayPalScriptProvider
 			options={{
-				"client-id": process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID,
+				"client-id":
+					"AQF2fqCOQOGoxVfcouRebL19RXqXWNAUjVE8xQfU-gXcSwRaPHLA2vt-Ulb33LPZkaFbiHjt2IFAjJe_", // Replace with real client ID
 				currency: "USD",
 			}}
 		>
