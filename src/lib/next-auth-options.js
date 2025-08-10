@@ -126,7 +126,7 @@ export const getDynamicAuthOptions = async () => {
 				return url.startsWith(baseUrl) ? url : `${baseUrl}/cart`;
 			},
 		},
-		secret:"3BRAQWnfbEfhT3fnlrVMEHe2T7TG9ky4sfs//Xx+8Vc="
+		secret: process.env.NEXTAUTH_SECRET,
 	};
 
 	return authOptions;

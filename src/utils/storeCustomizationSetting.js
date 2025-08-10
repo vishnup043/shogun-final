@@ -859,15 +859,4 @@ export const storeCustomization = {
       de: "Lieferung von unserem Abholpunkt Boho One, Bridge Street West, Middlesbrough, North Yorkshire, TS2 1AE.",
     },
   },
-  seo: {
-    favicon:
-      "https://res.cloudinary.com/ahossain/image/upload/v1700903173/undefined/favicon.png",
-    meta_description: "React Grocery & Organic Food Store e-commerce Template",
-    meta_img:
-      "https://res.cloudinary.com/ahossain/image/upload/v1636729752/facebook-page_j7alju.png",
-    meta_keywords: "e-commerce, online store",
-    meta_title:
-      "KachaBazar - React Grocery & Organic Food Store e-commerce Template",
-    meta_url: "https://kachabazar-store-nine.vercel.app/",
-  },
 };
