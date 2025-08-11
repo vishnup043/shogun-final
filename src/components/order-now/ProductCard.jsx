@@ -55,11 +55,15 @@ const ProductCard = ({ productDetails }) => {
 		}
 	};
 
-	const onClickAddOn = (addOnId) => {
+	const onClickAddOn = (addOnId, details) => {
+		console.log("here",details)
 		if (isInCart) {
 			if (isInCart.addOns && isInCart.addOns.includes(addOnId)) {
+				localStorage.removeItem("add_on_details")
+				console.log("here")
 				removeAddOnFromCartItem(id, selectedBundleType?.id, addOnId);
 			} else {
+				localStorage.setItem("add_on_details", JSON.stringify(details))
 				addAddOnToCartItem(id, selectedBundleType?.id, addOnId);
 			}
 		}
@@ -119,7 +123,7 @@ const ProductCard = ({ productDetails }) => {
 							<button
 								disabled={!isInCart || !selectedBundleType}
 								onClick={() => {
-									onClickAddOn(1000);
+									onClickAddOn(1000, {desc: "Maitake Ex Tablets", price: "$ 220", quantity: 1});
 								}}
 								className="w-[154px] p-1 text-center rounded-xl text-white 2xl:text-2xl text-lg bg-green disabled:bg-gray-300 disabled:cursor-not-allowed"
 							>

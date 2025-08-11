@@ -76,9 +76,11 @@ const Cart = () => {
 								)}
 							</div>
 						</div>
-						<button onClick={onProceedClick} className="bg-green text-white rounded-md px-6 py-2 hover:bg-green-700 transition my-8 mx-auto block">
-							<p>Proceed to checkout</p>
-						</button>
+						{cart.length > 0 && (
+							<button onClick={onProceedClick} className="bg-green text-white rounded-md px-6 py-2 hover:bg-green-700 transition my-8 mx-auto block">
+								<p>Proceed to checkout</p>
+							</button>
+						)}
 					</div>
 				</div>
 			</div>

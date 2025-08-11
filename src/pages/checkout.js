@@ -71,20 +71,12 @@ const CheckoutPage = () => {
 			}
 			return; // Stop execution if payment not completed
 		}
-
-		// 3️⃣ Store billing details in local storage
-		try {
-			localStorage.setItem('billingDetails', JSON.stringify(billingDetails));
-			console.log("Billing details saved to local storage:", billingDetails);
-		} catch (error) {
-			console.error("Error saving billing details to local storage:", error);
-		}
-
-		// 4️⃣ Extract details safely from PayPal response
-		const payerName = `${billingDetails.firstName} ${billingDetails.lastName}`.trim() || 
+		const billingFromLocal = JSON.parse(localStorage.getItem('billingDetails'));
+		console.log("local billing", billingFromLocal);
+		const payerName = `${billingFromLocal.firstName} ${billingFromLocal.lastName}`.trim() || 
 			`${details?.payer?.name?.given_name || ""} ${details?.payer?.name?.surname || ""}`.trim() || 
 			"Valued Customer";
-		const payerEmail = billingDetails.email || details?.payer?.email_address || "customer@example.com";
+		const payerEmail = billingFromLocal.email || details?.payer?.email_address || "customer@example.com";
 		const orderDate = new Date(details?.update_time || new Date()).toLocaleDateString();
 		const totalAmount = Number(details?.purchase_units?.[0]?.amount?.value) || total || 0;
 		const currency = details?.purchase_units?.[0]?.amount?.currency_code || "USD";
@@ -101,8 +93,9 @@ const CheckoutPage = () => {
 
 		// 6️⃣ Retrieve billing details from local storage for email
 		const storedBillingDetails = JSON.parse(localStorage.getItem('billingDetails') || '{}');
-
+		const addOndetails = JSON.parse(localStorage.getItem("add_on_details" || '{}' ))
 		// 7️⃣ HTML template generator
+		const addOnProduct = addOndetails?.desc || "";
 		const generateOrderConfirmationHtml = ({
 			customerName = "Valued Customer",
 			orderDate = new Date().toLocaleDateString(),
@@ -150,7 +143,7 @@ const CheckoutPage = () => {
           <tbody>
             ${items.map(item => `
               <tr>
-                <td>${item.name}</td>
+                <td>${addOnProduct ? `${item.name} + ${addOnProduct}` : item.name}</td>
                 <td>${item.quantity}</td>
                 <td>${currency} ${Number(item.price).toFixed(2)}</td>
               </tr>
@@ -200,8 +193,8 @@ const CheckoutPage = () => {
 		} finally {
 			try {
 				if (router?.push) {
-					localStorage.removeItem("billingDetails");
 					localStorage.removeItem("orderNowCart");
+					localStorage.removeItem("add_on_details");
 					router.push("/payment-success");
 				} else {
 					window.location.href = "/payment-success";
@@ -227,7 +220,7 @@ const CheckoutPage = () => {
 	return (
 		<PayPalScriptProvider
 			options={{
-				"client-id": "Af9PS1KArAfS9DCPCAPEbi4jmg7GnbeZ-Jl5mjApepfA3IWpIGCpHcVtzvEco4nqgjdq6Ksm4rzIsXUj",
+				"client-id": "AQF2fqCOQOGoxVfcouRebL19RXqXWNAUjVE8xQfU-gXcSwRaPHLA2vt-Ulb33LPZkaFbiHjt2IFAjJe_",
 				currency: "USD",
 			}}
 		>
