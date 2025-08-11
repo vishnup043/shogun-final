@@ -63,7 +63,7 @@ const FreshMaitake = () => {
           >
             <SwiperSlide>
               <Image
-                src="/fresh-maitake/slide-1.png"
+                src="/fresh-maitake/1LB.png"
                 alt=""
                 className=""
                 width={300}
