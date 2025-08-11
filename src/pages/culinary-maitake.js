@@ -3,6 +3,8 @@ import Image from "next/image";
 import Navbar from "@layout/navbar/Navbar";
 import Link from 'next/link';
 import Footer from "@layout/footer/Footer";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 const CulinaryMaitake = () => {
 
@@ -69,14 +71,19 @@ const CulinaryMaitake = () => {
             height={365}
           />
           <h1 className="2xl:text-[340px] md:text-[240px] sm:text-[80px] text-[80px] text-center text-limeGreen lg:leading-[290px] leading-[200px]">Fresh Maitake</h1>
-          <div className="flex justify-center items-center mt-8">
+          <div className="grid place-content-center">
             <Link href="/fresh-maitake" className="link-btn bg-greenLeaf text-white px-2 py-1 2xl:text-5xl lg:text-3xl text-2xl">
               Fresh Maitake & Recipes
             </Link>
+            <div className="text-3xl flex w-[56px] text-white mx-auto mt-6 pb-12">
+              <FontAwesomeIcon icon={faChevronRight} />
+              <FontAwesomeIcon icon={faChevronRight} className="opacity-[57%]" />
+              <FontAwesomeIcon icon={faChevronRight} className="opacity-[28%]" />
+            </div>
           </div>
         </section>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
