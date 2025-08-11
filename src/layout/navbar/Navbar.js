@@ -21,6 +21,8 @@ const Navbar = () => {
 	"/order-now": "Order Now",
 	"/fresh-maitake":"Fresh Maitake",
 	"/2025-news": "2025 News",
+	"/cart": "cart",
+	"/checkout": "checkout",
     "/contact-us": "Contact Us",
 	
   };
@@ -45,14 +47,6 @@ const Navbar = () => {
 						<Link href="/order-now" className="text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
 							order online
 						</Link>
-
-						{userInfo?.email ? (
-							<Link href="/" className="text-greyblack">
-								<p>My account</p>
-							</Link>
-						) : (
-							""
-						)}
 
 						<Link href={pathname} className="text-greyblack">
 							<p>{currentLabel}</p>

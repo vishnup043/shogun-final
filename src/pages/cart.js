@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
 import Image from "next/image";
 import Navbar from "@layout/navbar/Navbar";
-
+import Footer from "@layout/footer/Footer";
 import useProducts from "@hooks/custom/useProducts";
 import { useRouter } from "next/navigation";
 
@@ -24,7 +24,7 @@ const Cart = () => {
 		<div>
 			<Navbar />
 			<div className="container">
-				<div className="bg-green-100 min-h-screen flex items-center justify-center p-6 mb-12">
+				<div className="bg-green-100 flex items-center justify-center p-6 my-12">
 					<div className="bg-white rounded-2xl shadow-lg p-8 w-full max-w-4xl">
 						<div>
 							<div className="overflow-x-auto">
@@ -92,6 +92,7 @@ const Cart = () => {
 														</td>
 														<td className="py-4 font-semibold text-black">${getCartItemTotal(item.productId, item.bundleId, item.itemCount)}</td>
 													</tr>
+													
 												);
 											})}
 										</tbody>
@@ -107,6 +108,7 @@ const Cart = () => {
 					</div>
 				</div>
 			</div>
+			<Footer/>
 		</div>
 	);
 };

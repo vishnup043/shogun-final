@@ -2,6 +2,8 @@ import React, { useCallback, useState, useEffect } from "react";
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import useProducts from "@hooks/custom/useProducts";
 import { useRouter } from 'next/router';
+import Navbar from "@layout/navbar/Navbar";
+import Footer from "@layout/footer/Footer";
 
 const CheckoutPage = () => {
 	const router = useRouter();
@@ -218,6 +220,8 @@ const CheckoutPage = () => {
 	};
 
 	return (
+		<div>
+		<Navbar/>
 		<PayPalScriptProvider
 			options={{
 				"client-id": "Af9PS1KArAfS9DCPCAPEbi4jmg7GnbeZ-Jl5mjApepfA3IWpIGCpHcVtzvEco4nqgjdq6Ksm4rzIsXUj",
@@ -416,6 +420,8 @@ const CheckoutPage = () => {
 				</div>
 			</div>
 		</PayPalScriptProvider>
+			<Footer/>
+		</div>
 	);
 };
 
