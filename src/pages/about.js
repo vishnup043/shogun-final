@@ -27,7 +27,7 @@ const AboutUs = () => {
         />
       </div>
       <div className="container mx-auto text-center 2xl:pt-[135px] 2xl:pb-[110px] pt-[100px] pb-[80px] ">
-        <h1 className="text-[80px] leading-none">Company profile & history</h1>
+        <h1 className="text-[80px] leading-none text-darkgreen2">Company profile & history</h1>
         <h2 className="text-grey 2xl:text-5xl text-3xl">Our history is all about Black Maitake</h2>
       </div>
       <div className="text-center 2xl:py-[135px] py-[100px] bg-limebg">

@@ -19,7 +19,7 @@ const Home = () => {
 							<Image
 								src="/video/application-banner.jpg"
 								alt="Banner"
-								className="w-full absolute w-2/3 mx-auto right-0 bottom-0 left-0"
+								className="w-full absolute bottom-0"
 								width={1517}
 								height={188}
 							/>

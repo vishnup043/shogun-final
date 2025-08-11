@@ -96,15 +96,15 @@ const OrderNow = () => {
 	return (
 		<div>
 			<Navbar />
-			<div className="container">
-				
-					<Image
-						src="/video/application-banner.jpg"
-						alt="Banner"
-						className="w-[80%] mx-auto"
-						width={1517}
-						height={188}
-					/>
+			<div className="container my-16">
+
+				<Image
+					src="/video/application-banner.jpg"
+					alt="Banner"
+					className="w-[80%] mx-auto"
+					width={1517}
+					height={188}
+				/>
 				<div className="w-[80%] mx-auto text-sm text-gray-700 bg-limebg p-20">
 					<p className="text-right text-greyblack2">Free Sample Period : Aug 11  -  Sep 10</p>
 					<h2 className="text-green text-center 2xl:text-5xl text-3xl py-20">
@@ -476,7 +476,7 @@ const OrderNow = () => {
 					</p>
 				</div>
 			</div>
-			<Footer/>
+			<Footer />
 		</div>
 	);
 };

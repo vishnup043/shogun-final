@@ -95,7 +95,7 @@ const Navbar = () => {
 								<p>Culinary Maitake</p>
 							</Link>
 							<Link href="/maitake-suppliment" className="block">
-								<p>Maitake Suppliments</p>
+								<p>Maitake Supplements</p>
 							</Link>
 							<Link href="/our-affiliations" className="block">
 								<p>Our Affiliations</p>
