@@ -265,6 +265,7 @@ const CheckoutPage = () => {
 									<option value="USA">USA</option>
 									<option value="India">India</option>
 									<option value="UK">UK</option>
+									<option value="Canada">Canada</option>
 								</select>
 								<input
 									name="streetAddress"

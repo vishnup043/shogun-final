@@ -232,7 +232,7 @@ const shortgunProducts = [
 		name: "Synergy Extract",
 		type: "Liquid",
 		displayPrice: "$ 109.99",
-		isComboTherapyAvailable: false,
+		isComboTherapyAvailable: true,
 		highlighted: true,
 		bundleTypes: [
 			{ id: "SynergyExtractLiquidB1", price: 109.99, unit: "Bottle (140 ml)", purchaseMode: "ONE_TIME" },
