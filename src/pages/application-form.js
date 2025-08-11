@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
 import Navbar from "@layout/navbar/Navbar";
+import Footer from "@layout/footer/Footer";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -96,8 +97,16 @@ const OrderNow = () => {
 		<div>
 			<Navbar />
 			<div className="container">
+				
+					<Image
+						src="/video/application-banner.jpg"
+						alt="Banner"
+						className="w-[80%] mx-auto"
+						width={1517}
+						height={188}
+					/>
 				<div className="w-[80%] mx-auto text-sm text-gray-700 bg-limebg p-20">
-					<p className="text-right text-greyblack2">Free Sample Period : Aug 11  -  Aug 25</p>
+					<p className="text-right text-greyblack2">Free Sample Period : Aug 11  -  Sep 10</p>
 					<h2 className="text-green text-center 2xl:text-5xl text-3xl py-20">
 						REQUEST APPLICATION FOR <span className="block">FREE SHOGUN BLACK MAITAKE PROTHERA & EX TABLET SAMPLES</span>
 					</h2>
@@ -467,6 +476,7 @@ const OrderNow = () => {
 					</p>
 				</div>
 			</div>
+			<Footer/>
 		</div>
 	);
 };

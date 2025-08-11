@@ -19,32 +19,6 @@ const Affiliation = () => {
           <div>
             <h2 className="text-center text-green 2xl:text-7xl lg:text-5xl text-4xl sm:mb-8 mb-4 uppercase">Affiliation</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 sm:divide-x max-w-4xl mx-auto">
-              <div className="flex flex-col items-center py-4 px-8">
-                <div className="text-center">
-                  <Image
-                    width={148}
-                    height={75}
-                    alt="logo"
-                    className='w-full'
-                    src="/affiliation/logo-1.png"
-                  />
-                </div>
-                <span className="text-center md:text-3xl text-2xl mt-4 block leading-none">American BriVision Corp (ABVC)</span>
-              </div>
-              <div className="flex flex-col items-center py-4 px-8">
-                <div className="text-center">
-                  <Image
-                    width={334}
-                    height={75}
-                    alt="logo"
-                    className='w-full'
-                    src="/affiliation/logo-2.png"
-                  />
-                </div>
-                <span className="text-center md:text-3xl text-2xl mt-4 block leading-none">Sloan Kettering Cancer Center</span>
-              </div>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 sm:divide-x max-w-4xl mx-auto">
               <div className="flex flex-col items-center py-8 px-8">
                 <div className="text-center">
                   <Image
@@ -81,15 +55,6 @@ const Affiliation = () => {
               className='w-full'
               src="/affiliation/map.png"
             />
-            <div className="w-[34%] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <Image
-                width={557}
-                height={534}
-                alt="logo"
-                className='w-full'
-                src="/affiliation/people.png"
-              />
-            </div>
           </div>
           <Image
             width={278}

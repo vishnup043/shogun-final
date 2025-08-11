@@ -13,16 +13,19 @@ const Home = () => {
 					<source src="/video/shogun-video.mp4" type="video/mp4" controls />
 					Your browser does not support the video tag.
 				</video>
-				<Link href="/application-form">
-					<Image
-						src="/video/application-banner.jpg"
-						alt="Banner"
-						className="w-full absolute bottom-0"
-						width={1517}
-						height={188}
-					/>
-				</Link>
-
+				<div className="relative">
+					<div className="container">
+						<Link href="/application-form">
+							<Image
+								src="/video/application-banner.jpg"
+								alt="Banner"
+								className="w-full absolute w-2/3 mx-auto right-0 bottom-0 left-0"
+								width={1517}
+								height={188}
+							/>
+						</Link>
+					</div>
+				</div>
 			</div>
 		</>
 	);
