@@ -38,7 +38,7 @@ const Allergen = () => {
             <p className="!mb-0">6188 Colonel Talbot Rd, London, On N6P 1J1 </p>
             <p className="!mb-0">Canada Office : 1-(519)652-5783</p>
             <div className="flex 2xl:gap-10 xl:gap-8 2xl:mt-10 mt-8">
-              <Link href="https://shogunmaitake.com/wp-content/uploads/2022/12/Shogun-PICKLED-MAITAKES-recipe.pdf" target="_blank" className="link-btn bg-green text-white px-2 py-1 2xl:text-2xl md:text-lg text-base rounded-xl">
+              <Link href="https://shogunmaitake.s3.eu-north-1.amazonaws.com/shogun-pdf/Disclaimer-Allergen.pdf" target="_blank" className="link-btn bg-green text-white px-2 py-1 2xl:text-2xl md:text-lg text-base rounded-xl">
                 <p>Download PDF</p>
               </Link>
             </div>

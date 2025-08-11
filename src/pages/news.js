@@ -29,14 +29,14 @@ const News = () => {
           <div className="container">
             <div className="year-block flex justify-between">
               <div className="flex gap-28">
-                <Link href="/" className="block text-5xl text-white flex items-center gap-4">2018
+                <Link href="https://www.cbc.ca/news/canada/london/london-ontario-shogun-maitake-mushroom-1.4707532" target="_blank" className="block text-5xl text-white flex items-center gap-4">2018
                   <div className="text-3xl flex w-[56px]">
                     <FontAwesomeIcon icon={faChevronRight} />
                     <FontAwesomeIcon icon={faChevronRight} className="opacity-[57%]" />
                     <FontAwesomeIcon icon={faChevronRight} className="opacity-[28%]" />
                   </div>
                 </Link>
-                <Link href="/" className="block text-5xl text-white flex items-center gap-4">2019
+                <Link href="https://londonincmagazine.ca/2017/09/01/growing-ways/" target="_blank" className="block text-5xl text-white flex items-center gap-4">2019
                   <div className="text-3xl flex w-[56px]">
                     <FontAwesomeIcon icon={faChevronRight} />
                     <FontAwesomeIcon icon={faChevronRight} className="opacity-[57%]" />

@@ -24,7 +24,7 @@ export default async function handler(req, res) {
     await transporter.sendMail({
       from: "orders@shogunmaitake.com",
       to,
-      cc: "jjacob@shogunmaitake.com",
+      cc: "jjacob@shogunmaitake.com,roxann.sinclair@eshipper.com",
       subject,
       text,
       html,

@@ -8,6 +8,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 const FreshMaitake = () => {
 
   return (
@@ -235,11 +237,11 @@ const FreshMaitake = () => {
                 <li className="flex gap-1"><span>7.</span> Place maitake pieces into a heat-safe container and pour hot pickling liquid over them.</li>
                 <li className="flex gap-1"><span>8.</span> Place a small amount of cling film on the surface to ensure the maitakes stay submerged in the pickling liquid.</li>
               </ul>
-            <div className="flex 2xl:gap-10 xl:gap-8 2xl:mt-10 xl:mt-8">
+              <div className="flex 2xl:gap-10 xl:gap-8 2xl:mt-10 xl:mt-8">
                 <Link href="https://www.youtube.com/watch?v=Ir9vU8BCPFQ&feature=youtu.be" target="_blank" className="link-btn bg-limeGreen text-white px-2 py-1 2xl:text-2xl md:text-lg text-base rounded-xl">
                   <p>Watch On Youtube</p>
                 </Link>
-                <Link href="https://shogunmaitake.com/wp-content/uploads/2022/12/Shogun-PICKLED-MAITAKES-recipe.pdf" target="_blank" className="link-btn bg-limeGreen text-white px-2 py-1 2xl:text-2xl md:text-lg text-base rounded-xl">
+                <Link href="https://shogunmaitake.s3.eu-north-1.amazonaws.com/shogun-pdf/Shogun-PICKLED-MAITAKES-recipe.pdf" target="_blank" className="link-btn bg-limeGreen text-white px-2 py-1 2xl:text-2xl md:text-lg text-base rounded-xl">
                   <p>Download PDF</p>
                 </Link>
               </div>
@@ -306,7 +308,7 @@ const FreshMaitake = () => {
                 <Link href="https://www.youtube.com/watch?v=cKxvjTHkjEs" target="_blank" className="link-btn bg-limeGreen text-white px-2 py-1 2xl:text-2xl md:text-lg text-base rounded-xl">
                   <p>Watch On Youtube</p>
                 </Link>
-                <Link href="https://shogunmaitake.com/wp-content/uploads/2022/12/Shogun-MAITAKES-COOKED-IN-PAPER.pdf" target="_blank" className="link-btn bg-limeGreen text-white px-2 py-1 2xl:text-2xl md:text-lg text-base rounded-xl">
+                <Link href="https://shogunmaitake.s3.eu-north-1.amazonaws.com/shogun-pdf/Shogun-MAITAKES-COOKED-IN-PAPER.pdf" target="_blank" className="link-btn bg-limeGreen text-white px-2 py-1 2xl:text-2xl md:text-lg text-base rounded-xl">
                   <p>Download PDF</p>
                 </Link>
               </div>
@@ -341,7 +343,7 @@ const FreshMaitake = () => {
                 <Link href="https://www.youtube.com/watch?v=2mlG_ICdSZ0&feature=youtu.be" target="_blank" className="link-btn bg-limeGreen text-white px-2 py-1 2xl:text-2xl md:text-lg text-base rounded-xl">
                   <p>Watch On Youtube</p>
                 </Link>
-                <Link href="https://shogunmaitake.com/wp-content/uploads/2022/12/Shogun-MAITAKES-COOKED-IN-PAPER.pdf" target="_blank"  className="link-btn bg-limeGreen text-white px-2 py-1 2xl:text-2xl md:text-lg text-base rounded-xl">
+                <Link href="https://shogunmaitake.s3.eu-north-1.amazonaws.com/shogun-pdf/Shogun-MAITAKES-COOKED-IN-PAPER.pdf" target="_blank" className="link-btn bg-limeGreen text-white px-2 py-1 2xl:text-2xl md:text-lg text-base rounded-xl">
                   <p>Download PDF</p>
                 </Link>
               </div>
@@ -372,6 +374,28 @@ const FreshMaitake = () => {
                 <li className="flex gap-1"><span>9.</span>To garnish, drizzle maitakes with a little of the reserved lemon juice. Place one peeled 6-minute egg on each parcel. Toss herbs & greens with lemon juice, oil, and kosher salt. Finish by topping the Maitakes.</li>
               </ul>
             </div>
+              <div className="flex items-center gap-8 mt-16">
+          <h2 className="text-forestGreen 2xl:text-5xl text-3xl">Maitake Toast</h2>
+          <div className="text-3xl flex w-[56px] text-greenLeaf">
+            <FontAwesomeIcon icon={faChevronRight} />
+            <FontAwesomeIcon icon={faChevronRight} className="opacity-[57%]" />
+            <FontAwesomeIcon icon={faChevronRight} className="opacity-[28%]" />
+          </div>
+          <Link href="https://shogunmaitake.s3.eu-north-1.amazonaws.com/shogun-pdf/Shogun-MAITAKE-TOAST.pdf" target="_blank" className="link-btn bg-limeGreen text-white px-2 py-1 2xl:text-2xl md:text-lg text-base rounded-xl">
+            <p>Download PDF</p>
+          </Link>
+        </div>
+        <div className="flex items-center gap-8 mt-8">
+          <h2 className="text-green 2xl:text-5xl text-3xl">Karrage Maitakes (Gluten Free)</h2>
+          <div className="text-3xl flex w-[56px] text-greenLeaf">
+            <FontAwesomeIcon icon={faChevronRight} />
+            <FontAwesomeIcon icon={faChevronRight} className="opacity-[57%]" />
+            <FontAwesomeIcon icon={faChevronRight} className="opacity-[28%]" />
+          </div>
+          <Link href="https://shogunmaitake.s3.eu-north-1.amazonaws.com/shogun-pdf/Shogun-KARAAGE-MAITAKES.pdf" target="_blank" className="link-btn bg-limeGreen text-white px-2 py-1 2xl:text-2xl md:text-lg text-base rounded-xl">
+            <p>Download PDF</p>
+          </Link>
+        </div>
           </div>
         </div>
         <Image

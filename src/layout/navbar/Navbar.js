@@ -14,7 +14,7 @@ const Navbar = () => {
 	 const routeNames = {
     "/about": "About Us",
     "/culinary-maitake": "Culinary Maitake",
-    "/maitake-suppliment": "Maitake Supplements",
+    "/maitake-supplement": "Maitake Supplements",
     "/our-affiliations": "Our Affiliations",
     "/news": "News & Publications",
     "/allergen-information": "Allergen Information",

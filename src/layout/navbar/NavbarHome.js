@@ -82,7 +82,7 @@ const NavbarHome = ({ videoRef }) => {
                       }`}>
                     <Link href="about" className="block"><p>About</p></Link>
                     <Link href="/culinary-maitake" className="block"><p>Culinary Maitake</p></Link>
-                    <Link href="/maitake-suppliment" className="block"><p>Maitake Suppliments</p></Link>
+                    <Link href="/maitake-supplement" className="block"><p>Maitake Supplements</p></Link>
                     <Link href="/our-affiliations" className="block"><p>Our Affiliations</p></Link>
                     <Link href="/news" className="block"><p>News & Publications</p></Link>
                     <Link href="allergen-information" className="block"><p>Allergen Information</p></Link>

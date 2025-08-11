@@ -103,8 +103,8 @@ const MaitakeSuppliment = () => {
           <div className="flex items-center justify-center gap-[100px] py-24 relative before:rounded-r-[68px] before:content-[''] before:absolute before:left-0 before:w-[28%] before:h-[100%] before:top-1/2 before:-translate-y-1/2 before:bg-limebg">
             <div className="2xl:w-[39%] xl:w-[30%] relative">
               <Image
-                src="/maitake-suppliment/ceo.png"
-                alt="Banner"
+                src="/maitake-suppliment/CEO.png"
+                alt=""
                 className="w-full"
                 width={530}
                 height={793}
