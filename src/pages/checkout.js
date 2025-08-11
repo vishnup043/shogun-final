@@ -27,17 +27,17 @@ const CheckoutPage = () => {
 		return savedDetails
 			? JSON.parse(savedDetails)
 			: {
-					firstName: "",
-					lastName: "",
-					country: "",
-					streetAddress: "",
-					city: "",
-					state: "",
-					postcode: "",
-					phone: "",
-					email: "",
-					doctorName: "",
-			  };
+				firstName: "",
+				lastName: "",
+				country: "",
+				streetAddress: "",
+				city: "",
+				state: "",
+				postcode: "",
+				phone: "",
+				email: "",
+				doctorName: "",
+			};
 	});
 
 	// Save billing details to local storage whenever they change
@@ -73,8 +73,8 @@ const CheckoutPage = () => {
 		}
 		const billingFromLocal = JSON.parse(localStorage.getItem('billingDetails'));
 		console.log("local billing", billingFromLocal);
-		const payerName = `${billingFromLocal.firstName} ${billingFromLocal.lastName}`.trim() || 
-			`${details?.payer?.name?.given_name || ""} ${details?.payer?.name?.surname || ""}`.trim() || 
+		const payerName = `${billingFromLocal.firstName} ${billingFromLocal.lastName}`.trim() ||
+			`${details?.payer?.name?.given_name || ""} ${details?.payer?.name?.surname || ""}`.trim() ||
 			"Valued Customer";
 		const payerEmail = billingFromLocal.email || details?.payer?.email_address || "customer@example.com";
 		const orderDate = new Date(details?.update_time || new Date()).toLocaleDateString();
@@ -93,7 +93,7 @@ const CheckoutPage = () => {
 
 		// 6️⃣ Retrieve billing details from local storage for email
 		const storedBillingDetails = JSON.parse(localStorage.getItem('billingDetails') || '{}');
-		const addOndetails = JSON.parse(localStorage.getItem("add_on_details" || '{}' ))
+		const addOndetails = JSON.parse(localStorage.getItem("add_on_details" || '{}'))
 		// 7️⃣ HTML template generator
 		const addOnProduct = addOndetails?.desc || "";
 		const generateOrderConfirmationHtml = ({
@@ -343,12 +343,22 @@ const CheckoutPage = () => {
 								<div className="mb-4">
 									{cart.map((item) => {
 										const productDetails = getProductDetails(item.productId);
+										const haveAddOns = item?.addOns && item.addOns.length > 0;
+
 										return (
 											<div
 												key={`${item.productId}-${item.bundleId}`}
 												className="flex justify-between border-b border-gray-200 py-2 text-sm"
 											>
-												<span>{productDetails?.name}</span>
+												<div className="flex">
+													<span>{productDetails?.name}</span>
+													<div className="flex">
+														<span className="px-2">+</span>
+														{haveAddOns ? (
+															<span>Ex Tablets</span>
+														) : null}
+													</div>
+												</div>
 												<span>
 													$
 													{getCartItemTotal(
@@ -395,7 +405,7 @@ const CheckoutPage = () => {
 									});
 								}}
 								onApprove={(data, actions) => {
-									return actions.order.capture().then((details) => 
+									return actions.order.capture().then((details) =>
 										handleOrderSuccess(details, data)
 									);
 								}}

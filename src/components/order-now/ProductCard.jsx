@@ -116,7 +116,7 @@ const ProductCard = ({ productDetails }) => {
 				{isComboTherapyAvailable ? (
 					<div className="combotherappy w-max mx-auto mt-6">
 						<div className="w-[178px] p-1 text-center rounded-xl text-white 2xl:text-2xl text-lg bg-green">
-							<p>Combo Theraphy {isComboTherapyAvailableInCart ? "(Applied)" : ""}</p>
+							<p>Combo Care {isComboTherapyAvailableInCart ? "(Applied)" : ""}</p>
 						</div>
 						<div className="w-[178px] p-3 combo-panel bg-offwhite rounded-xl mt-4">
 							<p>Shogun Black Maitake Ex Tablets + Shogun Black Maitake Prothera</p>

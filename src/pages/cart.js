@@ -48,14 +48,37 @@ const Cart = () => {
 												const haveAddOns = item?.addOns && item.addOns.length > 0;
 												return (
 													<tr className="border-t border-gray-200" key={item.productId}>
-														<td className="py-4 flex items-center space-x-4">
-															<button className="text-gray-400 hover:text-red-500" onClick={() => removeFromCart(item.productId, item.bundleId)}>
-																✕
-															</button>
-															<Image width={130} height={130} className="w-16 h-16 rounded-md border" alt="logo" src={productDetails?.images?.[0] || "/order-now/liquid-1.jpg"} />
-															<div>
-																<p className="font-semibold text-black !m-0 p-0">{productDetails?.name}</p>
-																{haveAddOns ? <p className="font-semibold text-gray-400 text-xs">(Include Combo therapy)</p> : ""}
+														<td className="py-4 grid grid-flow row gap-4">
+
+															<div className="flex space-x-8">
+																<button className="text-gray-400 hover:text-red-500" onClick={() => removeFromCart(item.productId, item.bundleId)}>
+																	✕
+																</button>
+																<div>
+																	<div className="flex space-x-4 items-center">
+																		<Image width={130} height={130} className="w-16 h-16 rounded-md border" alt="logo" src={productDetails?.images?.[0] || "/order-now/liquid-1.jpg"} />
+																		<div>
+																			<p className="font-bold text-black !m-0 p-0">{productDetails?.name}</p>
+																		</div>
+																	</div>
+																	<div className="text-center w-[65px]">
+																		{"+"}
+																	</div>
+																	<div className="flex">
+																		{haveAddOns ? (
+																			<div className="flex space-x-4 items-center">
+																				<Image
+																					width={130}
+																					height={130}
+																					className="w-16 h-16 rounded-md border"
+																					alt="logo"
+																					src="/order-now/ex-1.jpg"
+																				/>
+																				<p className="font-bold">Ex Tablets</p>
+																			</div>
+																		) : null}
+																	</div>
+																</div>
 															</div>
 														</td>
 														<td className="py-4">{productDetails?.displayPrice}</td>
