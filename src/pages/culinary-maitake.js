@@ -44,8 +44,8 @@ const CulinaryMaitake = () => {
             <div className="grid grid-cols-1 md:grid-cols-3">
               <div className="col-span-2">
                 <h3 className="2xl:text-6xl lg:text-4xl text-3xl text-white pb-9">The super-food which is healthy & tasty</h3>
-                <div className="2xl:text-2xl text-lg text-white w-3/4">
-                  <p className="pb-8">Escape from the boring range of superfoods. Now we have the elegant taste of healthy Black Maitake Mushroom, which take care of your health from inside. You can easily prepare great delicacies using the organically produced Black Maitake Mushrooms.</p>
+                <div className="2xl:text-2xl text-lg text-white md:w-3/4 w-full">
+                  <p className="md:pb-8 pb-0">Escape from the boring range of superfoods. Now we have the elegant taste of healthy Black Maitake Mushroom, which take care of your health from inside. You can easily prepare great delicacies using the organically produced Black Maitake Mushrooms.</p>
 
                   <p> Shogun Maitake, brings you fresh Black Maitake Mushroom, that is packed completely safe. Taste superfood everyday and live healthy.</p>
                 </div>
@@ -56,13 +56,13 @@ const CulinaryMaitake = () => {
           <Image
             src="/culinary/culinary-hand.png"
             alt="Banner"
-            className="sm:absolute relative right-0 sm:top-1/2 sm:transform sm:-translate-y-1/2 sm:w-[44%] w-full sm:mt-0 mt-8"
+            className="md:absolute relative right-0 md:top-1/2 sm:transform md:-translate-y-1/2 md:w-[44%] w-full md:mt-0 mt-8"
             width={778}
             height={450}
           />
         </section>
 
-        <section className="culinary-maitake 2xl:mt-32 md:mt-24 mt-20">
+        <section className="culinary-maitake 2xl:mt-32 md:mt-24 mt-10">
           <Image
             src="/culinary/maitake-on-plate.png"
             alt="Banner"
@@ -70,7 +70,7 @@ const CulinaryMaitake = () => {
             width={732}
             height={365}
           />
-          <h1 className="2xl:text-[340px] md:text-[240px] sm:text-[80px] text-[80px] text-center text-limeGreen lg:leading-[290px] leading-[200px]">Fresh Maitake</h1>
+          <h1 className="2xl:text-[340px] lg:text-[240px] md:text-[100px] lg:text-[160px] text-[75px] text-center text-limeGreen lg:leading-[240px] md:leading-[100px] leading-[75px]">Fresh Maitake</h1>
           <div className="grid place-content-center">
             <Link href="/fresh-maitake" className="link-btn bg-greenLeaf text-white px-2 py-1 2xl:text-5xl lg:text-3xl text-2xl">
               Fresh Maitake & Recipes
