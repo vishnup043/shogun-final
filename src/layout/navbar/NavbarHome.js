@@ -88,12 +88,6 @@ const NavbarHome = ({ videoRef }) => {
                     <Link href="allergen-information" className="block"><p>Allergen Information</p></Link>
                     <Link href="/contact-us" className="block"><p>Contact Us</p></Link>
                     <div className="grid gap-4 w-max ml-auto">
-                    <Link href="/order-now" className="sm:hidden block text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
-                      order online
-                    </Link>
-                    <Link href="/application-form" className="sm:hidden block text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
-                      Create Account
-                    </Link>
                     </div>
                   </nav>
                 </div>

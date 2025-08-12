@@ -21,13 +21,13 @@ const CulinaryMaitake = () => {
             width={1200}
             height={500}
           />
-          <div className="absolute bottom-36 left-0 w-full text-center text-white">
-            <h1 className="2xl:text-[80px] lg:text-[60px] text-[40px] leading-none text-white"><span className="block 2xl:text-6xl lg:text-4xl text-3xl">The superfood, that everyone is looking for</span> Good Food, Good Life</h1>
+          <div className="absolute 2xl:bottom-36 bottom-6 left-0 w-full text-center text-white">
+            <h1 className="xl:text-[80px] md:text-[50px] text-[30px] md:px-0 px-4 leading-none text-white"><span className="block 2xl:text-6xl lg:text-4xl text-xl">The superfood, that everyone is looking for</span> Good Food, Good Life</h1>
           </div>
         </div>
         <div className="text-center 2xl:py-36 lg:py-28 py-12 relative bg-white ">
           <div className="container mx-auto relative z-10">
-            <h2 className="text-greenLeaf 2xl:text-5xl text-3xl pb-10">The culinary usages</h2>
+            <h2 className="text-greenLeaf 2xl:text-5xl text-3xl md:pb-10 pb-6">The culinary usages</h2>
             <p className="text-grey 2xl:text-2xl text-lg">People are in search of super foods. There are many superstars in this list.
               But what about Black Maitake Mushroom? If it’s not in your list until today, then it’s time to put Maitake in to the forefront. </p>
             <p className="text-grey 2xl:text-2xl text-lg"> Black Maitake, is quite a unique mushroom variety, with intense flavour and texture, that everyone can relish. With its smooth,

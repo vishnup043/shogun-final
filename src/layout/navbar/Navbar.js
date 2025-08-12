@@ -64,6 +64,7 @@ const Navbar = () => {
 								</svg>
 							</button>
 						</div>
+						{pathname !== "/" && (
 						<Link href={"/cart"} className="relative md:px-5 px-0 text-2xl font-bold">
 							{cartLength ? (
 								<span className="absolute z-10 top-0 right-0 inline-flex items-center justify-center p-1 h-5 w-5 text-xs font-medium leading-none text-red-100 transform -translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full">
@@ -73,6 +74,7 @@ const Navbar = () => {
 
 							<FiShoppingCart className="w-6 h-6 drop-shadow-xl" />
 						</Link>
+						)}
 					</div>
 				</div>
 				<div className={`fixed top-0 right-0 h-full w-80 bg-white z-50 transform transition-transform duration-500 ease-in-out shadow-lg ${isOpen ? "translate-x-0" : "translate-x-full"}`}>

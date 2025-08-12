@@ -71,16 +71,16 @@ const ProductCard = ({ productDetails }) => {
 	};
 
 	return (
-		<div className="product-list grid grid-cols-2 py-28 border-b" key={id}>
+		<div className="product-list grid md:grid-cols-2 grid-cols-1 lg:py-28 py-12 border-b" key={id}>
 			<div className="product-box">
-				<h5 className="text-greyblack 2xl:text-5xl text-3xl">Shogun Black Maitake</h5>
-				<h2 className="text-[80px] leading-none">{name}</h2>
-				<h3 className="text-greyblack 2xl:text-5xl text-3xl">
+				<h5 className="text-greyblack 2xl:text-5xl lg:text-3xl text-2xl">Shogun Black Maitake</h5>
+				<h2 className="xl:text-[80px] md:text-[50px] text-[40px] leading-none">{name}</h2>
+				<h3 className="text-greyblack 2xl:text-5xl lg:text-3xl text-2xl">
 					{type} <span className="block">{displayPrice}</span>
 				</h3>
 
 				<div className="relative inline-block text-left">
-					<p className="2xl:text-xl text-lg pt-8">Select The Product Bundle Type</p>
+					<p className="2xl:text-xl text-lg md:pt-8 pt-0">Select The Product Bundle Type</p>
 					<div className="space-y-4">
 						{bundleTypes.map((bundle, index) => (
 							<BundleType selectedBundle={selectedBundleType} onSelect={handleBundleTypeChange} key={index} bundleDetails={bundle} />
@@ -88,11 +88,11 @@ const ProductCard = ({ productDetails }) => {
 					</div>
 
 					{/* Quantity & Total */}
-					<div className="flex items-center gap-8 mt-6">
+					<div className="md:flex block items-center gap-8 mt-6">
 						{!isInCart ? (
 							""
 						) : (
-							<div className="flex flex-row items-center gap-8">
+							<div className="flex flex-row items-center justify-between gap-8">
 					
 								<p className="2xl:text-xl text-lg text-black">
 									Options Amount
@@ -109,13 +109,13 @@ const ProductCard = ({ productDetails }) => {
 							</div>
 						)}
 
-						<button onClick={addCartClick} className="w-[178px] px-4 py-2 border border-gray-300 rounded-md text-black 2xl:text-2xl text-lg">
+						<button onClick={addCartClick} className="w-max px-4 py-2 border border-gray-300 rounded-md text-black 2xl:text-2xl text-lg">
 							{isInCart ? isInCart?.bundleId !== selectedBundleType?.id ? <p>Update bundle type</p> : <p>Remove from Cart</p> : <p>Add to Cart</p>}
 						</button>
 					</div>
 				</div>
 			</div>
-			<div>
+			<div className="md:mt-0 mt-4">
 				<Swiper className="rounded-3xl" slidesPerView={1} loop={true} navigation={true} modules={[Navigation]} onSlideChange={() => console.log("slide change")} onSwiper={(swiper) => console.log(swiper)}>
 					{images.map((image, index) => (
 						<SwiperSlide key={index}>
