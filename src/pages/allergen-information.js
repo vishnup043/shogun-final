@@ -56,7 +56,7 @@ const Allergen = () => {
                   width={284}
                   height={274}
                   alt="logo"
-                  className='relative 2xl:w-full w-[80%] mx-auto'
+                  className='relative 2xl:w-full mx-auto'
                   src="/about/maitake.png"
                 />
               </div>

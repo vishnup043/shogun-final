@@ -7,9 +7,10 @@ import "swiper/css/pagination";
 import Image from "next/image";
 import BundleType from "./BundleType";
 import useProducts from "@hooks/custom/useProducts";
+import { addOnProducts, shortgunProducts } from "@utils/data";
 
 const ProductCard = ({ productDetails }) => {
-	const { name, id, displayPrice, type, bundleTypes, images, isComboTherapyAvailable ,textForProthera} = productDetails;
+	const { name, id, displayPrice, type, bundleTypes, images, isComboTherapyAvailable, textForProthera } = productDetails;
 	const { cart, removeFromCart, addToCart, updateItemCount, getCartItemTotal, addAddOnToCartItem, removeAddOnFromCartItem } = useProducts();
 
 	const isInCart = useMemo(() => {
@@ -56,7 +57,7 @@ const ProductCard = ({ productDetails }) => {
 	};
 
 	const onClickAddOn = (addOnId, details) => {
-		console.log("here",details)
+		console.log("here", details)
 		if (isInCart) {
 			if (isInCart.addOns && isInCart.addOns.includes(addOnId)) {
 				localStorage.removeItem("add_on_details")
@@ -92,9 +93,18 @@ const ProductCard = ({ productDetails }) => {
 							""
 						) : (
 							<div className="flex flex-row items-center gap-8">
+					
 								<p className="2xl:text-xl text-lg text-black">
-									Options Amount <span className="block">${getCartItemTotal(isInCart?.productId, isInCart.bundleId, isInCart.itemCount)}</span>
+									Options Amount
+									<span className="block">
+										${
+											isComboTherapyAvailableInCart
+												? (addOnProducts.find(p => p.id === 1000)?.price || 0) * (count || 1)
+												: getCartItemTotal(isInCart?.productId, isInCart.bundleId, isInCart.itemCount)
+										}
+									</span>
 								</p>
+
 								<input onChange={onCountChange} value={count} max={10} min={1} type="number" className="w-[78px] px-4 py-2 border border-gray-300 rounded-md text-black 2xl:text-2xl text-lg" />
 							</div>
 						)}
@@ -123,7 +133,7 @@ const ProductCard = ({ productDetails }) => {
 							<button
 								disabled={!isInCart || !selectedBundleType}
 								onClick={() => {
-									onClickAddOn(1000, {desc: "Maitake Ex Tablets", price: "$ 260", quantity: 1});
+									onClickAddOn(1000, { desc: "Maitake Ex Tablets", price: "$ 260", quantity: 1 });
 								}}
 								className="w-[154px] p-1 text-center rounded-xl text-white 2xl:text-2xl text-lg bg-green disabled:bg-gray-300 disabled:cursor-not-allowed"
 							>

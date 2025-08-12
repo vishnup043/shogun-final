@@ -47,7 +47,7 @@ const AboutUs = () => {
           height={910}
         />
         <div className="container mx-auto relative z-10">
-          <h1 className="text-[80px] leading-none">History of Maitake production</h1>
+          <h1 className="text-[80px] leading-none text-darkgreen2">History of Maitake production</h1>
           <h2 className="text-grey 2xl:text-5xl text-3xl pt-6 pb-10">We know, because we grow</h2>
           <p className="text-grey 2xl:text-2xl text-lg">In the old days Black Maitake Mushrooms were rare enough as it was grown in wild, naturally. Black Maitake mushroom, as the name suggests, is black in colour, but it tastes more delicate and is with a feathery texture. Apart from being a delicacy this rare mushroom family is the most sought-after one, because of its health benefits.</p>
           <p className="text-grey 2xl:text-2xl text-lg"> Shogun Maitake, copied the way nature nurture and grow Black Maitake Mushroom in its state-of-the-art facility in London, Ontario. Expert hands with the deepest of knowledge in Maitake production helped them cultivate as it was grown in the mountains of northeastern Japan. </p>

@@ -4,6 +4,7 @@ import Navbar from "@layout/navbar/Navbar";
 import Footer from "@layout/footer/Footer";
 import useProducts from "@hooks/custom/useProducts";
 import { useRouter } from "next/navigation";
+import { addOnProducts, shortgunProducts } from "@utils/data";
 
 const Cart = () => {
 	const router = useRouter();
@@ -81,7 +82,18 @@ const Cart = () => {
 																</div>
 															</div>
 														</td>
-														<td className="py-4">{productDetails?.displayPrice}</td>
+
+														<td className="py-4">
+															{item.addOns?.length > 0
+																? `$${item.addOns
+																	.map(addOnId => {
+																		const addOn = addOnProducts.find(p => p.id === addOnId);
+																		return addOn ? addOn.price : 0;
+																	})
+																	.reduce((sum, price) => sum + price, 0)}`
+																: `$${getCartItemTotal(item.productId, item.bundleId, 1)}`}
+														</td>
+
 														<td className="py-4">
 															<input
 																type="number"
@@ -90,9 +102,13 @@ const Cart = () => {
 																className="w-[78px] px-4 py-2 border border-gray-300 rounded-md text-black 2xl:text-2xl text-lg"
 															/>
 														</td>
-														<td className="py-4 font-semibold text-black">${getCartItemTotal(item.productId, item.bundleId, item.itemCount)}</td>
+														<td className="py-4 font-semibold text-black">
+															{item.addOns?.includes(1000)
+																? `$${(addOnProducts.find(p => p.id === 1000)?.price || 0) * item.itemCount}`
+																: `$${getCartItemTotal(item.productId, item.bundleId, item.itemCount)}`}
+														</td>
 													</tr>
-													
+
 												);
 											})}
 										</tbody>
@@ -108,7 +124,7 @@ const Cart = () => {
 					</div>
 				</div>
 			</div>
-			<Footer/>
+			<Footer />
 		</div>
 	);
 };

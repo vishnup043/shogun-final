@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faWhatsapp, faYoutube, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faYoutube, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => {
 
@@ -31,8 +31,8 @@ const Footer = () => {
               <Link href="/">
                 <FontAwesomeIcon icon={faYoutube} />
               </Link>
-              <Link href="/">
-                <FontAwesomeIcon icon={faWhatsapp} />
+              <Link href="https://www.linkedin.com/company/shogun-maitake/?originalSubdomain=ca" target="_blank">
+                <FontAwesomeIcon icon={faLinkedin} />
               </Link>
             </div>
           </div>
@@ -79,7 +79,7 @@ const Footer = () => {
             <FontAwesomeIcon icon={faYoutube} />
           </Link>
           <Link href="/">
-            <FontAwesomeIcon icon={faWhatsapp} />
+            <FontAwesomeIcon icon={faLinkedin} />
           </Link>
         </div>
       </div>

@@ -1,21 +1,24 @@
 import React, { useCallback, useState, useEffect } from "react";
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { PayPalScriptProvider, PayPalButtons ,FUNDING } from "@paypal/react-paypal-js";
 import useProducts from "@hooks/custom/useProducts";
 import { useRouter } from 'next/router';
 import Navbar from "@layout/navbar/Navbar";
 import Footer from "@layout/footer/Footer";
+import { addOnProducts } from "@utils/data";
 
 const CheckoutPage = () => {
 	const shippingCost = 20;
-	const taxRate = 0.13; 
+	const taxRate = 0.13;
 	const router = useRouter();
 	const { cart, getCartItemTotal, productList } = useProducts();
 	const totalItems = cart.reduce((sum, item) => sum + item.itemCount, 0);
-	const subtotal = cart.reduce(
-		(sum, item) =>
-			sum + getCartItemTotal(item.productId, item.bundleId, item.itemCount),
-		0
-	);
+const subtotal = cart.reduce((sum, item) => {
+  if (item.addOns?.includes(1000)) {
+    const price = addOnProducts.find(p => p.id === 1000)?.price || 0;
+    return sum + price * item.itemCount;
+  }
+  return sum + getCartItemTotal(item.productId, item.bundleId, item.itemCount);
+}, 0);
 	const taxAmount = +(subtotal * taxRate).toFixed(2); // keep 2 decimal places
 
 	const total = +(subtotal + shippingCost + taxAmount).toFixed(2);
@@ -85,7 +88,7 @@ const CheckoutPage = () => {
 		const payerEmail = billingFromLocal.email || details?.payer?.email_address || "customer@example.com";
 		const orderDate = new Date(details?.update_time || new Date()).toLocaleDateString();
 		const totalAmount = Number(details?.purchase_units?.[0]?.amount?.value) || total || 0;
-		const currency = details?.purchase_units?.[0]?.amount?.currency_code || "USD";
+		const currency = details?.purchase_units?.[0]?.amount?.currency_code || "CAD";
 
 		// 5️⃣ Generate order items for email
 		const orderItems = cart.map(item => {
@@ -107,7 +110,7 @@ const CheckoutPage = () => {
 			orderDate = new Date().toLocaleDateString(),
 			items = [],
 			totalAmount = 0,
-			currency = "USD",
+			currency = "CAD",
 			billingDetails = {}
 		} = {}) => `
     <!DOCTYPE html>
@@ -229,7 +232,7 @@ const CheckoutPage = () => {
 			<PayPalScriptProvider
 				options={{
 					"client-id": "Af9PS1KArAfS9DCPCAPEbi4jmg7GnbeZ-Jl5mjApepfA3IWpIGCpHcVtzvEco4nqgjdq6Ksm4rzIsXUj",
-					currency: "USD",
+					currency: "CAD",
 				}}
 			>
 				<div className="">
@@ -345,7 +348,6 @@ const CheckoutPage = () => {
 							{/* Right Column - Order Summary */}
 							<div className="border border-gray-200 rounded-lg p-4 bg-white shadow-sm h-fit">
 								<h2 className="text-lg font-semibold mb-4">Your order</h2>
-
 								{!productList || productList.length === 0 ? (
 									<p className="text-gray-500 text-sm mb-4">Loading products...</p>
 								) : (
@@ -369,12 +371,14 @@ const CheckoutPage = () => {
 														</div>
 													</div>
 													<span>
-														$
-														{getCartItemTotal(
-															item.productId,
-															item.bundleId,
-															item.itemCount
-														)}
+													{item.addOns?.length > 0
+																? `$${item.addOns
+																	.map(addOnId => {
+																		const addOn = addOnProducts.find(p => p.id === addOnId);
+																		return addOn ? addOn.price : 0;
+																	})
+																	.reduce((sum, price) => sum + price, 0)}`
+																: `$${getCartItemTotal(item.productId, item.bundleId, 1)}`}
 													</span>
 												</div>
 											);
@@ -390,7 +394,7 @@ const CheckoutPage = () => {
 									<span>Shipping</span>
 									<span>$20</span>
 								</div>
-									<div className="flex justify-between border-b border-gray-200 pb-2 mb-4">
+								<div className="flex justify-between border-b border-gray-200 pb-2 mb-4">
 									<span>Tax</span>
 									<span>13%</span>
 								</div>
@@ -402,6 +406,7 @@ const CheckoutPage = () => {
 								{/* PayPal Button - only show if billing complete */}
 								<PayPalButtons
 									style={{ layout: "vertical" }}
+									fundingSource={FUNDING.PAYPAL}
 									disabled={!isBillingComplete}
 									createOrder={(data, actions) => {
 										return actions.order.create({

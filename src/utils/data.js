@@ -221,7 +221,7 @@ const shortgunProducts = [
 		name: "Synergy Extract",
 		type: "capsule",
 		displayPrice: "$ 139.99",
-		textForProthera: "Shogun Black Maitake Synergy Extract",
+		textForProthera: "Shogun Black Maitake Synergy Extract Capsule",
 		isComboTherapyAvailable: true,
 		bundleTypes: [
 			{ id: "SynergyExtractB1", price: 139.99, unit: "60 Capsules / 200 mg per capsule", purchaseMode: "ONE_TIME" },
@@ -234,7 +234,7 @@ const shortgunProducts = [
 		name: "Synergy Extract",
 		type: "Liquid",
 		displayPrice: "$ 109.99",
-		textForProthera: "Shogun Black Maitake Synergy Extract",
+		textForProthera: "Shogun Black Maitake Synergy Extract Liquid",
 		isComboTherapyAvailable: true,
 		highlighted: true,
 		bundleTypes: [

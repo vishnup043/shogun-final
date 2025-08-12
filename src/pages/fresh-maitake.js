@@ -119,7 +119,7 @@ const FreshMaitake = () => {
                   Fresh Maitake is available for <span className="block">purchase at the following grocers</span>
                 </h3>
                 <div className="2xl:text-[40px] lg:text-[30px] text-lg mt-8 grid gap-4 leading-none">
-                  <h5><span className="text-black">FARM BOY</span></h5>
+                  <Link href="https://www.farmboy.ca/" target="_blank"><h5><span className="text-black">FARM BOY</span></h5></Link>
                   <h5>
                     <span className="text-black">
                       Costco – Select Locations
@@ -145,14 +145,15 @@ const FreshMaitake = () => {
                   Fresh Maitake is served at <span className="block">the following restaurants</span>
                 </h3>
                 <div className="2xl:text-[40px] lg:text-[30px] text-lg mt-8 grid gap-4 leading-none">
-                  <h5><span className="text-black">Abruzzi</span></h5>
-                  <h5>
+                  <Link href="https://www.abruzzi.ca/" target="_blank"><h5><span className="text-black">Abruzzi</span></h5></Link>
+                  <Link href="https://www.gracelondon.ca/" target="_blank"><h5>
                     <span className="text-black">
                       Grace Restaurant
                     </span>
                   </h5>
-                  <h5><span className="text-black">Taverna 1331</span></h5>
-                  <h5><span className="text-black">Wolfe Pack Company Bar</span></h5>
+                  </Link>
+                  <Link href="https://www.taverna1331.ca/" target="_blank"><h5><span className="text-black">Taverna 1331</span></h5></Link>
+                 <Link href="https://wolfpackbars.com/" target="_blank"><h5><span className="text-black">Wolfe Pack Company Bar</span></h5></Link>
 
                 </div>
               </div>
@@ -374,28 +375,28 @@ const FreshMaitake = () => {
                 <li className="flex gap-1"><span>9.</span>To garnish, drizzle maitakes with a little of the reserved lemon juice. Place one peeled 6-minute egg on each parcel. Toss herbs & greens with lemon juice, oil, and kosher salt. Finish by topping the Maitakes.</li>
               </ul>
             </div>
-              <div className="flex items-center gap-8 mt-16">
-          <h2 className="text-forestGreen 2xl:text-5xl text-3xl">Maitake Toast</h2>
-          <div className="text-3xl flex w-[56px] text-greenLeaf">
-            <FontAwesomeIcon icon={faChevronRight} />
-            <FontAwesomeIcon icon={faChevronRight} className="opacity-[57%]" />
-            <FontAwesomeIcon icon={faChevronRight} className="opacity-[28%]" />
-          </div>
-          <Link href="https://shogunmaitake.s3.eu-north-1.amazonaws.com/shogun-pdf/Shogun-MAITAKE-TOAST.pdf" target="_blank" className="link-btn bg-limeGreen text-white px-2 py-1 2xl:text-2xl md:text-lg text-base rounded-xl">
-            <p>Download PDF</p>
-          </Link>
-        </div>
-        <div className="flex items-center gap-8 mt-8">
-          <h2 className="text-green 2xl:text-5xl text-3xl">Karrage Maitakes (Gluten Free)</h2>
-          <div className="text-3xl flex w-[56px] text-greenLeaf">
-            <FontAwesomeIcon icon={faChevronRight} />
-            <FontAwesomeIcon icon={faChevronRight} className="opacity-[57%]" />
-            <FontAwesomeIcon icon={faChevronRight} className="opacity-[28%]" />
-          </div>
-          <Link href="https://shogunmaitake.s3.eu-north-1.amazonaws.com/shogun-pdf/Shogun-KARAAGE-MAITAKES.pdf" target="_blank" className="link-btn bg-limeGreen text-white px-2 py-1 2xl:text-2xl md:text-lg text-base rounded-xl">
-            <p>Download PDF</p>
-          </Link>
-        </div>
+            <div className="flex items-center gap-8 mt-16">
+              <h2 className="text-forestGreen 2xl:text-5xl text-3xl">Maitake Toast</h2>
+              <div className="text-3xl flex w-[56px] text-greenLeaf">
+                <FontAwesomeIcon icon={faChevronRight} />
+                <FontAwesomeIcon icon={faChevronRight} className="opacity-[57%]" />
+                <FontAwesomeIcon icon={faChevronRight} className="opacity-[28%]" />
+              </div>
+              <Link href="https://shogunmaitake.s3.eu-north-1.amazonaws.com/shogun-pdf/Shogun-MAITAKE-TOAST.pdf" target="_blank" className="link-btn bg-limeGreen text-white px-2 py-1 2xl:text-2xl md:text-lg text-base rounded-xl">
+                <p>Download PDF</p>
+              </Link>
+            </div>
+            <div className="flex items-center gap-8 mt-8">
+              <h2 className="text-green 2xl:text-5xl text-3xl">Karrage Maitakes (Gluten Free)</h2>
+              <div className="text-3xl flex w-[56px] text-greenLeaf">
+                <FontAwesomeIcon icon={faChevronRight} />
+                <FontAwesomeIcon icon={faChevronRight} className="opacity-[57%]" />
+                <FontAwesomeIcon icon={faChevronRight} className="opacity-[28%]" />
+              </div>
+              <Link href="https://shogunmaitake.s3.eu-north-1.amazonaws.com/shogun-pdf/Shogun-KARAAGE-MAITAKES.pdf" target="_blank" className="link-btn bg-limeGreen text-white px-2 py-1 2xl:text-2xl md:text-lg text-base rounded-xl">
+                <p>Download PDF</p>
+              </Link>
+            </div>
           </div>
         </div>
         <Image
