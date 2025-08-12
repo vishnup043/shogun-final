@@ -9,7 +9,7 @@ import BundleType from "./BundleType";
 import useProducts from "@hooks/custom/useProducts";
 
 const ProductCard = ({ productDetails }) => {
-	const { name, id, displayPrice, type, bundleTypes, images, isComboTherapyAvailable } = productDetails;
+	const { name, id, displayPrice, type, bundleTypes, images, isComboTherapyAvailable ,textForProthera} = productDetails;
 	const { cart, removeFromCart, addToCart, updateItemCount, getCartItemTotal, addAddOnToCartItem, removeAddOnFromCartItem } = useProducts();
 
 	const isInCart = useMemo(() => {
@@ -119,7 +119,7 @@ const ProductCard = ({ productDetails }) => {
 							<p>Combo Care {isComboTherapyAvailableInCart ? "(Applied)" : ""}</p>
 						</div>
 						<div className="w-[178px] p-3 combo-panel bg-offwhite rounded-xl mt-4">
-							<p>Shogun Black Maitake Ex Tablets + Shogun Black Maitake Prothera</p>
+							<p>Shogun Black Maitake Ex Tablets + {textForProthera}</p>
 							<button
 								disabled={!isInCart || !selectedBundleType}
 								onClick={() => {

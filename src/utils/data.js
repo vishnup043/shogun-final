@@ -197,21 +197,22 @@ const shortgunProducts = [
 		name: "Prothera",
 		type: "Liquid",
 		displayPrice: "$ 150",
+		textForProthera: "Shogun Black Maitake Prothera",
 		isComboTherapyAvailable: true,
 		bundleTypes: [
-			{ id: "ProtheraB1", price: 150, unit: "Bottle (140 ml)", purchaseMode: "ONE_TIME" },
-			{ id: "ProtheraB2", price: 120, unit: "Bottle (140 ml) (2 Bottles/Mo)", purchaseMode: "SUBSCRIPTION" },
+			{ id: "ProtheraB1", price: 150, unit: "300 ml", purchaseMode: "ONE_TIME" },
+			{ id: "ProtheraB2", price: 1680, unit: "300ml*12 (2 Bottles/Mo)", purchaseMode: "SUBSCRIPTION" },
 		],
 		images: ["/order-now/prothera1.jpg", "/order-now/prothera2.jpg", "/order-now/prothera3.jpg", "/order-now/prothera4.jpg", "/order-now/prothera5.jpg", "/order-now/prothera6.jpg", "/order-now/prothera7.jpg"],
 	},
 	{
 		id: 2,
 		name: "EX TABLETS",
-		displayPrice: "$ 120",
+		displayPrice: "$ 150",
 		isComboTherapyAvailable: false,
 		bundleTypes: [
-			{ id: "ExTabletsB1", price: 150, unit: "Bottle (140 ml)", purchaseMode: "ONE_TIME" },
-			{ id: "ExTabletsB2", price: 120, unit: "Bottle (140 ml) (2 Bottles/Mo)", purchaseMode: "SUBSCRIPTION", finalPrice: 2800.0 },
+			{ id: "ExTabletsB1", price: 150, unit: "360 Tablets", purchaseMode: "ONE_TIME" },
+			{ id: "ExTabletsB2", price: 120, unit: "360 Tablets Bottle*12 (2 Bottles/Mo)", purchaseMode: "SUBSCRIPTION", finalPrice: 1680.0 },
 		],
 		images: ["/order-now/ex-1.jpg", "/order-now/ex-2.jpg", "/order-now/ex-3.jpg", "/order-now/ex-4.jpg", "/order-now/ex-5.jpg", "/order-now/ex-6.jpg", "/order-now/ex-7.jpg"],
 	},
@@ -220,10 +221,11 @@ const shortgunProducts = [
 		name: "Synergy Extract",
 		type: "capsule",
 		displayPrice: "$ 139.99",
+		textForProthera: "Shogun Black Maitake Synergy Extract",
 		isComboTherapyAvailable: true,
 		bundleTypes: [
-			{ id: "SynergyExtractB1", price: 139.99, unit: "Bottle (60 Capsules & 200 mg)", purchaseMode: "ONE_TIME" },
-			{ id: "SynergyExtractB2", price: 130.0, unit: "Bottle (60 capsules) (2 Bottles/Mo)", purchaseMode: "SUBSCRIPTION", finalPrice: 1560.0 },
+			{ id: "SynergyExtractB1", price: 139.99, unit: "60 Capsules / 200 mg per capsule", purchaseMode: "ONE_TIME" },
+			{ id: "SynergyExtractB2", price: 130.0, unit: "60 capsules Bottle *12 (2 Bottles/Mo)", purchaseMode: "SUBSCRIPTION", finalPrice: 1560.0 },
 		],
 		images: ["/order-now/synergy-1.jpg", "/order-now/synergy-2.jpg", "/order-now/synergy-3.jpg", "/order-now/synergy-4.jpg", "/order-now/synergy-5.jpg", "/order-now/synergy-6.jpg", "/order-now/synergy-7.jpg"],
 	},
@@ -232,16 +234,17 @@ const shortgunProducts = [
 		name: "Synergy Extract",
 		type: "Liquid",
 		displayPrice: "$ 109.99",
+		textForProthera: "Shogun Black Maitake Synergy Extract",
 		isComboTherapyAvailable: true,
 		highlighted: true,
 		bundleTypes: [
-			{ id: "SynergyExtractLiquidB1", price: 109.99, unit: "Bottle (140 ml)", purchaseMode: "ONE_TIME" },
-			{ id: "SynergyExtractLiquidB2", price: 100.0, unit: "Bottle (140 ml) (2 Bottles/Mo)", purchaseMode: "SUBSCRIPTION", finalPrice: 2400.0 },
+			{ id: "SynergyExtractLiquidB1", price: 109.99, unit: "140 ml Bottle", purchaseMode: "ONE_TIME" },
+			{ id: "SynergyExtractLiquidB2", price: 100.0, unit: "140 ml bottle*12 (2 Bottles/Mo)", purchaseMode: "SUBSCRIPTION", finalPrice: 2400.0 },
 		],
 		images: ["/order-now/liquid-1.jpg", "/order-now/liquid-2.jpg", "/order-now/liquid-3.jpg", "/order-now/liquid-4.jpg", "/order-now/liquid-5.jpg", "/order-now/liquid-6.jpg", "/order-now/liquid-7.jpg"],
 	},
 ];
 
-export const addOnProducts = [{ id: 1000, name: "Combo Theraphy", price: 220, description: "Shogun Black Maitake Ex Tablets + Shogun Black Maitake Prothera" }];
+export const addOnProducts = [{ id: 1000, name: "Combo Care", price: 220, description: "Shogun Black Maitake Ex Tablets + Shogun Black Maitake Prothera" }];
 
 export { pages, userSidebar, sliderData, ctaCardData, featurePromo, contactData, shortgunProducts };

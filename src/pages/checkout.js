@@ -6,6 +6,8 @@ import Navbar from "@layout/navbar/Navbar";
 import Footer from "@layout/footer/Footer";
 
 const CheckoutPage = () => {
+	const shippingCost = 20;
+	const taxRate = 0.13; 
 	const router = useRouter();
 	const { cart, getCartItemTotal, productList } = useProducts();
 	const totalItems = cart.reduce((sum, item) => sum + item.itemCount, 0);
@@ -14,7 +16,9 @@ const CheckoutPage = () => {
 			sum + getCartItemTotal(item.productId, item.bundleId, item.itemCount),
 		0
 	);
-	const total = subtotal;
+	const taxAmount = +(subtotal * taxRate).toFixed(2); // keep 2 decimal places
+
+	const total = +(subtotal + shippingCost + taxAmount).toFixed(2);
 	const getProductDetails = useCallback(
 		(productId) => {
 			if (!productList || productList.length === 0) return null;
@@ -221,206 +225,210 @@ const CheckoutPage = () => {
 
 	return (
 		<div>
-		<Navbar/>
-		<PayPalScriptProvider
-			options={{
-				"client-id": "Af9PS1KArAfS9DCPCAPEbi4jmg7GnbeZ-Jl5mjApepfA3IWpIGCpHcVtzvEco4nqgjdq6Ksm4rzIsXUj",
-				currency: "USD",
-			}}
-		>
-			<div className="">
-				<div className="bg-green-500 min-h-screen p-6">
-					<div className="max-w-6xl mx-auto bg-white rounded-lg shadow-lg grid grid-cols-1 lg:grid-cols-3 gap-8 p-6">
-						{/* Left Column - Billing Details */}
-						<div className="lg:col-span-2 space-y-4">
-							<h2 className="text-lg font-semibold">Billing Details</h2>
-							<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-								<input
-									name="firstName"
-									type="text"
-									placeholder="First name *"
-									className="border border-gray-300 rounded p-2"
-									value={billingDetails.firstName}
-									onChange={handleInputChange}
-								/>
-								<input
-									name="lastName"
-									type="text"
-									placeholder="Last name *"
-									className="border border-gray-300 rounded p-2"
-									value={billingDetails.lastName}
-									onChange={handleInputChange}
-								/>
-								<input
-									name="company"
-									type="text"
-									placeholder="Company name (optional)"
-									className="border border-gray-300 rounded p-2 md:col-span-2"
-									value={billingDetails.company || ""}
-									onChange={handleInputChange}
-								/>
-								<select
-									name="country"
-									className="border border-gray-300 rounded p-2 md:col-span-2"
-									value={billingDetails.country}
-									onChange={handleInputChange}
-								>
-									<option value="">Country / Region *</option>
-									<option value="USA">USA</option>
-									<option value="India">India</option>
-									<option value="UK">UK</option>
-									<option value="Canada">Canada</option>
-								</select>
-								<input
-									name="streetAddress"
-									type="text"
-									placeholder="Street address *"
-									className="border border-gray-300 rounded p-2 md:col-span-2"
-									value={billingDetails.streetAddress}
-									onChange={handleInputChange}
-								/>
-								<input
-									name="apartment"
-									type="text"
-									placeholder="Apartment, suite, unit (optional)"
-									className="border border-gray-300 rounded p-2 md:col-span-2"
-									value={billingDetails.apartment || ""}
-									onChange={handleInputChange}
-								/>
-								<input
-									name="city"
-									type="text"
-									placeholder="Town / City *"
-									className="border border-gray-300 rounded p-2"
-									value={billingDetails.city}
-									onChange={handleInputChange}
-								/>
-								<input
-									name="state"
-									type="text"
-									placeholder="State / County *"
-									className="border border-gray-300 rounded p-2"
-									value={billingDetails.state}
-									onChange={handleInputChange}
-								/>
-								<input
-									name="postcode"
-									type="text"
-									placeholder="Postcode / Zip *"
-									className="border border-gray-300 rounded p-2"
-									value={billingDetails.postcode}
-									onChange={handleInputChange}
-								/>
-								<input
-									name="phone"
-									type="text"
-									placeholder="Phone *"
-									className="border border-gray-300 rounded p-2"
-									value={billingDetails.phone}
-									onChange={handleInputChange}
-								/>
-								<input
-									name="email"
-									type="email"
-									placeholder="Email address *"
-									className="border border-gray-300 rounded p-2 md:col-span-2"
-									value={billingDetails.email}
-									onChange={handleInputChange}
-								/>
-								<input
-									name="doctorName"
-									type="text"
-									placeholder="Doctor's Name"
-									className="border border-gray-300 rounded p-2 md:col-span-2"
-									value={billingDetails.doctorName || ""}
-									onChange={handleInputChange}
-								/>
-							</div>
-						</div>
-
-						{/* Right Column - Order Summary */}
-						<div className="border border-gray-200 rounded-lg p-4 bg-white shadow-sm h-fit">
-							<h2 className="text-lg font-semibold mb-4">Your order</h2>
-
-							{!productList || productList.length === 0 ? (
-								<p className="text-gray-500 text-sm mb-4">Loading products...</p>
-							) : (
-								<div className="mb-4">
-									{cart.map((item) => {
-										const productDetails = getProductDetails(item.productId);
-										const haveAddOns = item?.addOns && item.addOns.length > 0;
-
-										return (
-											<div
-												key={`${item.productId}-${item.bundleId}`}
-												className="flex justify-between border-b border-gray-200 py-2 text-sm"
-											>
-												<div className="flex">
-													<span>{productDetails?.name}</span>
-													<div className="flex">
-														<span className="px-2">+</span>
-														{haveAddOns ? (
-															<span>Ex Tablets</span>
-														) : null}
-													</div>
-												</div>
-												<span>
-													$
-													{getCartItemTotal(
-														item.productId,
-														item.bundleId,
-														item.itemCount
-													)}
-												</span>
-											</div>
-										);
-									})}
+			<Navbar />
+			<PayPalScriptProvider
+				options={{
+					"client-id": "Af9PS1KArAfS9DCPCAPEbi4jmg7GnbeZ-Jl5mjApepfA3IWpIGCpHcVtzvEco4nqgjdq6Ksm4rzIsXUj",
+					currency: "USD",
+				}}
+			>
+				<div className="">
+					<div className="bg-green-500 min-h-screen p-6">
+						<div className="max-w-6xl mx-auto bg-white rounded-lg shadow-lg grid grid-cols-1 lg:grid-cols-3 gap-8 p-6">
+							{/* Left Column - Billing Details */}
+							<div className="lg:col-span-2 space-y-4">
+								<h2 className="text-lg font-semibold">Billing Details</h2>
+								<div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+									<input
+										name="firstName"
+										type="text"
+										placeholder="First name *"
+										className="border border-gray-300 rounded p-2"
+										value={billingDetails.firstName}
+										onChange={handleInputChange}
+									/>
+									<input
+										name="lastName"
+										type="text"
+										placeholder="Last name *"
+										className="border border-gray-300 rounded p-2"
+										value={billingDetails.lastName}
+										onChange={handleInputChange}
+									/>
+									<input
+										name="company"
+										type="text"
+										placeholder="Company name (optional)"
+										className="border border-gray-300 rounded p-2 md:col-span-2"
+										value={billingDetails.company || ""}
+										onChange={handleInputChange}
+									/>
+									<select
+										name="country"
+										className="border border-gray-300 rounded p-2 md:col-span-2"
+										value={billingDetails.country}
+										onChange={handleInputChange}
+									>
+										<option value="">Country / Region *</option>
+										<option value="USA">USA</option>
+										<option value="India">India</option>
+										<option value="UK">UK</option>
+										<option value="Canada">Canada</option>
+									</select>
+									<input
+										name="streetAddress"
+										type="text"
+										placeholder="Street address *"
+										className="border border-gray-300 rounded p-2 md:col-span-2"
+										value={billingDetails.streetAddress}
+										onChange={handleInputChange}
+									/>
+									<input
+										name="apartment"
+										type="text"
+										placeholder="Apartment, suite, unit (optional)"
+										className="border border-gray-300 rounded p-2 md:col-span-2"
+										value={billingDetails.apartment || ""}
+										onChange={handleInputChange}
+									/>
+									<input
+										name="city"
+										type="text"
+										placeholder="Town / City *"
+										className="border border-gray-300 rounded p-2"
+										value={billingDetails.city}
+										onChange={handleInputChange}
+									/>
+									<input
+										name="state"
+										type="text"
+										placeholder="State / County *"
+										className="border border-gray-300 rounded p-2"
+										value={billingDetails.state}
+										onChange={handleInputChange}
+									/>
+									<input
+										name="postcode"
+										type="text"
+										placeholder="Postcode / Zip *"
+										className="border border-gray-300 rounded p-2"
+										value={billingDetails.postcode}
+										onChange={handleInputChange}
+									/>
+									<input
+										name="phone"
+										type="text"
+										placeholder="Phone *"
+										className="border border-gray-300 rounded p-2"
+										value={billingDetails.phone}
+										onChange={handleInputChange}
+									/>
+									<input
+										name="email"
+										type="email"
+										placeholder="Email address *"
+										className="border border-gray-300 rounded p-2 md:col-span-2"
+										value={billingDetails.email}
+										onChange={handleInputChange}
+									/>
+									<input
+										name="doctorName"
+										type="text"
+										placeholder="Doctor's Name"
+										className="border border-gray-300 rounded p-2 md:col-span-2"
+										value={billingDetails.doctorName || ""}
+										onChange={handleInputChange}
+									/>
 								</div>
-							)}
-
-							<div className="flex justify-between border-b border-gray-200 pb-2 mb-4">
-								<span>Items ({totalItems})</span>
-								<span>${subtotal}</span>
-							</div>
-							<div className="flex justify-between border-b border-gray-200 pb-2 mb-4">
-								<span>Shipping</span>
-								<span>Free</span>
-							</div>
-							<div className="flex justify-between font-bold text-lg mb-4">
-								<span>Total</span>
-								<span>${total}</span>
 							</div>
 
-							{/* PayPal Button - only show if billing complete */}
-							<PayPalButtons
-								style={{ layout: "vertical" }}
-								disabled={!isBillingComplete}
-								createOrder={(data, actions) => {
-									return actions.order.create({
-										purchase_units: [
-											{
-												amount: {
-													value: total.toString(),
+							{/* Right Column - Order Summary */}
+							<div className="border border-gray-200 rounded-lg p-4 bg-white shadow-sm h-fit">
+								<h2 className="text-lg font-semibold mb-4">Your order</h2>
+
+								{!productList || productList.length === 0 ? (
+									<p className="text-gray-500 text-sm mb-4">Loading products...</p>
+								) : (
+									<div className="mb-4">
+										{cart.map((item) => {
+											const productDetails = getProductDetails(item.productId);
+											const haveAddOns = item?.addOns && item.addOns.length > 0;
+
+											return (
+												<div
+													key={`${item.productId}-${item.bundleId}`}
+													className="flex justify-between border-b border-gray-200 py-2 text-sm"
+												>
+													<div className="flex">
+														<span>{productDetails?.name}</span>
+														<div className="flex">
+															<span className="px-2">+</span>
+															{haveAddOns ? (
+																<span>Ex Tablets</span>
+															) : null}
+														</div>
+													</div>
+													<span>
+														$
+														{getCartItemTotal(
+															item.productId,
+															item.bundleId,
+															item.itemCount
+														)}
+													</span>
+												</div>
+											);
+										})}
+									</div>
+								)}
+
+								<div className="flex justify-between border-b border-gray-200 pb-2 mb-4">
+									<span>Items ({totalItems})</span>
+									<span>${subtotal}</span>
+								</div>
+								<div className="flex justify-between border-b border-gray-200 pb-2 mb-4">
+									<span>Shipping</span>
+									<span>$20</span>
+								</div>
+									<div className="flex justify-between border-b border-gray-200 pb-2 mb-4">
+									<span>Tax</span>
+									<span>13%</span>
+								</div>
+								<div className="flex justify-between font-bold text-lg mb-4">
+									<span>Total</span>
+									<span>${total}</span>
+								</div>
+
+								{/* PayPal Button - only show if billing complete */}
+								<PayPalButtons
+									style={{ layout: "vertical" }}
+									disabled={!isBillingComplete}
+									createOrder={(data, actions) => {
+										return actions.order.create({
+											purchase_units: [
+												{
+													amount: {
+														value: total.toString(),
+													},
 												},
+											],
+											application_context: {
+												shipping_preference: "NO_SHIPPING",
 											},
-										],
-										application_context: {
-											shipping_preference: "NO_SHIPPING",
-										},
-									});
-								}}
-								onApprove={(data, actions) => {
-									return actions.order.capture().then((details) =>
-										handleOrderSuccess(details, data)
-									);
-								}}
-							/>
+										});
+									}}
+									onApprove={(data, actions) => {
+										return actions.order.capture().then((details) =>
+											handleOrderSuccess(details, data)
+										);
+									}}
+								/>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-		</PayPalScriptProvider>
-			<Footer/>
+			</PayPalScriptProvider>
+			<Footer />
 		</div>
 	);
 };

@@ -10,7 +10,7 @@ const BundleType = ({ bundleDetails, onSelect, selectedBundle }) => {
 			</div>
 			<div className="block rounded">
 				<p className="2xl:text-xl text-lg text-black">
-					Price ${price} / {unit}
+					 {unit}
 					<span className="block">{purchaseMode === "ONE_TIME" ? "(Onetime Purchase)" : "(Monthly auto ship subscription)"}</span>
 					<span className="block">${finalPrice || price}</span>
 				</p>

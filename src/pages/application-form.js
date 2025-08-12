@@ -105,7 +105,7 @@ const OrderNow = () => {
 					width={1517}
 					height={188}
 				/>
-				<div className="w-[80%] mx-auto text-sm text-gray-700 bg-limebg p-20">
+				<div className="lg:w-[80%] w-full mx-auto text-sm text-gray-700 bg-limebg lg:p-20 sm:p-12 p-6">
 					<p className="text-right text-greyblack2">Free Sample Period : Aug 11  -  Sep 10</p>
 					<h2 className="text-green text-center 2xl:text-5xl text-3xl py-20">
 						REQUEST APPLICATION FOR <span className="block">FREE SHOGUN BLACK MAITAKE PROTHERA & EX TABLET SAMPLES</span>
@@ -114,12 +114,12 @@ const OrderNow = () => {
 						<h5 className="text-grey 2xl:text-4xl text-3xl">CREATE YOUR ACCOUNT</h5>
 						<p className="text-greyblack2">*Sign-In Information *All Fields Are Required</p>
 					</div>
-					<form className="bg-white p-12 mt-4 mb-16 application-form" onSubmit={handleSubmit(onSubmitForm)}>
-						<div className="grid grid-cols-6 items-center mb-4 gap-12">
+					<form className="bg-white lg:p-12 p-6 mt-4 mb-16 application-form" onSubmit={handleSubmit(onSubmitForm)}>
+						<div className="grid lg:grid-cols-6 items-center mb-4 lg:gap-12 gap-2">
 							<div className="col-span-1">
 								<label className="2xl:text-xl text-base">Email</label>
 							</div>
-							<div className="col-span-5">
+							<div className="col-span-5 ">
 								<input
 									type="email"
 									placeholder="Write your Email"
@@ -135,7 +135,7 @@ const OrderNow = () => {
 								{errors.email && <p className="text-red-500 text-xs">{errors.email.message}</p>}
 							</div>
 						</div>
-						<div className="grid grid-cols-6 items-center mb-4 gap-12">
+						<div className="grid lg:grid-cols-6 items-center mb-4 lg:gap-12 gap-2">
 							<div className="col-span-1">
 								<label className="whitespace-nowrap">Confirm Email</label>
 							</div>
@@ -152,7 +152,7 @@ const OrderNow = () => {
 								{errors.confirmEmail && <p className="text-red-500 text-xs">{errors.confirmEmail.message}</p>}
 							</div>
 						</div>
-						<div className="grid grid-cols-6 items-center mb-4 gap-12">
+						<div className="grid lg:grid-cols-6 items-center mb-4 lg:gap-12 gap-2">
 							<div className="col-span-1">
 								<label>Password</label>
 							</div>
@@ -172,7 +172,7 @@ const OrderNow = () => {
 								{errors.password && <p className="text-red-500 text-xs">{errors.password.message}</p>}
 							</div>
 						</div>
-						<div className="grid grid-cols-6 items-center mb-4 gap-12">
+						<div className="grid lg:grid-cols-6 items-center mb-4 lg:gap-12 gap-2">
 							<div className="col-span-1">
 								<label className="whitespace-nowrap">Confirm Password</label>
 							</div>
@@ -189,7 +189,7 @@ const OrderNow = () => {
 								{errors.confirmPassword && <p className="text-red-500 text-xs">{errors.confirmPassword.message}</p>}
 							</div>
 						</div>
-						<div className="grid grid-cols-6 items-center mb-4 gap-12">
+						<div className="grid lg:grid-cols-6 items-center mb-4 lg:gap-12 gap-2">
 							<div className="col-span-1">
 								<label>Personal information</label>
 							</div>
@@ -203,8 +203,8 @@ const OrderNow = () => {
 								{errors.personalInfo && <p className="text-red-500 text-xs">{errors.personalInfo.message}</p>}
 							</div>
 						</div>
-						<div className="grid grid-cols-2 items-center mb-4 gap-12">
-							<div className="grid grid-cols-6 grid-flow-col items-center mb-4 gap-12">
+						<div className="grid lg:grid-cols-2 items-center mb-4 lg:gap-12 gap-2">
+							<div className="grid lg:grid-cols-6 lg:grid-flow-col items-center mb-4 lg:gap-12 gap-2">
 								<div className="col-span-2">
 									<label>First name</label>
 								</div>
@@ -218,7 +218,7 @@ const OrderNow = () => {
 									{errors.firstName && <p className="text-red-500 text-xs">{errors.firstName.message}</p>}
 								</div>
 							</div>
-							<div className="grid grid-cols-6 grid-flow-col items-center mb-4 gap-12">
+							<div className="grid lg:grid-cols-6 lg:grid-flow-col items-center mb-4 lg:gap-12 gap-2">
 								<div className="col-span-2">
 									<label>Last name</label>
 								</div>
@@ -233,8 +233,8 @@ const OrderNow = () => {
 								</div>
 							</div>
 						</div>
-						<div className="grid grid-cols-2 items-center mb-4 gap-12">
-							<div className="grid grid-cols-6 grid-flow-col items-center mb-4 gap-12">
+						<div className="grid lg:grid-cols-2 items-center mb-4 lg:gap-12 gap-2">
+							<div className="grid lg:grid-cols-6 lg:grid-flow-col items-center mb-4 lg:gap-12 gap-2">
 								<div className="col-span-2">
 									<label className="whitespace-nowrap">Date of Birth</label>
 								</div>
@@ -248,7 +248,7 @@ const OrderNow = () => {
 									{errors.dob && <p className="text-red-500 text-xs">{errors.dob.message}</p>}
 								</div>
 							</div>
-							<div className="grid grid-cols-6 grid-flow-col items-center mb-4 gap-12">
+							<div className="grid lg:grid-cols-6 lg:grid-flow-col items-center mb-4 lg:gap-12 gap-2">
 								<div className="col-span-2">
 									<label>Sex</label>
 								</div>
@@ -263,7 +263,7 @@ const OrderNow = () => {
 								</div>
 							</div>
 						</div>
-						<div className="grid grid-cols-6 items-center mb-4 gap-12">
+						<div className="grid lg:grid-cols-6 items-center mb-4 lg:gap-12 gap-2">
 							<div className="col-span-2">
 								<label className="whitespace-nowrap">Naturopath / Healthcare Practitioner</label>
 							</div>
@@ -277,7 +277,7 @@ const OrderNow = () => {
 								{errors.practitioner && <p className="text-red-500 text-xs">{errors.practitioner.message}</p>}
 							</div>
 						</div>
-						<div className="grid grid-cols-6 items-center mb-4 gap-12">
+						<div className="grid lg:grid-cols-6 items-center mb-4 lg:gap-12 gap-2">
 							<div className="col-span-2">
 								<label className="whitespace-nowrap">Residential Shipping address</label>
 							</div>
@@ -292,7 +292,7 @@ const OrderNow = () => {
 							</div>
 						</div>
 						<hr className="my-12"></hr>
-						<div className="grid grid-cols-6 items-center mb-4 gap-12">
+						<div className="grid lg:grid-cols-6 items-center mb-4 lg:gap-12 gap-2">
 							<div className="col-span-1">
 								<label className="whitespace-nowrap">City</label>
 							</div>
@@ -306,8 +306,8 @@ const OrderNow = () => {
 								{errors.city && <p className="text-red-500 text-xs">{errors.city.message}</p>}
 							</div>
 						</div>
-						<div className="grid grid-cols-2 items-center gap-12">
-							<div className="grid grid-cols-6 grid-flow-col items-center mb-4 gap-12">
+						<div className="grid lg:grid-cols-2 items-center lg:gap-12">
+							<div className="grid lg:grid-cols-6 lg:grid-flow-col items-center mb-4 lg:gap-12 gap-2">
 								<div className="col-span-2">
 									<label className="whitespace-nowrap">Postal code</label>
 								</div>
@@ -321,7 +321,7 @@ const OrderNow = () => {
 									{errors.postalCode && <p className="text-red-500 text-xs">{errors.postalCode.message}</p>}
 								</div>
 							</div>
-							<div className="grid grid-cols-6 grid-flow-col items-center gap-12">
+							<div className="grid lg:grid-cols-6 lg:grid-flow-col items-center lg:gap-12 gap-2">
 								<div className="col-span-2">
 									<label className="whitespace-nowrap">Province / State</label>
 								</div>
@@ -336,8 +336,8 @@ const OrderNow = () => {
 								</div>
 							</div>
 						</div>
-						<div className="grid grid-cols-2 items-center gap-12">
-							<div className="grid grid-cols-6 grid-flow-col items-center mb-4 gap-12">
+						<div className="grid lg:grid-cols-2 items-center lg:gap-12 gap-2">
+							<div className="grid lg:grid-cols-6 lg:grid-flow-col items-center mb-4 lg:gap-12 gap-2">
 								<div className="col-span-2">
 									<label className="whitespace-nowrap">Cancer stage</label>
 								</div>
@@ -351,7 +351,7 @@ const OrderNow = () => {
 									{errors.cancerStage && <p className="text-red-500 text-xs">{errors.cancerStage.message}</p>}
 								</div>
 							</div>
-							<div className="grid grid-cols-6 grid-flow-col items-center gap-12">
+							<div className="grid lg:grid-cols-6 lg:grid-flow-col items-center lg:gap-12 gap-2">
 								<div className="col-span-2">
 									<label className="whitespace-nowrap">Cancer Type</label>
 								</div>
@@ -366,7 +366,7 @@ const OrderNow = () => {
 								</div>
 							</div>
 						</div>
-						<div className="grid grid-cols-6 items-center mb-4 gap-12">
+						<div className="grid lg:grid-cols-6 items-center mb-4 lg:gap-12 gap-2">
 							<div className="col-span-1">
 								<label className="whitespace-nowrap">Other Treatments</label>
 							</div>
@@ -379,7 +379,7 @@ const OrderNow = () => {
 								/>
 							</div>
 						</div>
-						<div className="grid grid-cols-6 items-center mb-4 gap-12">
+						<div className="grid lg:grid-cols-6 items-center mb-4 lg:gap-12 gap-2">
 							<div className="col-span-2">
 								<label className="whitespace-nowrap">Other medications taking</label>
 							</div>
