@@ -11,21 +11,21 @@ import { usePathname } from "next/navigation";
 const Navbar = () => {
 
 	const pathname = usePathname();
-	 const routeNames = {
-    "/about": "About Us",
-    "/culinary-maitake": "Culinary Maitake",
-    "/maitake-supplement": "Maitake Supplements",
-    "/our-affiliations": "Our Affiliations",
-    "/news": "News & Publications",
-    "/allergen-information": "Allergen Information",
-	"/order-now": "Order Now",
-	"/fresh-maitake":"Fresh Maitake",
-	"/2025-news": "2025 News",
-	"/cart": "cart",
-	"/checkout": "checkout",
-    "/contact-us": "Contact Us",
-	
-  };
+	const routeNames = {
+		"/about": "About Us",
+		"/culinary-maitake": "Culinary Maitake",
+		"/maitake-supplement": "Maitake Supplements",
+		"/our-affiliations": "Our Affiliations",
+		"/news": "News & Publications",
+		"/allergen-information": "Allergen Information",
+		"/order-now": "Order Now",
+		"/fresh-maitake": "Fresh Maitake",
+		"/2025-news": "2025 News",
+		"/cart": "cart",
+		"/checkout": "checkout",
+		"/contact-us": "Contact Us",
+
+	};
 
 	const [isOpen, setIsOpen] = useState(false);
 	const userInfo = getUserSession();
@@ -39,16 +39,16 @@ const Navbar = () => {
 		<nav className="bg-white border-b border-gray-200 shadow-md relative z-50 2xl:py-12 xl:py-6 sticky top-0">
 			<div className="container">
 				<div className="flex justify-between h-16 items-center">
-					<Link  href="/" className="2xl:w-[260px] xl:w-[195px]">
+					<Link href="/" className="2xl:w-[260px] xl:w-[195px]">
 						<Image width={260} height={45} alt="logo" className="w-full" src="/logo/logo.png" />
 					</Link >
 					{/* Desktop Menu */}
 					<div className="grid grid-flow-col gap-4 items-center">
-						<Link href="/order-now" className="text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
+						<Link href="/order-now" className="hidden md:block text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
 							order online
 						</Link>
 
-						<Link href={pathname} className="text-greyblack">
+						<Link href={pathname} className="text-greyblack hidden md:block">
 							<p>{currentLabel}</p>
 						</Link>
 						<div className="h-[30px] w-[30px]">
@@ -64,7 +64,7 @@ const Navbar = () => {
 								</svg>
 							</button>
 						</div>
-						<Link href={"/cart"} className="relative px-5 text-2xl font-bold">
+						<Link href={"/cart"} className="relative md:px-5 px-0 text-2xl font-bold">
 							{cartLength ? (
 								<span className="absolute z-10 top-0 right-0 inline-flex items-center justify-center p-1 h-5 w-5 text-xs font-medium leading-none text-red-100 transform -translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full">
 									{cartLength}
@@ -103,6 +103,10 @@ const Navbar = () => {
 							<Link href="/contact-us" className="block">
 								<p>Contact Us</p>
 							</Link>
+							<Link href="/order-now" className="w-max md:hidden block text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
+								order online
+							</Link>
+
 						</nav>
 					</div>
 				</div>

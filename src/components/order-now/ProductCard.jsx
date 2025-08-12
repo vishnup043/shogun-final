@@ -123,11 +123,11 @@ const ProductCard = ({ productDetails }) => {
 							<button
 								disabled={!isInCart || !selectedBundleType}
 								onClick={() => {
-									onClickAddOn(1000, {desc: "Maitake Ex Tablets", price: "$ 220", quantity: 1});
+									onClickAddOn(1000, {desc: "Maitake Ex Tablets", price: "$ 260", quantity: 1});
 								}}
 								className="w-[154px] p-1 text-center rounded-xl text-white 2xl:text-2xl text-lg bg-green disabled:bg-gray-300 disabled:cursor-not-allowed"
 							>
-								<p>$ 220</p>
+								<p>$ 260</p>
 							</button>
 						</div>
 					</div>
