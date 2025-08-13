@@ -60,6 +60,10 @@ const OrderNow = () => {
 	};
 
 	const onSubmitForm = async (data) => {
+		if (files.length === 0) {
+			alert("Please upload at least one document.");
+			return;
+		}
 		setUploading(true);
 		try {
 			const formData = new FormData();

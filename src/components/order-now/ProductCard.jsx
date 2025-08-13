@@ -69,6 +69,12 @@ const ProductCard = ({ productDetails }) => {
 			}
 		}
 	};
+	const canShowCombo = useMemo(() => {
+		return (
+			isComboTherapyAvailable &&
+			selectedBundleType?.allowCombo
+		);
+	}, [isComboTherapyAvailable, selectedBundleType]);
 
 	return (
 		<div className="product-list grid md:grid-cols-2 grid-cols-1 lg:py-28 py-12 border-b" key={id}>
@@ -93,7 +99,7 @@ const ProductCard = ({ productDetails }) => {
 							""
 						) : (
 							<div className="flex flex-row items-center justify-between gap-8">
-					
+
 								<p className="2xl:text-xl text-lg text-black">
 									Options Amount
 									<span className="block">
@@ -131,17 +137,32 @@ const ProductCard = ({ productDetails }) => {
 						<div className="w-[178px] p-3 combo-panel bg-offwhite rounded-xl mt-4">
 							<p>Shogun Black Maitake Ex Tablets + {textForProthera}</p>
 							<button
-								disabled={!isInCart || !selectedBundleType}
+								disabled={
+									!isInCart ||
+									!selectedBundleType ||
+									selectedBundleType?.id !== bundleTypes[0].id
+								}
 								onClick={() => {
 									onClickAddOn(1000, { desc: "Maitake Ex Tablets", price: "$ 260", quantity: 1 });
 								}}
-								className="w-[154px] p-1 text-center rounded-xl text-white 2xl:text-2xl text-lg bg-green disabled:bg-gray-300 disabled:cursor-not-allowed"
+								className={`w-[154px] p-1 text-center rounded-xl text-white 2xl:text-2xl text-lg ${selectedBundleType?.id === bundleTypes[0].id
+										? "bg-green"
+										: "bg-gray-300 cursor-not-allowed"
+									}`}
 							>
 								<p>$ 260</p>
 							</button>
+
+							{selectedBundleType?.id !== bundleTypes[0].id && (
+								<p className="text-xs text-red-500 mt-2">
+									Combo Care is only available for {bundleTypes[0].unit} bundle.
+								</p>
+							)}
 						</div>
 					</div>
 				) : null}
+
+
 			</div>
 		</div>
 	);
