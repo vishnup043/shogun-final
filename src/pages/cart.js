@@ -4,9 +4,19 @@ import Navbar from "@layout/navbar/Navbar";
 import Footer from "@layout/footer/Footer";
 import useProducts from "@hooks/custom/useProducts";
 import { useRouter } from "next/navigation";
-import { addOnProducts, shortgunProducts } from "@utils/data";
+import { addOnProducts } from "@utils/data";
 
 const Cart = () => {
+	const [error, setError] = useState("");
+
+	const handleProceed = () => {
+		if (cart.some(item => item.itemCount === 0)) {
+			setError("Quantity cannot be zero.");
+			return;
+		}
+		setError("");
+		router.push("/checkout");
+	};
 	const router = useRouter();
 	const { cart, productList, updateItemCount, removeFromCart, getCartItemTotal } = useProducts();
 
@@ -99,7 +109,8 @@ const Cart = () => {
 																type="number"
 																value={item.itemCount}
 																onChange={(e) => updateItemCount(item.productId, item.bundleId, parseInt(e.target.value))}
-																className="w-[78px] px-4 py-2 border border-gray-300 rounded-md text-black 2xl:text-2xl text-lg"
+																className={`w-[78px] px-4 py-2 border ${item.itemCount === 0 ? "border-red-500" : "border-gray-200"} rounded-md text-black 2xl:text-2xl text-lg`}
+
 															/>
 														</td>
 														<td className="py-4 font-semibold text-black">
@@ -116,11 +127,23 @@ const Cart = () => {
 								)}
 							</div>
 						</div>
-						{cart.length > 0 && (
-							<button onClick={onProceedClick} className="bg-green text-white rounded-md px-6 py-2 hover:bg-green-700 transition my-8 mx-auto block">
-								<p>Proceed to checkout</p>
-							</button>
-						)}
+						<div>
+							{cart.length > 0 && (
+								<button
+									onClick={handleProceed}
+									className={`rounded-md px-6 py-2 transition my-4 mx-auto block ${cart.some(item => item.itemCount === 0)
+										? "bg-gray-400 cursor-not-allowed text-white"
+										: "bg-green text-white hover:bg-green-700"
+										}`}
+								>
+									<p>Proceed to checkout</p>
+								</button>
+							)}
+							{error && (
+								<p className="text-red-600 font-medium text-center">{error}</p>
+							)}
+
+						</div>
 					</div>
 				</div>
 			</div>
