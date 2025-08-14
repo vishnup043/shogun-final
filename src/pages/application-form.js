@@ -441,7 +441,7 @@ const OrderNow = () => {
 						take part in additional training from Shogun Maitake Canada Co., Ltd.{" "}
 					</p>
 					<p>
-						To create a Shogun Maitake Canada Co., Ltd free sample account, you understand that you must provide your first name, last name, email address, residential address, and medical investigation reports. Once you create an account, you have the
+						To create a Shogun Maitake Canada Co. Ltd free sample account, you will need to provide your first name, last name, email address, residential address, and blood test reports done within 6 months. Once you create an account, you have the
 						option to enter additional information on your Shogun Maitake Canada Co., Ltd account if you so choose. Any information provided to create a Shogun Maitake Canada Co. Ltd account will not be shared with any third parties and is solely used
 						to track requests/orders and tailor your experience.
 					</p>

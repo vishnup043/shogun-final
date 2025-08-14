@@ -7,7 +7,7 @@ import { faFacebook, faYoutube, faInstagram, faLinkedin } from '@fortawesome/fre
 const Footer = () => {
 
   return (
-    <div className="footer bg-grey2 lg:py-20 py-16 relative">
+    <div className="footer bg-grey2 lg:py-20 py-12 relative">
       <div className="container">
         <div className="flex flex-col sm:flex-col lg:flex-row justify-between gap-6 lg:gap-0">
           <div className="grid grid-cols-12 gap-4 bg-gray-100">

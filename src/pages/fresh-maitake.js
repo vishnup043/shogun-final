@@ -16,32 +16,26 @@ const FreshMaitake = () => {
 
     <div>
       <Navbar />
-      <div className="fresh-maitake relative 2xl:pt-[200px] 2xl:pb-[300px] xl:pt-[120px] xl:pb-[220px]">
+      <div className="fresh-maitake relative">
         <Image
-          src="/fresh-maitake/maitake-on-plate.png"
+          src="/fresh-maitake/banner.png"
           alt="Banner"
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 mx-auto 2xl:w-[38%] w-[40%]"
+          className="mx-auto relative z-10"
           width={732}
           height={365}
         />
-        <h1 className="2xl:text-[340px] xl:text-[240px] text-center text-limeGreen 2xl:leading-[290px] xl:leading-[200px]">Fresh Maitake</h1>
+        <h1 className="2xl:text-[340px] xl:text-[300px] lg:text-[230px] md:text-[180px] sm:text-[134px] text-[72px] absolute left-0 right-0 text-center text-limeGreen absolute lg:top-0 top-[22%]">Fresh Maitake</h1>
 
-        <Image
-          src="/fresh-maitake/hand.png"
-          alt="Banner"
-          className="absolute top-0 left-1/2 -translate-x-1/2 2xl:w-[38%] w-[35%]"
-          width={1104}
-          height={634}
-        />
+  
       </div>
-      <div className="text-center 2xl:py-36 xl:py-28 relative">
+      <div className="text-center 2xl:py-36 xl:py-28 md:py-16 py-12 relative">
         <div className="container mx-auto relative z-10">
-          <h2 className="text-greenLeaf text-[80px] ">Fresh Maitake comes as the following</h2>
+          <h2 className="md:mb-8 mb-0 text-greenLeaf xl:text-[80px] md:text-[50px] text-[30px] md:leading-[75px] leading-[35px]">Fresh Maitake comes as the following</h2>
         </div>
       </div>
-      <section className="bg-limebg pb-32">
+      <section className="bg-limebg md:pb-32 pb-12">
         <div className="container">
-          <Swiper className="relative top-[-100px]"
+          <Swiper className="relative md:top-[-100px] !py-12"
             spaceBetween={10}
             slidesPerView={1}
             onSlideChange={() => console.log('slide change')}
@@ -113,12 +107,12 @@ const FreshMaitake = () => {
             </SwiperSlide>
           </Swiper>
           <div className="px-12">
-            <div className="flex gap-12 2xl:justify-between xl:justify-center text-black">
+            <div className="flex flex-col sm:flex-row  gap-8 sm:gap-12 2xl:justify-between xl:justify-center text-black">
               <div className="text-left 2xl:w-[35%] xl:w[28%]">
-                <h3 className="2xl:text-[40px] lg:text-[30px] text-lg text-forestGreen leading-none">
+                <h3 className="2xl:text-[40px] lg:text-[30px] text-xl text-forestGreen leading-none">
                   Fresh Maitake is available for <span className="block">purchase at the following grocers</span>
                 </h3>
-                <div className="2xl:text-[40px] lg:text-[30px] text-lg mt-8 grid gap-4 leading-none">
+                <div className="2xl:text-[40px] lg:text-[30px] text-xl mt-8 grid gap-4 leading-none">
                   <Link href="https://www.farmboy.ca/" target="_blank"><h5><span className="text-black">FARM BOY</span></h5></Link>
                   <h5>
                     <span className="text-black">
@@ -130,7 +124,7 @@ const FreshMaitake = () => {
                 </div>
               </div>
 
-              <div className="2xl:w-[25%] xl:w-[22%]">
+              <div className="2xl:w-[25%] sm:w-[22%] w-[45%] mx-auto">
                 <Image
                   src="/fresh-maitake/maitake-green.png"
                   alt="Fresh Maitake Mushroom"
@@ -141,10 +135,10 @@ const FreshMaitake = () => {
               </div>
 
               <div className="text-left 2xl:w-[35%] xl:w[28%]">
-                <h3 className="2xl:text-[40px] lg:text-[30px] text-lg text-forestGreen leading-none">
+                <h3 className="2xl:text-[40px] lg:text-[30px] text-xl text-forestGreen leading-none">
                   Fresh Maitake is served at <span className="block">the following restaurants</span>
                 </h3>
-                <div className="2xl:text-[40px] lg:text-[30px] text-lg mt-8 grid gap-4 leading-none">
+                <div className="2xl:text-[40px] lg:text-[30px] text-xl mt-8 grid gap-4 leading-none">
                   <Link href="https://www.abruzzi.ca/" target="_blank"><h5><span className="text-black">Abruzzi</span></h5></Link>
                   <Link href="https://www.gracelondon.ca/" target="_blank"><h5>
                     <span className="text-black">
@@ -162,11 +156,11 @@ const FreshMaitake = () => {
           </div>
         </div>
       </section>
-      <section className="2xl:pb-[272px] xl:pb-[180px] relative bg-limebg">
-        <div className="bg-white 2xl:pt-[155px] xl:pt-[100px]">
+      <section className="2xl:pb-[272px] pb-[200px] relative bg-limebg">
+        <div className="bg-white 2xl:pt-[155px] xl:pt-[100px] pt-20">
           <div className="container">
-            <h1 className="text-greenLeaf text-[80px] ">Maitake Recipes</h1>
-            <div className="w-[26%]">
+            <h1 className="text-greenLeaf  xl:text-[80px] md:text-[50px] text-[30px] md:leading-[75px] leading-[35px] ">Maitake Recipes</h1>
+            <div className="lg:w-[26%] md:w-[47%] w-full">
               <div className="grid gap-6">
                 <div>
                   <h2 className="text-forestGreen 2xl:text-5xl text-3xl">How to prepare</h2>
@@ -194,14 +188,14 @@ const FreshMaitake = () => {
           height={830}
         />
       </section>
-      <section className="relative z-10 pt-36 pb-24 before:content-[''] before:absolute before:left-0 2xl:before:w-[21%] 2xl:before:h-[50%] xl:before:w-[18%] xl:before:h-[45%] xl:before:top-[42%] 2xl:before:top-[42%] before:translate-y-[-50%] before:bg-limebg">
+      <section className="relative z-10 md:pt-36 md:pb-24 pt-12 pb-16 before:content-[''] before:absolute before:left-0 2xl:before:w-[21%] 2xl:before:h-[50%] xl:before:w-[18%] xl:before:h-[45%] xl:before:top-[42%] 2xl:before:top-[42%] before:translate-y-[-50%] before:bg-limebg">
         <div className="container">
-          <div className="2xl:w-[53%] xl:w-[45%] text-end">
-            <h2 className="text-greenLeaf text-[70px] ">Recipes for Download</h2>
-            <h3 className="text-sblack 2xl:text-5xl text-3xl pb-4">Pickled Maitakes</h3>
+          <div className="2xl:w-[53%] sm:w-[45%] w-full sm:text-end text-center">
+            <h2 className="text-greenLeaf xl:text-[70px] lg:text-[50px] text-[37px] md:leading-[75px] leading-[35px]">Recipes for Download</h2>
+            <h3 className="text-sblack 2xl:text-5xl sm:text-3xl pb-4">Pickled Maitakes</h3>
           </div>
-          <div className="flex gap-12 items-center relative">
-            <div className="2xl:w-[53%] xl:w-[45%]">
+          <div className="flex flex-col sm:flex-row gap-12 sm:items-center items-start relative">
+            <div className="2xl:w-[53%] sm:w-[45%] w-full">
               <Image
                 src="/fresh-maitake/maitake-cooked.jpg"
                 alt=""
@@ -211,7 +205,7 @@ const FreshMaitake = () => {
               />
             </div>
             <div>
-              <p className="text-3xl pb-4">Ingredients </p>
+              <p className="sm:text-3xl text-xl pb-4">Ingredients </p>
               <ul className="list-none grid 2xl:gap-3 gap-1 2xl:text-[25px] text-lg">
                 <li>1 Pound Maitake Mushrooms</li>
                 <li>1 ½ Cup White Sugar</li>
@@ -225,9 +219,9 @@ const FreshMaitake = () => {
               </ul>
             </div>
           </div>
-          <div className="grid mt-16">
+          <div className="grid md:mt-16 mt-8">
             <div className="xl:w-[55%] 2xl:w-[63%] mx-auto">
-              <p className="text-3xl pb-4">Directions </p>
+              <p className="sm:text-3xl text-xl pb-4">Directions </p>
               <ul className="list-none grid 2xl:gap-3 xl:gap-2 2xl:text-xl text-base">
                 <li className="flex gap-1"><span>1.</span> Peel garlic cloves and lightly smash with the back of a knife.</li>
                 <li className="flex gap-1"><span>2.</span> Peel a small knob of ginger and roughly cut it into large pieces.</li>
@@ -238,7 +232,7 @@ const FreshMaitake = () => {
                 <li className="flex gap-1"><span>7.</span> Place maitake pieces into a heat-safe container and pour hot pickling liquid over them.</li>
                 <li className="flex gap-1"><span>8.</span> Place a small amount of cling film on the surface to ensure the maitakes stay submerged in the pickling liquid.</li>
               </ul>
-              <div className="flex 2xl:gap-10 xl:gap-8 2xl:mt-10 xl:mt-8">
+              <div className="flex 2xl:gap-10 sm:gap-8 gap-4 2xl:mt-10 mt-8">
                 <Link href="https://www.youtube.com/watch?v=Ir9vU8BCPFQ&feature=youtu.be" target="_blank" className="link-btn bg-limeGreen text-white px-2 py-1 2xl:text-2xl md:text-lg text-base rounded-xl">
                   <p>Watch On Youtube</p>
                 </Link>
@@ -257,10 +251,10 @@ const FreshMaitake = () => {
           height={438}
         />
       </section>
-      <section className="relative z-10 pt-28 pb-32 bg-limebg">
+      <section className="relative z-10 md:pt-28 pt-12 md:pb-32 pb-16 bg-limebg">
         <div className="container">
-          <div className="flex gap-12 items-center relative">
-            <div className="2xl:w-[53%] xl:w-[45%]">
+          <div className="flex flex-col sm:flex-row gap-12 sm:items-center items-start relative">
+             <div className="2xl:w-[53%] sm:w-[45%] w-full">
               <h3 className="text-sblack 2xl:text-5xl text-3xl pb-4">CHICKEN FRIED MAITAKES</h3>
 
               <Image
@@ -272,7 +266,7 @@ const FreshMaitake = () => {
               />
             </div>
             <div>
-              <p className="text-3xl pb-4">Ingredients </p>
+              <p className="sm:text-3xl text-xl pb-4">Ingredients </p>
 
               <ul className="list-none grid 2xl:gap-3 gap-1 2xl:text-[25px] text-lg">
                 <li>1 Pound Maitake Mushrooms</li>
@@ -292,9 +286,9 @@ const FreshMaitake = () => {
 
             </div>
           </div>
-          <div className="grid mt-16">
+          <div className="grid md:mt-16 mt-8">
             <div className="xl:w-[65%] 2xl:w-[73%]">
-              <p className="text-3xl pb-4">Directions </p>
+              <p className="sm:text-3xl text-xl pb-4">Directions </p>
               <ul className="list-none grid 2xl:gap-3 xl:gap-2 2xl:text-xl text-base">
                 <li className="flex gap-1"><span>1.</span> Fill a tall-sided pot ½ way full with canola oil. Place on a stovetop and turn on medium heat. Heat oil to 350℉.</li>
                 <li className="flex gap-1"><span>2.</span> Meanwhile, prepare your maitakes by removing the bottom inch with a knife and pulling maitake mushrooms where it naturally want to break. Pieces should be no bigger than 4 inches long and ½ an inch wide.</li>
@@ -305,7 +299,7 @@ const FreshMaitake = () => {
                 <li className="flex gap-1"><span>7.</span> Transfer fried maitakes to a sheet tray or plate lined with a paper towel. Season with salt or any seasoning of your choosing.</li>
                 <li className="flex gap-1"><span>8.</span> Chicken-fried maitakes should be enjoyed immediately. Serve as a snack with your favorite dip or on a sandwich.</li>
               </ul>
-              <div className="flex 2xl:gap-10 xl:gap-8 2xl:mt-10 xl:mt-8">
+              <div className="flex 2xl:gap-10 gap-8 2xl:mt-10 mt-8">
                 <Link href="https://www.youtube.com/watch?v=cKxvjTHkjEs" target="_blank" className="link-btn bg-limeGreen text-white px-2 py-1 2xl:text-2xl md:text-lg text-base rounded-xl">
                   <p>Watch On Youtube</p>
                 </Link>
@@ -317,11 +311,11 @@ const FreshMaitake = () => {
           </div>
         </div>
       </section>
-      <section className="relative z-10 pt-28 pb-32 before:content-[''] before:absolute before:right-0 2xl:before:w-[28%] 2xl:before:h-[44%] xl:before:w-[18%] xl:before:h-[40%] 2xl:before:top-[28%] xl:before:top-[27%] before:translate-y-[-50%] before:bg-limebg">
+      <section className="relative z-10 md:pt-28 pt-12 md:pb-32 pb-16 before:content-[''] before:absolute before:right-0 2xl:before:w-[28%] 2xl:before:h-[44%] xl:before:w-[18%] xl:before:h-[40%] 2xl:before:top-[28%] xl:before:top-[27%] before:translate-y-[-50%] before:bg-limebg">
         <div className="container">
-          <div className="flex gap-12 items-flex-start justify-between relative">
+          <div className="flex flex-col sm:flex-row flex-col-reverse gap-12 items-flex-start justify-between relative">
             <div>
-              <p className="text-3xl pb-4">Ingredients </p>
+              <p className="sm:text-3xl text-xl pb-4">Ingredients </p>
               <ul className="list-none grid 2xl:gap-3 gap-1 2xl:text-[25px] text-lg">
                 <li>1 Pound Maitake Mushrooms</li>
                 <li>⅓ Cup Cold Unsalted Butter</li>
@@ -340,7 +334,7 @@ const FreshMaitake = () => {
                 <li>Mustard Greens</li>
                 <li>Arugula</li>
               </ul>
-              <div className="flex 2xl:gap-10 xl:gap-8 2xl:mt-10 xl:mt-8">
+              <div className="flex 2xl:gap-10 gap-8 2xl:mt-10 mt-8">
                 <Link href="https://www.youtube.com/watch?v=2mlG_ICdSZ0&feature=youtu.be" target="_blank" className="link-btn bg-limeGreen text-white px-2 py-1 2xl:text-2xl md:text-lg text-base rounded-xl">
                   <p>Watch On Youtube</p>
                 </Link>
@@ -350,7 +344,7 @@ const FreshMaitake = () => {
               </div>
             </div>
             <div className="2xl:w-[53%] xl:w-[45%]">
-              <h3 className="text-sblack 2xl:text-5xl text-3xl 2xl:pb-12 xl:pb-8">MAITAKES COOKED IN PAPER</h3>
+              <h3 className="text-sblack 2xl:text-5xl text-3xl 2xl:pb-12 xl:pb-8 pb-4">MAITAKES COOKED IN PAPER</h3>
               <Image
                 src="/fresh-maitake/maitake-cooked.jpg"
                 alt=""
@@ -360,9 +354,9 @@ const FreshMaitake = () => {
               />
             </div>
           </div>
-          <div className="grid mt-16">
-            <div className="w-[77%]">
-              <p className="text-3xl pb-4">Directions </p>
+          <div className="grid md:mt-16 mt-8">
+            <div className="md:w-[77%] w-full">
+              <p className="sm:text-3xl text-xl pb-4">Directions </p>
               <ul className="list-none grid 2xl:gap-3 xl:gap-2 2xl:text-xl text-base">
                 <li className="flex gap-1"><span>1.</span>Preheat the oven to 375℉ and bring a small pot of water to a boil.</li>
                 <li className="flex gap-1"><span>2.</span>Start by preparing maitake mushrooms. Remove the bottom inch with a knife and pull maitake mushrooms where they naturally want to break. Pieces should be no bigger than 4 inches long and ½ an inch wide and set aside.</li>
@@ -375,9 +369,9 @@ const FreshMaitake = () => {
                 <li className="flex gap-1"><span>9.</span>To garnish, drizzle maitakes with a little of the reserved lemon juice. Place one peeled 6-minute egg on each parcel. Toss herbs & greens with lemon juice, oil, and kosher salt. Finish by topping the Maitakes.</li>
               </ul>
             </div>
-            <div className="flex items-center gap-8 mt-16">
-              <h2 className="text-forestGreen 2xl:text-5xl text-3xl">Maitake Toast</h2>
-              <div className="text-3xl flex w-[56px] text-greenLeaf">
+            <div className="flex flex-col sm:flex-row sm:items-center items-start sm:gap-8 gap-2 mt-16">
+              <h2 className="text-forestGreen 2xl:text-5xl sm:text-3xl text-2xl">Maitake Toast</h2>
+              <div className="sm:text-3xl text-2xl flex w-[56px] text-greenLeaf">
                 <FontAwesomeIcon icon={faChevronRight} />
                 <FontAwesomeIcon icon={faChevronRight} className="opacity-[57%]" />
                 <FontAwesomeIcon icon={faChevronRight} className="opacity-[28%]" />
@@ -386,9 +380,9 @@ const FreshMaitake = () => {
                 <p>Download PDF</p>
               </Link>
             </div>
-            <div className="flex items-center gap-8 mt-8">
-              <h2 className="text-green 2xl:text-5xl text-3xl">Karrage Maitakes (Gluten Free)</h2>
-              <div className="text-3xl flex w-[56px] text-greenLeaf">
+            <div className="flex flex-col sm:flex-row sm:items-center items-start sm:gap-8 gap-2 mt-8">
+              <h2 className="text-forestGreen 2xl:text-5xl sm:text-3xl text-2xl">Karrage Maitakes (Gluten Free)</h2>
+              <div className="sm:text-3xl text-2xl flex w-[56px] text-greenLeaf">
                 <FontAwesomeIcon icon={faChevronRight} />
                 <FontAwesomeIcon icon={faChevronRight} className="opacity-[57%]" />
                 <FontAwesomeIcon icon={faChevronRight} className="opacity-[28%]" />
