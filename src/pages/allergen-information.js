@@ -12,11 +12,11 @@ const Allergen = () => {
       <Navbar />
       <section className="relative before:content-[''] before:absolute before:left-0 before:w-full before:h-[30%] before:bottom-0 before:bg-green 2xl:py-16 py-12">
         <div className="container">
-          <div className="lg:w-[80%] w-full mx-auto text-sm text-gray-700 bg-limebg p-16 relative overflow-hidden">
-            <h2 className="text-green 2xl:text-7xl lg:text-5xl text-4xl">
+          <div className="lg:w-[80%] w-full mx-auto text-sm text-gray-700 bg-limebg md:p-16 p-6 relative overflow-hidden">
+            <h2 className="text-green 2xl:text-7xl md:text-5xl text-3xl">
               TO ALL SHOGUN BLACK MAITAKE<span className="block"> MUSHROOM LOVERS</span>
             </h2>
-            <h5 class="text-grey 2xl:text-4xl text-3xl pb-8">ALLERGEN DISCLAIMER</h5>
+            <h5 class="text-grey 2xl:text-4xl md:text-3xl text-2xl md:pb-8 pb-4">ALLERGEN DISCLAIMER</h5>
             <p>We at Shogun Maitake Canada Co. Ltd made every effort to prevent food allergies during growing, packaging, and shipping so that you and your loved ones can enjoy Black Maitake recipes safely without any potential effects of food allergens.</p>
             <p>
               Shogun Black Maitake Mushrooms are tested at licensed laboratories in Canada, randomly selected Maitake from different production lots every quarterly intervals to prove our mushrooms are free from below major allergens.
@@ -42,12 +42,12 @@ const Allergen = () => {
                 <p>Download PDF</p>
               </Link>
             </div>
-            <div className="absolute bottom-[-110px] right-12 hidden sm:block">
+            <div className="absolute bottom-[-53px] right-12 hidden sm:block">
               <Image
                 width={284}
                 height={274}
                 alt="logo"
-                className='relative 2xl:w-full w-[80%]'
+                className='relative 2xl:w-[284px] lg:w-[170px] w-[150px]'
                 src="/about/maitake.png"
               />
             </div>
@@ -56,7 +56,7 @@ const Allergen = () => {
                   width={284}
                   height={274}
                   alt="logo"
-                  className='relative 2xl:w-full mx-auto'
+                  className='relative 2xl:w-[284px] lg:w-[170px] w-[150px] mx-auto'
                   src="/about/maitake.png"
                 />
               </div>
