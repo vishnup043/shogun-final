@@ -21,8 +21,9 @@ const Navbar = () => {
 		"/order-now": "Order Now",
 		"/fresh-maitake": "Fresh Maitake",
 		"/2025-news": "2025 News",
-		"/cart": "cart",
-		"/checkout": "checkout",
+		"/cart": "Cart",
+		"/checkout": "Checkout",
+		"/application-form": "Application Form",
 		"/contact-us": "Contact Us",
 
 	};
