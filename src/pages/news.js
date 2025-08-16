@@ -25,35 +25,35 @@ const News = () => {
             />
           </div>
         </div>
-        <div className="bg-green py-24 relative overflow-hidden">
+        <div className="bg-green lg:py-24 py-12 relative overflow-hidden">
           <div className="container">
             <div className="year-block flex justify-between">
-              <div className="flex gap-28">
-                <Link href="https://www.cbc.ca/news/canada/london/london-ontario-shogun-maitake-mushroom-1.4707532" target="_blank" className="block text-5xl text-white flex items-center gap-4">2018
-                  <div className="text-3xl flex w-[56px]">
+              <div className="flex flex-col md:flex-row lg:gap-28 gap-6">
+                <Link href="https://www.cbc.ca/news/canada/london/london-ontario-shogun-maitake-mushroom-1.4707532" target="_blank" className="block lg:text-5xl text-4xl text-white flex items-center gap-4">2018
+                  <div className="md:text-3xl text-2xl flex w-[56px]">
                     <FontAwesomeIcon icon={faChevronRight} />
                     <FontAwesomeIcon icon={faChevronRight} className="opacity-[57%]" />
                     <FontAwesomeIcon icon={faChevronRight} className="opacity-[28%]" />
                   </div>
                 </Link>
-                <Link href="https://londonincmagazine.ca/2017/09/01/growing-ways/" target="_blank" className="block text-5xl text-white flex items-center gap-4">2019
-                  <div className="text-3xl flex w-[56px]">
+                <Link href="https://londonincmagazine.ca/2017/09/01/growing-ways/" target="_blank" className="block lg:text-5xl text-4xl text-white flex items-center gap-4">2019
+                  <div className="md:text-3xl text-2xl flex w-[56px]">
                     <FontAwesomeIcon icon={faChevronRight} />
                     <FontAwesomeIcon icon={faChevronRight} className="opacity-[57%]" />
                     <FontAwesomeIcon icon={faChevronRight} className="opacity-[28%]" />
                   </div>
                 </Link>
               </div>
-              <div className="flex gap-28">
-                <Link href="/" className="block text-5xl text-white flex items-center gap-4">2021
-                  <div className="text-3xl flex w-[56px]">
+              <div className="flex flex-col md:flex-row lg:gap-28 gap-6">
+                <Link href="/" className="block lg:text-5xl text-4xl text-white flex items-center gap-4">2021
+                  <div className="md:text-3xl text-2xl flex w-[56px]">
                     <FontAwesomeIcon icon={faChevronRight} />
                     <FontAwesomeIcon icon={faChevronRight} className="opacity-[57%]" />
                     <FontAwesomeIcon icon={faChevronRight} className="opacity-[28%]" />
                   </div>
                 </Link>
-                <Link href="/2025-news" className="block text-5xl text-white flex items-center gap-4">2025
-                  <div className="text-3xl flex w-[56px]">
+                <Link href="/2025-news" className="block lg:text-5xl text-4xl text-white flex items-center gap-4">2025
+                  <div className="md:text-3xl text-2xl flex w-[56px]">
                     <FontAwesomeIcon icon={faChevronRight} />
                     <FontAwesomeIcon icon={faChevronRight} className="opacity-[57%]" />
                     <FontAwesomeIcon icon={faChevronRight} className="opacity-[28%]" />
@@ -65,14 +65,14 @@ const News = () => {
               width={360}
               height={360}
               alt=""
-              className="absolute top-[64px] left-1/2 -translate-x-1/2"
+              className="absolute lg:top-[126px] left-1/2 -translate-x-1/2 lg-w-[360px] md:w-[243px] w-[150px] top-auto"
               src="/news/maitake.png"
             />
           </div>
         </div>
         <Link href="/" className="flex justify-center bg-brown items-center gap-4 2xl:py-12 lg:py-8 py-6">
-          <h2 className="text-white text-4xl">construction update </h2>
-          <div className="text-3xl flex w-[56px] text-white">
+          <h2 className="text-white sm:text-4xl text-2xl">construction update </h2>
+          <div className="sm:text-3xl text-2xl flex w-[56px] text-white">
             <FontAwesomeIcon icon={faChevronRight} />
             <FontAwesomeIcon icon={faChevronRight} className="opacity-[57%]" />
             <FontAwesomeIcon icon={faChevronRight} className="opacity-[28%]" />

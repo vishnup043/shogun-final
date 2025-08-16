@@ -196,9 +196,9 @@ const MaitakeSuppliment = () => {
       <section className="feature-panel xl:py-36 md:py-24 py-12">
         <div className="container">
           <h2 className="text-white text-5xl text-center">Salient Features</h2>
-          <div className="flex flex-wrap md:w-[855px] w-full mx-auto gap-y-12 mt-16">
-            <div className="flex items-center px-4 gap-4 w-[280px]  border-r border-l">
-              <div className="w-[80px]">
+          <div className="lg:flex grid sm:grid-cols-2 flex-wrap lg:w-[855px] w-full mx-auto sm:gap-y-12 gap-y-6 mt-16">
+            <div className="flex items-center sm:px-4 gap-4 lg:w-[280px]  lg:border-r lg:border-l">
+              <div className="sm:w-[80px] w-[62px]">
                 <Image
                   src="/maitake-suppliment/feature-1.png"
                   alt="Banner"
@@ -211,8 +211,8 @@ const MaitakeSuppliment = () => {
                 <h6 className="text-white text-2xl leading-7">100% organic <span className="block"> mushroom extracts</span></h6>
               </div>
             </div>
-            <div className="flex items-center px-4 gap-4 w-[332px] border-r">
-              <div className="w-[80px]">
+            <div className="flex items-center sm:px-4 gap-4 lg:w-[332px] lg:border-r">
+              <div className="sm:w-[80px] w-[62px]">
                 <Image
                   src="/maitake-suppliment/feature-2.png"
                   alt="Banner"
@@ -225,8 +225,8 @@ const MaitakeSuppliment = () => {
                 <h6 className="text-white text-2xl leading-7">Extracted out of<span className="block"> pure Fruiting body</span></h6>
               </div>
             </div>
-            <div className="flex items-center px-4 gap-4 w-[240px] border-r">
-              <div className="w-[80px]">
+            <div className="flex items-center sm:px-4 gap-4 lg:w-[240px] lg:border-r">
+              <div className="sm:w-[80px] w-[62px]">
                 <Image
                   src="/maitake-suppliment/feature-3.png"
                   alt="Banner"
@@ -239,8 +239,8 @@ const MaitakeSuppliment = () => {
               </div>
             </div>
 
-            <div className="flex items-center px-4 gap-4 w-[280px] border-r border-l">
-              <div className="w-[80px]">
+            <div className="flex items-center sm:px-4 gap-4 lg:w-[280px] lg:border-r lg:border-l">
+              <div className="sm:w-[80px] w-[62px]">
                 <Image
                   src="/maitake-suppliment/feature-4.png"
                   alt="Banner"
@@ -253,8 +253,8 @@ const MaitakeSuppliment = () => {
                 <h6 className="text-white text-2xl leading-7">No mycelium</h6>
               </div>
             </div>
-            <div className="flex items-center px-4 gap-4 w-[332px] border-r">
-              <div className="w-[80px]">
+            <div className="flex items-center sm:px-4 gap-4 lg:w-[332px] lg:border-r">
+              <div className="sm:w-[80px] w-[62px]">
                 <Image
                   src="/maitake-suppliment/feature-5.png"
                   alt="Banner"
@@ -267,8 +267,8 @@ const MaitakeSuppliment = () => {
                 <h6 className="text-white text-2xl leading-7">Certified safe & effective in<span className="block">  Clinical trials 1 & 2</span></h6>
               </div>
             </div>
-            <div className="flex items-center px-4 gap-4 w-[240px] border-r">
-              <div className="w-[80px]">
+            <div className="flex items-center sm:px-4 gap-4 lg:w-[240px] lg:border-r">
+              <div className="sm:w-[80px] w-[62px]">
                 <Image
                   src="/maitake-suppliment/feature-6.png"
                   alt="Banner"

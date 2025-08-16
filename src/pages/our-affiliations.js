@@ -46,7 +46,7 @@ const Affiliation = () => {
             </div>
           </div>
         </div>
-        <div className="map-section relative pt-16 overflow-hidden">
+        <div className="map-section relative lg:pt-16 pt-8 overflow-hidden">
           <div className="container">
             <Image
               width={1343}
@@ -60,14 +60,14 @@ const Affiliation = () => {
             width={278}
             height={278}
             alt="logo"
-            className='absolute top-1/2 left-[-140px] transform -translate-y-1/2 lg:block hidden'
+            className='absolute top-1/2 lg:left-[-140px] left-[-52px] transform -translate-y-1/2 w-[100px] lg:w-[287px]'
             src="/affiliation/maitale-element.png"
           />
           <Image
             width={278}
             height={278}
             alt="logo"
-            className='absolute top-1/2 right-[-140px] transform -translate-y-1/2 lg:block hidden'
+            className='absolute top-1/2 lg:right-[-140px] right-[-52px] transform -translate-y-1/2 w-[100px] lg:w-[287px]'
             src="/affiliation/maitale-element.png"
           />
         </div>
