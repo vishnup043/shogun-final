@@ -77,7 +77,7 @@ const ProductCard = ({ productDetails }) => {
 	}, [isComboTherapyAvailable, selectedBundleType]);
 
 	return (
-		<div className="product-list grid md:grid-cols-2 grid-cols-1 lg:py-28 py-12 border-b" key={id}>
+		<div className="product-list grid md:grid-cols-2 grid-cols-1 lg:py-28 py-12 border-b last:border-0" key={id}>
 			<div className="product-box">
 				<h5 className="text-greyblack 2xl:text-5xl lg:text-3xl text-2xl">Shogun Black Maitake</h5>
 				<h2 className="xl:text-[80px] md:text-[50px] text-[40px] leading-none">{name}</h2>
@@ -115,7 +115,7 @@ const ProductCard = ({ productDetails }) => {
 							</div>
 						)}
 
-						<button onClick={addCartClick} className="w-max px-4 py-2 border border-gray-300 rounded-md text-black 2xl:text-2xl text-lg">
+						<button onClick={addCartClick} className="bg-white w-max px-4 py-2 border border-gray-300 rounded-md text-black 2xl:text-2xl text-lg">
 							{isInCart ? isInCart?.bundleId !== selectedBundleType?.id ? <p>Update bundle type</p> : <p>Remove from Cart</p> : <p>Add to Cart</p>}
 						</button>
 					</div>

@@ -23,7 +23,7 @@ body{
 p:not(:last-of-type) {
   margin-bottom: 1rem;
 }
-p,li,label,::placeholder,input{
+p,li,label,::placeholder,input,table,select{
     font-family: 'Helvetica';
 }
 .container {
