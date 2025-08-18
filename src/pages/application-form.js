@@ -111,14 +111,14 @@ const OrderNow = () => {
 				/>
 				<div className="lg:w-[80%] w-full mx-auto text-sm text-gray-700 bg-limebg lg:p-20 sm:p-12 p-6">
 					<p className="text-right text-greyblack2">Free Sample Period : Aug 11  -  Sep 10</p>
-					<h2 className="text-green text-center 2xl:text-5xl text-3xl py-20">
+					<h2 className="text-green text-center 2xl:text-5xl text-3xl lg:py-20 py-12">
 						REQUEST APPLICATION FOR <span className="block">FREE SHOGUN BLACK MAITAKE PROTHERA & EX TABLET SAMPLES</span>
 					</h2>
-					<div className="flex justify-between items-center">
-						<h5 className="text-grey 2xl:text-4xl text-3xl">CREATE YOUR ACCOUNT</h5>
+					<div className="flex flex-col sm:flex-row gap-4 justify-between items-center">
+						<h5 className="text-grey 2xl:text-4xl text-2xl">CREATE YOUR ACCOUNT</h5>
 						<p className="text-greyblack2">*Sign-In Information *All Fields Are Required</p>
 					</div>
-					<form className="bg-white lg:p-12 p-6 mt-4 mb-16 application-form" onSubmit={handleSubmit(onSubmitForm)}>
+					<form className="bg-white lg:p-12 p-4 mt-4 mb-16 application-form" onSubmit={handleSubmit(onSubmitForm)}>
 						<div className="grid lg:grid-cols-6 items-center mb-4 lg:gap-12 gap-2">
 							<div className="col-span-1">
 								<label className="2xl:text-xl text-base">Email</label>
@@ -396,12 +396,12 @@ const OrderNow = () => {
 								/>
 							</div>
 						</div>
-						<div className="flex justify-center py-12 gap-4">
+						<div className="flex flex-col sm:flex-row justify-center md:py-12 py-8 gap-4">
 							<input onChange={handleFileChange} ref={fileRef} type="file" className="hidden" multiple />
-							<button type="button" onClick={onClickUpload} className="text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
+							<button type="button" onClick={onClickUpload} className="w-max text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
 								<p>Upload Documents</p>
 							</button>
-							<button type="submit" disabled={uploading} className="text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
+							<button type="submit" disabled={uploading} className="w-max text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
 								<p>{uploading ? "Requesting..." : "Request"}</p>
 							</button>
 						</div>
@@ -447,12 +447,12 @@ const OrderNow = () => {
 					</p>
 					<p>You must check the “I agree” box and click “Create account” before you can proceed. If you do not agree to the terms above, you may exit this page. You may return to this page at any time to create an account.</p>
 					<div className="flex items-center mb-4 gap-6">
-						<p>I confirm that I am 18 years of age or older.</p>
+						<p className="!mb-0">I confirm that I am 18 years of age or older.</p>
 						<input type="checkbox" name="ageConfirm" {...register("ageConfirm", { required: true })} />
 						{errors.ageConfirm && <p className="text-red-500 text-xs">You must confirm you are 18 or older.</p>}
 					</div>
 					<div className="flex items-center mb-4 gap-6">
-						<p>I agree</p>
+						<p className="!mb-0">I agree</p>
 						<input type="checkbox" name="agree" {...register("agree", { required: true })} />
 						{errors.agree && <p className="text-red-500 text-xs">You must agree to the terms.</p>}
 					</div>
