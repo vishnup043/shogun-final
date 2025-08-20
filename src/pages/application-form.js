@@ -104,6 +104,9 @@ const OrderNow = () => {
 					width={1517}
 					height={188}
 				/>
+				<video className="w-full my-8" autoPlay playsInline loop controls muted>
+					<source src="/video/video-1.mp4" type="video/mp4" />
+				</video>
 				<div className="lg:w-[80%] w-full mx-auto text-sm text-gray-700 bg-limebg lg:p-20 sm:p-12 p-6">
 					<p className="text-right text-greyblack2">Free Sample Period : Aug 11  -  Sep 10</p>
 					<h2 className="text-green text-center 2xl:text-5xl text-3xl lg:py-20 py-12">
@@ -116,7 +119,7 @@ const OrderNow = () => {
 					<form className="bg-white lg:p-12 p-4 mt-4 mb-16 application-form" onSubmit={handleSubmit(onSubmitForm)}>
 						<div className="grid lg:grid-cols-6 items-center mb-4 lg:gap-12 gap-2">
 							<div className="col-span-1">
-								<label className="2xl:text-xl text-base">Email</label>
+								<label className="2xl:text-xl text-base">Email *</label>
 							</div>
 							<div className="col-span-5 ">
 								<input
@@ -136,7 +139,7 @@ const OrderNow = () => {
 						</div>
 						<div className="grid lg:grid-cols-6 items-center mb-4 lg:gap-12 gap-2">
 							<div className="col-span-1">
-								<label className="whitespace-nowrap">Confirm Email</label>
+								<label className="whitespace-nowrap">Confirm Email *</label>
 							</div>
 							<div className="col-span-4">
 								<input
@@ -153,7 +156,7 @@ const OrderNow = () => {
 						</div>
 						<div className="grid lg:grid-cols-6 items-center mb-4 lg:gap-12 gap-2">
 							<div className="col-span-1">
-								<label>Password</label>
+								<label>Password *</label>
 							</div>
 							<div className="col-span-4">
 								<input
@@ -173,7 +176,7 @@ const OrderNow = () => {
 						</div>
 						<div className="grid lg:grid-cols-6 items-center mb-4 lg:gap-12 gap-2">
 							<div className="col-span-1">
-								<label className="whitespace-nowrap">Confirm Password</label>
+								<label className="whitespace-nowrap">Confirm Password *</label>
 							</div>
 							<div className="col-span-4">
 								<input
