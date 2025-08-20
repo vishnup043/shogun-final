@@ -39,7 +39,6 @@ const OrderNow = () => {
 			Email: data.email,
 			"First Name": data.firstName,
 			"Last Name": data.lastName,
-			"Personal Information": data.personalInfo,
 			"Date of Birth": data.dob,
 			Sex: data.sex,
 			Practitioner: data.practitioner,
@@ -187,18 +186,6 @@ const OrderNow = () => {
 									})}
 								/>
 								{errors.confirmPassword && <p className="text-red-500 text-xs">{errors.confirmPassword.message}</p>}
-							</div>
-						</div>
-						<div className="grid lg:grid-cols-6 items-center mb-4 lg:gap-12 gap-2">
-							<div className="col-span-1">
-								<label>Personal information</label>
-							</div>
-							<div className="col-span-4">
-								<input
-									type="text"
-									placeholder="Your personal information"
-									className="text-sm w-full border-0 border-b border-gray-300 focus:border-gray-600 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400 px-1 py-1 bg-transparent"
-								/>
 							</div>
 						</div>
 						<div className="grid lg:grid-cols-2 items-center mb-4 lg:gap-12 gap-2">
@@ -404,7 +391,7 @@ const OrderNow = () => {
 								/>
 							</div>
 						</div>
-						<div className="flex flex-col sm:flex-row justify-center md:py-12 py-8 gap-4">
+						<div className="flex flex-col sm:flex-row justify-center md:py-12 py-8 gap-4 relative">
 							<input onChange={handleFileChange} ref={fileRef} type="file" className="hidden" multiple />
 							<button type="button" onClick={onClickUpload} className="w-max text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
 								<p>Upload Documents</p>
@@ -412,6 +399,7 @@ const OrderNow = () => {
 							<button type="submit" disabled={uploading} className="w-max text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
 								<p>{uploading ? "Requesting..." : "Request"}</p>
 							</button>
+							<p className="absolute sm:bottom-4 bottom-2 text-gray-500">Upload documents are optional</p>
 						</div>
 						<div className="flex flex-wrap gap-4">
 							{files.length > 0 ? (
@@ -473,10 +461,9 @@ const OrderNow = () => {
 						{errors.endorse && <p className="text-red-500 text-xs">You must endorse yourself.</p>}
 					</div>
 					<p>Ordering 1 1-month free trial</p>
-					<p>SIGNATURE</p>
 					<h2 className="text-center text-4xl text-green pt-28 pb-12">PERSONAL INFORMATION PROTECTION PLEDGE</h2>
 					<p>To</p>
-					<p>PATIENT NAME </p>
+					<p>CUSTOMERS </p>
 					<p>SHOGUN MAITAKE CANADA CO.LTD. (Hereinafter referred to as “the Company”) pledges to manage and administer the personal health-related information entrusted during the free sample program as follows. </p>
 					<p>1. PURPOSE OF USE</p>
 					<p>The Company to verify the efficacy of SHOGUN BLACK MAITAKE PROTHERA under the consultation of a Naturopath and Healthcare Practitioner. </p>

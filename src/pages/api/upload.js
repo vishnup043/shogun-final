@@ -68,7 +68,6 @@ export default async function handler(req, res) {
 			Email: Array.isArray(fields.email) ? fields.email[0] : fields.email,
 			"First Name": Array.isArray(fields.firstName) ? fields.firstName[0] : fields.firstName,
 			"Last Name": Array.isArray(fields.lastName) ? fields.lastName[0] : fields.lastName,
-			"Personal Information": Array.isArray(fields.personalInfo) ? fields.personalInfo[0] : fields.personalInfo,
 			"Date of Birth": Array.isArray(fields.dob) ? fields.dob[0] : fields.dob,
 			Sex: Array.isArray(fields.sex) ? fields.sex[0] : fields.sex,
 			Practitioner: Array.isArray(fields.practitioner) ? fields.practitioner[0] : fields.practitioner,
