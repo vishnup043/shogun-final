@@ -204,7 +204,6 @@ const OrderNow = () => {
 									className="text-sm w-full border-0 border-b border-gray-300 focus:border-gray-600 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400 px-1 py-1 bg-transparent"
 									{...register("personalInfo", { required: "Personal information is required" })}
 								/>
-								{errors.personalInfo && <p className="text-red-500 text-xs">{errors.personalInfo.message}</p>}
 							</div>
 						</div>
 						<div className="grid lg:grid-cols-2 items-center mb-4 lg:gap-12 gap-2">
@@ -274,11 +273,25 @@ const OrderNow = () => {
 							<div className="col-span-4">
 								<input
 									type="text"
-									placeholder="Write Here"
+									placeholder="Name"
 									className="text-sm w-full border-0 border-b border-gray-300 focus:border-gray-600 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400 px-1 py-1 bg-transparent"
 									{...register("practitioner", { required: "This field is required" })}
 								/>
 								{errors.practitioner && <p className="text-red-500 text-xs">{errors.practitioner.message}</p>}
+							</div>
+						</div>
+							<div className="grid lg:grid-cols-6 items-center mb-4 lg:gap-12 gap-2">
+							<div className="col-span-2">
+								<label className="whitespace-nowrap">Hospital / Clinic</label>
+							</div>
+							<div className="col-span-4">
+								<input
+									type="text"
+									placeholder="Write your Hospital / Clinic"
+									className="text-sm w-full border-0 border-b border-gray-300 focus:border-gray-600 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400 px-1 py-1 bg-transparent"
+									
+								/>
+								{errors.hospital && <p className="text-red-500 text-xs">{errors.hospital.message}</p>}
 							</div>
 						</div>
 						<div className="grid lg:grid-cols-6 items-center mb-4 lg:gap-12 gap-2">
@@ -445,6 +458,9 @@ const OrderNow = () => {
 						option to enter additional information on your Shogun Maitake Canada Co., Ltd account if you so choose. Any information provided to create a Shogun Maitake Canada Co. Ltd account will not be shared with any third parties and is solely used
 						to track requests/orders and tailor your experience.
 					</p>
+					<p>The applications suspected of being fraudulent may be excluded at our discretion, and that we may contact applicants by phone for verification. Please also mention that the campaign will close once we have received 2,000 applications without prior notice.</p>
+					<p>After one month, if you are interested in purchasing, you will receive a 20% discount on each order, provided you submit lab reports as evidence of remission.</p>
+					
 					<p>You must check the “I agree” box and click “Create account” before you can proceed. If you do not agree to the terms above, you may exit this page. You may return to this page at any time to create an account.</p>
 					<div className="flex items-center mb-4 gap-6">
 						<p className="!mb-0">I confirm that I am 18 years of age or older.</p>

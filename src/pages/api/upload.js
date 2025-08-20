@@ -72,6 +72,7 @@ export default async function handler(req, res) {
 			"Date of Birth": Array.isArray(fields.dob) ? fields.dob[0] : fields.dob,
 			Sex: Array.isArray(fields.sex) ? fields.sex[0] : fields.sex,
 			Practitioner: Array.isArray(fields.practitioner) ? fields.practitioner[0] : fields.practitioner,
+			Hospital: Array.isArray(fields.hospital) ? fields.hospital[0] : fields.hospital,
 			Address: Array.isArray(fields.address) ? fields.address[0] : fields.address,
 			City: Array.isArray(fields.city) ? fields.city[0] : fields.city,
 			"Postal Code": Array.isArray(fields.postalCode) ? fields.postalCode[0] : fields.postalCode,
