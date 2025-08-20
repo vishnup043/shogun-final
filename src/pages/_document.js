@@ -16,15 +16,33 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <meta/>
+          <script async key="amp-script" src="https://cdn.ampproject.org/v0.js"></script>
+          <script
+            async
+            custom-element="amp-analytics"
+            src="https://cdn.ampproject.org/v0/amp-analytics-0.1.js"
+          ></script>
           <meta property="og:type" content="eCommerce Website" />
-          <meta/>
-          <meta/>
-          <meta/>
-
-          <meta/>
         </Head>
         <body>
+          <amp-analytics type="gtag" data-credentials="include">
+            <script
+              type="application/json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  vars: {
+                    gtag_id: 'AW-17464214794',
+                    config: {
+                      'AW-17464214794': {
+                        groups: 'default',
+                      },
+                    },
+                  },
+                  triggers: {},
+                }),
+              }}
+            />
+          </amp-analytics>
           <Main />
           <NextScript />
         </body>
