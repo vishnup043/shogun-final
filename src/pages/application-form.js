@@ -107,6 +107,7 @@ const OrderNow = () => {
 				<video className="w-full my-8" autoPlay playsInline loop controls muted>
 					<source src="/video/video-1.mp4" type="video/mp4" />
 				</video>
+				<p className="pb-8 text-center">Global News on, Aug 8, on UW finds promising anti-cancer potential in black maitake mushroom extract</p>
 				<div className="lg:w-[80%] w-full mx-auto text-sm text-gray-700 bg-limebg lg:p-20 sm:p-12 p-6">
 					<p className="text-right text-greyblack2">Free Sample Period : Aug 11  -  Sep 10</p>
 					<h2 className="text-green text-center 2xl:text-5xl text-3xl lg:py-20 py-12">

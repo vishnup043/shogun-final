@@ -66,15 +66,15 @@ const Navbar = () => {
 							</button>
 						</div>
 						{pathname !== "/" && (
-						<Link href={"/cart"} className="relative md:px-5 px-0 text-2xl font-bold">
-							{cartLength ? (
-								<span className="absolute z-10 top-0 right-0 inline-flex items-center justify-center p-1 h-5 w-5 text-xs font-medium leading-none text-red-100 transform -translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full">
-									{cartLength}
-								</span>
-							) : null}
+							<Link href={"/cart"} className="relative md:px-5 px-0 text-2xl font-bold">
+								{cartLength ? (
+									<span className="absolute z-10 top-0 right-0 inline-flex items-center justify-center p-1 h-5 w-5 text-xs font-medium leading-none text-red-100 transform -translate-x-1/2 -translate-y-1/2 bg-red-500 rounded-full">
+										{cartLength}
+									</span>
+								) : null}
 
-							<FiShoppingCart className="w-6 h-6 drop-shadow-xl" />
-						</Link>
+								<FiShoppingCart className="w-6 h-6 drop-shadow-xl" />
+							</Link>
 						)}
 					</div>
 				</div>
@@ -107,7 +107,10 @@ const Navbar = () => {
 								<p>Contact Us</p>
 							</Link>
 							<Link href="/order-now" className="w-max md:hidden block text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
-								order online
+								Order online
+							</Link>
+							<Link href="/application-form" className="w-max md:hidden block text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
+								Free Samples
 							</Link>
 
 						</nav>
