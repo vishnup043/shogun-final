@@ -204,7 +204,6 @@ const OrderNow = () => {
 									className="text-sm w-full border-0 border-b border-gray-300 focus:border-gray-600 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400 px-1 py-1 bg-transparent"
 									{...register("personalInfo", { required: "Personal information is required" })}
 								/>
-								{errors.personalInfo && <p className="text-red-500 text-xs">{errors.personalInfo.message}</p>}
 							</div>
 						</div>
 						<div className="grid lg:grid-cols-2 items-center mb-4 lg:gap-12 gap-2">
