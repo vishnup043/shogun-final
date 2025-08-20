@@ -194,12 +194,12 @@ const OrderNow = () => {
 						<div className="grid lg:grid-cols-2 items-center mb-4 lg:gap-12 gap-2">
 							<div className="grid lg:grid-cols-6 lg:grid-flow-col items-center mb-4 lg:gap-12 gap-2">
 								<div className="col-span-2">
-									<label>First name</label>
+									<label className="whitespace-nowrap">First name *</label>
 								</div>
 								<div className="col-span-4">
 									<input
 										type="text"
-										placeholder="Write your First name*"
+										placeholder="Write your First name"
 										className="text-sm w-full border-0 border-b border-gray-300 focus:border-gray-600 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400 px-1 py-1 bg-transparent"
 										{...register("firstName", { required: "First name is required" })}
 									/>
@@ -208,7 +208,7 @@ const OrderNow = () => {
 							</div>
 							<div className="grid lg:grid-cols-6 lg:grid-flow-col items-center mb-4 lg:gap-12 gap-2">
 								<div className="col-span-2">
-									<label>Last name</label>
+									<label className="whitespace-nowrap">Last name *</label>
 								</div>
 								<div className="col-span-4">
 									<input
@@ -224,7 +224,7 @@ const OrderNow = () => {
 						<div className="grid lg:grid-cols-2 items-center mb-4 lg:gap-12 gap-2">
 							<div className="grid lg:grid-cols-6 lg:grid-flow-col items-center mb-4 lg:gap-12 gap-2">
 								<div className="col-span-2">
-									<label className="whitespace-nowrap">Date of Birth</label>
+									<label className="whitespace-nowrap">Date of Birth *</label>
 								</div>
 								<div className="col-span-4">
 									<input
@@ -238,7 +238,7 @@ const OrderNow = () => {
 							</div>
 							<div className="grid lg:grid-cols-6 lg:grid-flow-col items-center mb-4 lg:gap-12 gap-2">
 								<div className="col-span-2">
-									<label>Sex</label>
+									<label>Sex *</label>
 								</div>
 								<div className="col-span-4">
 									<input
@@ -253,7 +253,7 @@ const OrderNow = () => {
 						</div>
 						<div className="grid lg:grid-cols-6 items-center mb-4 lg:gap-12 gap-2">
 							<div className="col-span-2">
-								<label className="whitespace-nowrap">Naturopath / Healthcare Practitioner</label>
+								<label className="whitespace-nowrap">Naturopath / Healthcare Practitioner *</label>
 							</div>
 							<div className="col-span-4">
 								<input
@@ -267,7 +267,7 @@ const OrderNow = () => {
 						</div>
 						<div className="grid lg:grid-cols-6 items-center mb-4 lg:gap-12 gap-2">
 							<div className="col-span-2">
-								<label className="whitespace-nowrap">Hospital / Clinic</label>
+								<label className="whitespace-nowrap">Hospital / Clinic *</label>
 							</div>
 							<div className="col-span-4">
 								<input
@@ -281,7 +281,7 @@ const OrderNow = () => {
 						</div>
 						<div className="grid lg:grid-cols-6 items-center mb-4 lg:gap-12 gap-2">
 							<div className="col-span-2">
-								<label className="whitespace-nowrap">Residential Shipping address</label>
+								<label className="whitespace-nowrap">Residential Shipping address *</label>
 							</div>
 							<div className="col-span-4">
 								<input
@@ -296,7 +296,7 @@ const OrderNow = () => {
 						<hr className="my-12"></hr>
 						<div className="grid lg:grid-cols-6 items-center mb-4 lg:gap-12 gap-2">
 							<div className="col-span-1">
-								<label className="whitespace-nowrap">City</label>
+								<label className="whitespace-nowrap">City *</label>
 							</div>
 							<div className="col-span-5">
 								<input
@@ -311,7 +311,7 @@ const OrderNow = () => {
 						<div className="grid lg:grid-cols-2 items-center lg:gap-12">
 							<div className="grid lg:grid-cols-6 lg:grid-flow-col items-center mb-4 lg:gap-12 gap-2">
 								<div className="col-span-2">
-									<label className="whitespace-nowrap">Postal code</label>
+									<label className="whitespace-nowrap">Postal code *</label>
 								</div>
 								<div className="col-span-4">
 									<input
@@ -325,7 +325,7 @@ const OrderNow = () => {
 							</div>
 							<div className="grid lg:grid-cols-6 lg:grid-flow-col items-center lg:gap-12 gap-2">
 								<div className="col-span-2">
-									<label className="whitespace-nowrap">Province / State</label>
+									<label className="whitespace-nowrap">Province / State *</label>
 								</div>
 								<div className="col-span-4">
 									<input
@@ -341,7 +341,7 @@ const OrderNow = () => {
 						<div className="grid lg:grid-cols-2 items-center lg:gap-12 gap-2">
 							<div className="grid lg:grid-cols-6 lg:grid-flow-col items-center mb-4 lg:gap-12 gap-2">
 								<div className="col-span-2">
-									<label className="whitespace-nowrap">Cancer stage</label>
+									<label className="whitespace-nowrap">Cancer stage *</label>
 								</div>
 								<div className="col-span-4">
 									<input
@@ -355,7 +355,7 @@ const OrderNow = () => {
 							</div>
 							<div className="grid lg:grid-cols-6 lg:grid-flow-col items-center lg:gap-12 gap-2">
 								<div className="col-span-2">
-									<label className="whitespace-nowrap">Cancer Type</label>
+									<label className="whitespace-nowrap">Cancer Type *</label>
 								</div>
 								<div className="col-span-4">
 									<input
@@ -370,7 +370,7 @@ const OrderNow = () => {
 						</div>
 						<div className="grid lg:grid-cols-6 items-center mb-4 lg:gap-12 gap-2">
 							<div className="col-span-1">
-								<label className="whitespace-nowrap">Other Treatments</label>
+								<label className="whitespace-nowrap">Other Treatments *</label>
 							</div>
 							<div className="col-span-5">
 								<input
@@ -383,7 +383,7 @@ const OrderNow = () => {
 						</div>
 						<div className="grid lg:grid-cols-6 items-center mb-4 lg:gap-12 gap-2">
 							<div className="col-span-2">
-								<label className="whitespace-nowrap">Other medications taking</label>
+								<label className="whitespace-nowrap">Other medications taking *</label>
 							</div>
 							<div className="col-span-4">
 								<input
@@ -477,7 +477,7 @@ const OrderNow = () => {
 					</p>
 					<p>Inquires:</p>
 					<p>
-						John Jacob <span className="block">Shogun Maitake Canada Co., Ltd.</span> 6188 Colonel Talbot Road.<span className="block"> London ON N6P 1J1 </span>TEL:519-652-5783 <span className="block">orders@shogunmaitake.com</span>
+						John Jacob <span className="block">Shogun Maitake Canada Co., Ltd.</span> 6188 Colonel Talbot Road.<span className="block"> London ON N6P 1J1 </span>TEL:519-652-5783 <span className="block">jjacob@shogunmaitake.com</span>
 					</p>
 				</div>
 			</div>
