@@ -21,7 +21,7 @@ const Home = () => {
 				<video className="w-full h-screen object-cover md:hidden block" autoPlay playsInline loop muted>
 					<source src="/video/shogun-video-mob.mp4" type="video/mp4" controls />
 				</video>
-				<Link href="/application-form gidden sm:block">
+				<Link href="/application-form" className="hidden sm:block">
 					<Image
 						src="/video/application-banner.jpg"
 						alt="Banner"
