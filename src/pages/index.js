@@ -3,6 +3,7 @@ import NavbarHome from "@layout/navbar/NavbarHome";
 import Navbar from "@layout/navbar/Navbar";
 import Image from "next/image";
 import Link from 'next/link';
+import WhatsAppButton from "@components/whatsapp/WhatsAppButton";
 
 const Home = () => {
 	const videoRef = useRef(null);
@@ -40,6 +41,7 @@ const Home = () => {
 					/>
 				</Link>
 			</div>
+			<WhatsAppButton/>
 		</>
 	);
 };

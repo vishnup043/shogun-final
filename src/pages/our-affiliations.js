@@ -8,6 +8,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import WhatsAppButton from "@components/whatsapp/WhatsAppButton";
+
 const Affiliation = () => {
 
   return (
@@ -73,6 +75,7 @@ const Affiliation = () => {
         </div>
       </section>
       <Footer/>
+      <WhatsAppButton />
     </div>
   );
 };

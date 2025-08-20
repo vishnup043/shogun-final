@@ -3,6 +3,7 @@ import Image from "next/image";
 import Navbar from "@layout/navbar/Navbar";
 import Link from 'next/link';
 import Footer from "@layout/footer/Footer";
+import WhatsAppButton from "@components/whatsapp/WhatsAppButton";
 
 const AboutUs = () => {
 
@@ -155,6 +156,7 @@ const AboutUs = () => {
         </div>
       </section>
       <Footer />
+        <WhatsAppButton />
     </div>
   );
 };

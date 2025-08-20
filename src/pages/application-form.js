@@ -483,6 +483,7 @@ const OrderNow = () => {
 				</div>
 			</div>
 			<Footer />
+			<WhatsAppButton />
 		</div>
 	);
 };

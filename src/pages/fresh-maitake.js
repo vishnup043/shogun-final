@@ -10,6 +10,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import WhatsAppButton from "@components/whatsapp/WhatsAppButton";
+
 const FreshMaitake = () => {
 
   return (
@@ -402,6 +404,7 @@ const FreshMaitake = () => {
         />
       </section>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };

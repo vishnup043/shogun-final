@@ -3,6 +3,7 @@ import Image from "next/image";
 import Navbar from "@layout/navbar/Navbar";
 import Footer from "@layout/footer/Footer";
 import Link from 'next/link';
+import WhatsAppButton from "@components/whatsapp/WhatsAppButton";
 
 const MaitakeSuppliment = () => {
 
@@ -310,6 +311,7 @@ const MaitakeSuppliment = () => {
         </div>
       </section>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };

@@ -5,6 +5,7 @@ import Footer from "@layout/footer/Footer";
 import Link from "next/link";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import WhatsAppButton from "@components/whatsapp/WhatsAppButton";
 
 const News = () => {
 
@@ -80,6 +81,7 @@ const News = () => {
         </Link>
       </section>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };

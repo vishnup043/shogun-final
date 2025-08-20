@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Navbar from "@layout/navbar/Navbar";
 import Footer from "@layout/footer/Footer";
 import { addOnProducts } from "@utils/data";
+import WhatsAppButton from "@components/whatsapp/WhatsAppButton";
 
 const CheckoutPage = () => {
   const shippingCost = 20;
@@ -397,6 +398,7 @@ const CheckoutPage = () => {
         </div>
       </PayPalScriptProvider>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };

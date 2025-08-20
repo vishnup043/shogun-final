@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Footer from "@layout/footer/Footer";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import WhatsAppButton from "@components/whatsapp/WhatsAppButton";
 
 const CulinaryMaitake = () => {
 
@@ -84,6 +85,7 @@ const CulinaryMaitake = () => {
         </section>
       </div>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };

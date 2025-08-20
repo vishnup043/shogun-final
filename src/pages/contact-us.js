@@ -5,6 +5,7 @@ import Navbar from "@layout/navbar/Navbar";
 import Footer from "@layout/footer/Footer";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faWhatsapp, faYoutube, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import WhatsAppButton from "@components/whatsapp/WhatsAppButton";
 
 const Contact = () => {
 
@@ -149,6 +150,7 @@ const Contact = () => {
         </div>
       </div>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };

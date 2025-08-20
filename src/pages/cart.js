@@ -5,6 +5,7 @@ import Footer from "@layout/footer/Footer";
 import useProducts from "@hooks/custom/useProducts";
 import { useRouter } from "next/navigation";
 import { addOnProducts } from "@utils/data";
+import WhatsAppButton from "@components/whatsapp/WhatsAppButton";
 
 const Cart = () => {
 	const [error, setError] = useState("");
@@ -150,6 +151,7 @@ const Cart = () => {
 				</div>
 			</div>
 			<Footer />
+			<WhatsAppButton />
 		</div>
 	);
 };

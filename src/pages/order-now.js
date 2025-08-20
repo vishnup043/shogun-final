@@ -8,6 +8,8 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import useProducts from "@hooks/custom/useProducts";
 import ProductCard from "@components/order-now/ProductCard";
+import WhatsAppButton from "@components/whatsapp/WhatsAppButton";
+
 const OrderNow = () => {
 	const { productList } = useProducts();
 
@@ -29,6 +31,7 @@ const OrderNow = () => {
 					</div>
 				</div>
 			))}
+			<WhatsAppButton />
 			<Footer />
 		</div>
 	);
