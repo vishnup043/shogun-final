@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useForm } from "react-hook-form";
 import * as XLSX from "xlsx";
+import WhatsAppButton from "@components/whatsapp/WhatsAppButton";
 
 const OrderNow = () => {
 	const [files, setFiles] = useState([]);
