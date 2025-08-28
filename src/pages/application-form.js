@@ -101,15 +101,31 @@ const OrderNow = () => {
 				<Image
 					src="/video/application-ban.jpg"
 					alt="Banner"
-					className="w-[80%] mx-auto"
+					className="w-full"
 					width={1517}
 					height={188}
 				/>
-				<video className="w-full my-8" autoPlay playsInline loop controls muted>
-					<source src="/video/video-1.mp4" type="video/mp4" />
-				</video>
-				<p className="pb-8 text-center">Global News on, Aug 8, on UW finds promising anti-cancer potential in black maitake mushroom extract</p>
-				<div className="lg:w-[80%] w-full mx-auto text-sm text-gray-700 bg-limebg lg:p-20 sm:p-12 p-6">
+				<div className="grid md:grid-cols-3 grid-cols-1 items-end gap-4">
+					<div>
+						<video className="w-full my-8" playsInline loop controls muted>
+							<source src="/video/eric-video.mp4" type="video/mp4" />
+						</video>
+						<p class="text-center">Dr. Eric Marsden - Doctors in Clinical Trails who belived Prothera working on Patients</p>
+					</div>
+					<div>
+						<video className="w-full my-8" playsInline loop controls muted>
+							<source src="/video/tania-video.mp4" type="video/mp4" />
+						</video>
+						<p class="text-center">Tanya - Patient Testimonial</p>
+					</div>
+					<div>
+						<video className="w-full my-8" playsInline loop controls muted>
+							<source src="/video/q&a.mp4" type="video/mp4" />
+						</video>
+						<p class="text-center">Q & A</p>
+					</div>
+				</div>
+				<div className="lg:w-[80%] w-full mx-auto text-sm text-gray-700 bg-limebg lg:p-20 sm:p-12 p-6 mt-12">
 					<p className="text-right text-greyblack2">Free Sample Period : Aug 11  -  Sep 10</p>
 					<h2 className="text-green text-center 2xl:text-5xl text-3xl lg:py-20 py-12">
 						REQUEST APPLICATION FOR <span className="block">FREE SHOGUN BLACK MAITAKE PROTHERA & EX TABLET SAMPLES</span>

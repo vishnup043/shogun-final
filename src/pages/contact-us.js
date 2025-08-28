@@ -117,7 +117,7 @@ const Contact = () => {
               </div>
               <div className="mt-6">
                 <p className="!mb-0 font-bold">Social Media</p>
-                <div className="flex gap-2 mt-2 text-2xl">
+                <div className="flex gap-2 mt-2 text-xl">
                   <Link href="/"><FontAwesomeIcon icon={faFacebook} /></Link>
                   <Link href="/"><FontAwesomeIcon icon={faInstagram} /></Link>
                   <Link href="/"><FontAwesomeIcon icon={faYoutube} /></Link>

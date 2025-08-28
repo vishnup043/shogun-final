@@ -1,6 +1,6 @@
 import React from "react";
 
-const BundleType = ({ bundleDetails, onSelect, selectedBundle }) => {
+const BundleType = ({ bundleDetails, onSelect, selectedBundle, showPurchaseMode = true }) => {
 	const { price, unit, purchaseMode, finalPrice, id } = bundleDetails;
 	const isBundleSelected = React.useMemo(() => selectedBundle?.id === id, [selectedBundle, id]);
 	return (
@@ -11,13 +11,23 @@ const BundleType = ({ bundleDetails, onSelect, selectedBundle }) => {
 			<div className="block rounded">
 				<p className="2xl:text-xl text-lg text-black">
 					 {unit}
-					<span className="block">{purchaseMode === "ONE_TIME" ? "(Onetime Purchase)" : "(Monthly auto ship subscription)"}</span>
+					 	{showPurchaseMode && purchaseMode && (
+					<span className="block">
+						{purchaseMode === "ONE_TIME"
+							? "One-time Purchase"
+							: "Monthly Auto Ship Subscription"}
+					</span>
+				)}
+
 					<span className="block">${finalPrice || price}</span>
 				</p>
 			</div>
 		</label>
 	);
 };
+
+
+
 
 export default BundleType;
 
