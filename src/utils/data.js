@@ -202,7 +202,7 @@ const shortgunProducts = [
 		bundleTypes: [
 			{ id: "ProtheraB1", price: 260, unit: "300 ml Combo Pack" },
 		],
-		images: ["/order-now/prothera+ex.jpg","/order-now/prothera1.jpg", "/order-now/prothera2.jpg", "/order-now/prothera3.jpg", "/order-now/prothera4.jpg", "/order-now/prothera5.jpg", "/order-now/prothera6.jpg", "/order-now/prothera7.jpg"],
+		images: ["/order-now/prothera+ex.jpg","/order-now/prothera2.jpg", "/order-now/prothera3.jpg", "/order-now/prothera4.jpg", "/order-now/prothera5.jpg", "/order-now/prothera6.jpg", "/order-now/prothera7.jpg"],
 	},
 	{
 		id: 1,
