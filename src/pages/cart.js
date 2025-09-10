@@ -74,9 +74,6 @@ const Cart = () => {
 																				<p className="font-bold text-black !m-0 p-0">{productDetails?.name}</p>
 																			</div>
 																		</div>
-																		<div className="text-center w-[65px]">
-																			{"+"}
-																		</div>
 																		<div className="flex">
 																			{haveAddOns ? (
 																				<div className="flex space-x-4 items-center">

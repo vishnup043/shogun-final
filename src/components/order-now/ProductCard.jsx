@@ -94,7 +94,8 @@ const ProductCard = ({ productDetails }) => {
 					</div>
 
 					{/* Quantity & Total */}
-					<div className="md:flex block items-center gap-8 mt-6">
+					<div className="flex flex-col sm:flex-row sm:items-center items-start sm:gap-8 gap-4 mt-6">
+						
 						{!isInCart ? (
 							""
 						) : (
@@ -114,9 +115,21 @@ const ProductCard = ({ productDetails }) => {
 								<input onChange={onCountChange} value={count} max={10} min={1} type="number" className="w-[78px] px-4 py-2 border border-gray-300 rounded-md text-black 2xl:text-2xl text-lg" />
 							</div>
 						)}
-
-						<button onClick={addCartClick} className="bg-white w-max px-4 py-2 border border-gray-300 rounded-md text-black 2xl:text-2xl text-lg">
-							{isInCart ? isInCart?.bundleId !== selectedBundleType?.id ? <p>Update bundle type</p> : <p>Remove from Cart</p> : <p>Add to Cart</p>}
+						<button
+							onClick={addCartClick}
+							disabled={!selectedBundleType}
+							className={`bg-white w-max px-4 py-2 border rounded-md text-black 2xl:text-2xl text-lg ${!selectedBundleType ? "cursor-not-allowed" : "border-gray-300"
+								}`}
+						>
+							<p>
+								{!selectedBundleType
+									? "Select a Bundle"
+									: !isInCart
+										? "Add to Cart"
+										: isInCart.bundleId !== selectedBundleType.id
+											? "Update Bundle Type"
+											: "Remove from Cart"}
+							</p>
 						</button>
 					</div>
 				</div>
@@ -146,8 +159,8 @@ const ProductCard = ({ productDetails }) => {
 									onClickAddOn(1000, { desc: "Maitake Ex Tablets", price: "$ 260", quantity: 1 });
 								}}
 								className={`w-[154px] p-1 text-center rounded-xl text-white 2xl:text-2xl text-lg ${selectedBundleType?.id === bundleTypes[0].id
-										? "bg-green"
-										: "bg-gray-300 cursor-not-allowed"
+									? "bg-green"
+									: "bg-gray-300 cursor-not-allowed"
 									}`}
 							>
 								<p>$ 260</p>
