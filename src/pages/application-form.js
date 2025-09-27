@@ -418,7 +418,7 @@ const OrderNow = () => {
 								<p>Upload Documents</p>
 							</button>
 							<button type="submit" disabled={uploading} className="w-max text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
-								<p>{uploading ? "Requesting..." : "Request"}</p>
+								<p>{uploading ? "Requesting..." : "Submit"}</p>
 							</button>
 							<p className="absolute sm:bottom-4 bottom-2 text-gray-500">Upload documents are optional</p>
 						</div>
