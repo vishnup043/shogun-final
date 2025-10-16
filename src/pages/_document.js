@@ -16,7 +16,7 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-            <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+            <link rel="icon" type="image/png" sizes="32x32" href="/fav.png" />
           <script async key="amp-script" src="https://cdn.ampproject.org/v0.js"></script>
           <script
             async
