@@ -99,7 +99,7 @@ const OrderNow = () => {
 			<div className="container my-16">
 
 				<Image
-					src="/video/application-ban.jpg"
+					src="/video/application-bann.jpg"
 					alt="Banner"
 					className="w-full"
 					width={1517}
