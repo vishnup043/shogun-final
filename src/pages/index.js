@@ -24,7 +24,7 @@ const Home = () => {
 				</video>
 				<Link href="/application-form" className="hidden sm:block">
 					<Image
-						src="/video/application-banner.jpg"
+						src="/video/application-bannerr.jpg"
 						alt="Banner"
 						className="w-full absolute bottom-0"
 						width={1517}
@@ -33,7 +33,7 @@ const Home = () => {
 				</Link>
 				<Link href="/application-form" className="sm:hidden block">
 					<Image
-						src="/video/application-banner-mob.jpg"
+						src="/video/application-bannerr-mob.jpg"
 						alt="Banner"
 						className="w-full absolute bottom-0"
 						width={1517}
