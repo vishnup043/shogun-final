@@ -126,7 +126,7 @@ const OrderNow = () => {
 					</div>
 				</div>
 				<div className="lg:w-[80%] w-full mx-auto text-sm text-gray-700 bg-limebg lg:p-20 sm:p-12 p-6 mt-12">
-					<p className="text-right text-greyblack2">Free Sample Period : Aug 11  -  Sep 10</p>
+					{/* <p className="text-right text-greyblack2">Free Sample Period : Aug 11  -  Sep 10</p> */}
 					<h2 className="text-green text-center 2xl:text-5xl text-3xl lg:py-20 py-12">
 						REQUEST APPLICATION FOR <span className="block">FREE SHOGUN BLACK MAITAKE PROTHERA & EX TABLET SAMPLES</span>
 					</h2>
@@ -412,7 +412,42 @@ const OrderNow = () => {
 								/>
 							</div>
 						</div>
-						<div className="flex flex-col sm:flex-row justify-center md:py-12 py-8 gap-4 relative">
+						
+					<p>Terms of use</p>
+					<p>
+						Shogun Maitake Canada Co., Ltd respects the importance of your privacy and protecting your personal information. As such, we want you to understand how we will use the information you provided on this registration page to create a free
+						sample account.
+					</p>
+					<p>
+						By clicking “I Agree” below, you acknowledge that you give authority to access the above account to allow you to request treatment samples, order educational materials, receive product information, support offerings, product news, and/or
+						take part in additional training from Shogun Maitake Canada Co., Ltd.{" "}
+					</p>
+					<p>
+						To create a Shogun Maitake Canada Co. Ltd free sample account, you will need to provide your first name, last name, email address, residential address, and blood test reports done within 6 months. Once you create an account, you have the
+						option to enter additional information on your Shogun Maitake Canada Co., Ltd account if you so choose. Any information provided to create a Shogun Maitake Canada Co. Ltd account will not be shared with any third parties and is solely used
+						to track requests/orders and tailor your experience.
+					</p>
+					<p>The applications suspected of being fraudulent may be excluded at our discretion, and that we may contact applicants by phone for verification. Please also mention that the campaign will close once we have received 2,000 applications without prior notice.</p>
+					<p>After one month, if you are interested in purchasing, you will receive a 20% discount on each order, provided you submit lab reports as evidence of remission.</p>
+
+					<p>You must check the “I agree” box and click “Create account” before you can proceed. If you do not agree to the terms above, you may exit this page. You may return to this page at any time to create an account.</p>
+					<div className="flex items-center mb-4 gap-6">
+						<p className="!mb-0">I confirm that I am 18 years of age or older.</p>
+						<input type="checkbox" name="ageConfirm" {...register("ageConfirm", { required: true })} />
+						{errors.ageConfirm && <p className="text-red-500 text-xs">You must confirm you are 18 or older.</p>}
+					</div>
+					<div className="flex items-center mb-4 gap-6">
+						<p className="!mb-0">I agree</p>
+						<input type="checkbox" name="agree" {...register("agree", { required: true })} />
+						{errors.agree && <p className="text-red-500 text-xs">You must agree to the terms.</p>}
+					</div>
+					<div className="flex items-center mt-4 gap-6">
+						<p>I endorse myself as a Cancer patient for taking PROTHERA & EX Tablet, I’m responsible for supervising myself. </p>
+						<input type="checkbox" name="endorse" {...register("endorse", { required: true })} />
+						{errors.endorse && <p className="text-red-500 text-xs">You must endorse yourself.</p>}
+					</div>
+					<p>Ordering 1 1-month free trial</p>
+					<div className="flex flex-col sm:flex-row justify-center md:py-12 py-8 gap-4 relative">
 							<input onChange={handleFileChange} ref={fileRef} type="file" className="hidden" multiple />
 							<button type="button" onClick={onClickUpload} className="w-max text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
 								<p>Upload Documents</p>
@@ -448,40 +483,6 @@ const OrderNow = () => {
 							</div>
 						)}
 					</form>
-					<p>Terms of use</p>
-					<p>
-						Shogun Maitake Canada Co., Ltd respects the importance of your privacy and protecting your personal information. As such, we want you to understand how we will use the information you provided on this registration page to create a free
-						sample account.
-					</p>
-					<p>
-						By clicking “I Agree” below, you acknowledge that you give authority to access the above account to allow you to request treatment samples, order educational materials, receive product information, support offerings, product news, and/or
-						take part in additional training from Shogun Maitake Canada Co., Ltd.{" "}
-					</p>
-					<p>
-						To create a Shogun Maitake Canada Co. Ltd free sample account, you will need to provide your first name, last name, email address, residential address, and blood test reports done within 6 months. Once you create an account, you have the
-						option to enter additional information on your Shogun Maitake Canada Co., Ltd account if you so choose. Any information provided to create a Shogun Maitake Canada Co. Ltd account will not be shared with any third parties and is solely used
-						to track requests/orders and tailor your experience.
-					</p>
-					<p>The applications suspected of being fraudulent may be excluded at our discretion, and that we may contact applicants by phone for verification. Please also mention that the campaign will close once we have received 2,000 applications without prior notice.</p>
-					<p>After one month, if you are interested in purchasing, you will receive a 20% discount on each order, provided you submit lab reports as evidence of remission.</p>
-
-					<p>You must check the “I agree” box and click “Create account” before you can proceed. If you do not agree to the terms above, you may exit this page. You may return to this page at any time to create an account.</p>
-					<div className="flex items-center mb-4 gap-6">
-						<p className="!mb-0">I confirm that I am 18 years of age or older.</p>
-						<input type="checkbox" name="ageConfirm" {...register("ageConfirm", { required: true })} />
-						{errors.ageConfirm && <p className="text-red-500 text-xs">You must confirm you are 18 or older.</p>}
-					</div>
-					<div className="flex items-center mb-4 gap-6">
-						<p className="!mb-0">I agree</p>
-						<input type="checkbox" name="agree" {...register("agree", { required: true })} />
-						{errors.agree && <p className="text-red-500 text-xs">You must agree to the terms.</p>}
-					</div>
-					<div className="flex items-center mt-4 gap-6">
-						<p>I endorse myself as a Cancer patient for taking PROTHERA & EX Tablet, I’m responsible for supervising myself. </p>
-						<input type="checkbox" name="endorse" {...register("endorse", { required: true })} />
-						{errors.endorse && <p className="text-red-500 text-xs">You must endorse yourself.</p>}
-					</div>
-					<p>Ordering 1 1-month free trial</p>
 					<h2 className="text-center text-4xl text-green pt-28 pb-12">PERSONAL INFORMATION PROTECTION PLEDGE</h2>
 					<p>To</p>
 					<p>CUSTOMERS </p>
