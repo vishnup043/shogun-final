@@ -144,12 +144,15 @@ const CheckoutPage = () => {
     <p>Your order has been confirmed on ${orderDate}.</p>
     <h3>Billing Address:</h3>
     <div class="address">
-      <p>${billingDetails.firstName || 'N/A'} ${billingDetails.lastName || ''}</p>
-      <p>${billingDetails.streetAddress || 'N/A'}</p>
-      <p>${billingDetails.city || 'N/A'}, ${billingDetails.state || 'N/A'} ${billingDetails.postcode || 'N/A'}</p>
-      <p>${billingDetails.country || 'N/A'}</p>
+      <p>Name: ${billingDetails.firstName || 'N/A'} ${billingDetails.lastName || ''}</p>
       <p>Phone: ${billingDetails.phone || 'N/A'}</p>
       <p>Email: ${billingDetails.email || 'N/A'}</p>
+      <p>Doctor Name: ${billingDetails.doctorName || 'N/A'}</p>
+      <p>Address: ${billingDetails.streetAddress || 'N/A'}</p>
+      <p>Town/City: ${billingDetails.city || 'N/A'}</p>
+      <p>State: ${billingDetails.state || 'N/A'}</p>
+      <p>Postcode: ${billingDetails.postcode || 'N/A'}</p>
+      <p>Country: ${billingDetails.country || 'N/A'}</p>
     </div>
     <h3>Order Details:</h3>
     <table>
@@ -238,7 +241,7 @@ const CheckoutPage = () => {
       <Navbar />
       <PayPalScriptProvider
         options={{
-          "client-id": "Af9PS1KArAfS9DCPCAPEbi4jmg7GnbeZ-Jl5mjApepfA3IWpIGCpHcVtzvEco4nqgjdq6Ksm4rzIsXUj",
+          "client-id": "AQF2fqCOQOGoxVfcouRebL19RXqXWNAUjVE8xQfU-gXcSwRaPHLA2vt-Ulb33LPZkaFbiHjt2IFAjJe_",
           currency: "CAD",
         }}
       >
@@ -337,7 +340,7 @@ const CheckoutPage = () => {
                         const lineTotal = unitPrice * (item.itemCount || 1);
 
                         return (
-                          
+
                           <div key={`${item.productId}-${item.bundleId}`} className="flex justify-between border-b border-gray-200 py-2">
                             <div className="flex">
                               <p>
