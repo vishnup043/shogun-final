@@ -9,6 +9,7 @@ import {
   faWhatsapp,
   faYoutube,
   faInstagram,
+  faXTwitter
 } from "@fortawesome/free-brands-svg-icons";
 import WhatsAppButton from "@components/whatsapp/WhatsAppButton";
 
@@ -118,10 +119,11 @@ const Contact = () => {
               <div className="mt-6">
                 <p className="!mb-0 font-bold">Social Media</p>
                 <div className="flex gap-2 mt-2 text-xl">
-                  <Link href="/"><FontAwesomeIcon icon={faFacebook} /></Link>
-                  <Link href="/"><FontAwesomeIcon icon={faInstagram} /></Link>
-                  <Link href="/"><FontAwesomeIcon icon={faYoutube} /></Link>
-                  <Link href="/"><FontAwesomeIcon icon={faWhatsapp} /></Link>
+                  <Link href="https://www.facebook.com/ShogunMaitakeMushroom" target="_blank"><FontAwesomeIcon icon={faFacebook} /></Link>
+                  <Link href="https://www.instagram.com/shogunmaitake_official" target="_blank"><FontAwesomeIcon icon={faInstagram} /></Link>
+                  <Link href="https://www.youtube.com/@shogunmaitakecanada" target="_blank"><FontAwesomeIcon icon={faYoutube} /></Link>
+                  <Link href="https://x.com/ShogunMaitakeCa" target="_blank"><FontAwesomeIcon icon={faXTwitter} /></Link>
+                  
                 </div>
               </div>
             </div>
