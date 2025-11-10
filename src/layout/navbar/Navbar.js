@@ -1,15 +1,17 @@
 // components/Navbar.js
 "use client";
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { FiShoppingCart } from "react-icons/fi";
+import { FiUser } from "react-icons/fi";
 import { getUserSession } from "@lib/auth";
 import useProducts from "@hooks/custom/useProducts";
 import { usePathname } from "next/navigation";
 
 const Navbar = () => {
-
+	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+	const [loggedInUser, setLoggedInUser] = useState(null);
 	const pathname = usePathname();
 	const routeNames = {
 		"/about": "About Us",
@@ -36,6 +38,21 @@ const Navbar = () => {
 		return cart?.length || 0;
 	}, [cart]);
 	const currentLabel = routeNames[pathname] || "About Us";
+	useEffect(() => {
+		if (typeof window !== "undefined") {
+			const user = JSON.parse(localStorage.getItem("loggedInUser"));
+			setLoggedInUser(user);
+		}
+	}, []);
+	useEffect(() => {
+		const handleClickOutside = (event) => {
+			if (!event.target.closest(".relative")) {
+				setIsDropdownOpen(false);
+			}
+		};
+		document.addEventListener("click", handleClickOutside);
+		return () => document.removeEventListener("click", handleClickOutside);
+	}, []);
 	return (
 		<nav className="bg-white border-b border-gray-200 shadow-md relative z-50 2xl:py-12 xl:py-6 sticky top-0">
 			<div className="container">
@@ -76,6 +93,43 @@ const Navbar = () => {
 								<FiShoppingCart className="w-6 h-6 drop-shadow-xl" />
 							</Link>
 						)}
+						{loggedInUser ? (
+							<div className="relative">
+								<button
+									onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+									className="text-2xl font-bold text-gray-700 hover:text-green-600 md:px-2 focus:outline-none"
+									title="Profile"
+								>
+									<FiUser className="w-6 h-6 drop-shadow-xl" />
+								</button>
+
+								{isDropdownOpen && (
+									<div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg z-50">
+										<div className="px-4 py-2 text-gray-800 border-b border-gray-100 font-semibold">
+											{loggedInUser.email || "User"}
+										</div>
+										<button
+											className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+											onClick={() => {
+												localStorage.removeItem("user"); // clear session
+												setLoggedInUser(null); // update state
+												setIsDropdownOpen(false); // close dropdown
+											}}
+										>
+											Logout
+										</button>
+									</div>
+								)}
+							</div>
+						) : (
+							<Link
+								href="/login"
+								className="text-sm font-semibold text-green-700 md:px-3 hover:underline"
+							>
+								Login
+							</Link>
+						)}
+
 					</div>
 				</div>
 				<div className={`fixed top-0 right-0 h-full w-80 bg-white z-50 transform transition-transform duration-500 ease-in-out shadow-lg ${isOpen ? "translate-x-0" : "translate-x-full"}`}>
