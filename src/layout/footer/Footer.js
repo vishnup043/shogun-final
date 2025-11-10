@@ -2,8 +2,13 @@ import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faYoutube, faInstagram, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-
+import {
+  faFacebook,
+  faLinkedin,
+  faYoutube,
+  faInstagram,
+  faXTwitter
+} from "@fortawesome/free-brands-svg-icons";
 const Footer = () => {
 
   return (
@@ -22,15 +27,10 @@ const Footer = () => {
             </div>
             <div className="col-span-12 flex gap-2 items-end border-gray-300 text-sm text-gray-600 hidden lg:flex">
               <p>© 2025 Shogun Maitake.</p>
-              <Link href="/">
-                <FontAwesomeIcon icon={faFacebook} />
-              </Link>
-              <Link href="/">
-                <FontAwesomeIcon icon={faInstagram} />
-              </Link>
-              <Link href="/">
-                <FontAwesomeIcon icon={faYoutube} />
-              </Link>
+              <Link href="https://www.facebook.com/ShogunMaitakeMushroom" target="_blank"><FontAwesomeIcon icon={faFacebook} /></Link>
+              <Link href="https://www.instagram.com/shogunmaitake_official" target="_blank"><FontAwesomeIcon icon={faInstagram} /></Link>
+              <Link href="https://www.youtube.com/@shogunmaitakecanada" target="_blank"><FontAwesomeIcon icon={faYoutube} /></Link>
+              <Link href="https://x.com/ShogunMaitakeCa" target="_blank"><FontAwesomeIcon icon={faXTwitter} /></Link>
               <Link href="https://www.linkedin.com/company/shogun-maitake/?originalSubdomain=ca" target="_blank">
                 <FontAwesomeIcon icon={faLinkedin} />
               </Link>

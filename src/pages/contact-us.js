@@ -6,7 +6,7 @@ import Footer from "@layout/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebook,
-  faWhatsapp,
+  faLinkedin,
   faYoutube,
   faInstagram,
   faXTwitter
@@ -123,7 +123,9 @@ const Contact = () => {
                   <Link href="https://www.instagram.com/shogunmaitake_official" target="_blank"><FontAwesomeIcon icon={faInstagram} /></Link>
                   <Link href="https://www.youtube.com/@shogunmaitakecanada" target="_blank"><FontAwesomeIcon icon={faYoutube} /></Link>
                   <Link href="https://x.com/ShogunMaitakeCa" target="_blank"><FontAwesomeIcon icon={faXTwitter} /></Link>
-                  
+                  <Link href="https://www.linkedin.com/company/shogun-maitake/?originalSubdomain=ca" target="_blank">
+                    <FontAwesomeIcon icon={faLinkedin} />
+                  </Link>
                 </div>
               </div>
             </div>
@@ -232,7 +234,7 @@ const Contact = () => {
                     placeholder="Write your comment"
                     rows={5}
                     className="text-sm w-full border-0 resize-none focus:border-gray-600 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400 px-0 py-1 bg-transparent"
-                  />        
+                  />
                 </div>
 
                 <div className="pt-4 flex justify-center">
@@ -297,7 +299,7 @@ const Contact = () => {
               onClick={() => setShowPopup(false)}
               className="bg-green hover:bg-green-700 text-white px-4 py-2 rounded"
             >
-             <p>Close</p>
+              <p>Close</p>
             </button>
           </div>
         </div>
