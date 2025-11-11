@@ -17,6 +17,8 @@ import { UserProvider } from "@context/UserContext";
 import DefaultSeo from "@components/common/DefaultSeo";
 import { SidebarProvider } from "@context/SidebarContext";
 import SettingServices from "@services/SettingServices";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 let persistor = persistStore(store);
 
@@ -91,6 +93,7 @@ function MyApp({ Component, pageProps }) {
           </UserProvider>
         </SessionProvider>
       </QueryClientProvider>
+      <ToastContainer position="top-right" autoClose={3000} />
     </>
   );
 }

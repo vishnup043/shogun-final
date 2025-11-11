@@ -10,7 +10,7 @@ export default async function handler(req, res) {
     const amountInCents = BigInt(Math.round(Number(amount) * 100));
 
     const square = new SquareClient({
-      environment: SquareEnvironment.Sandbox,
+      environment: SquareEnvironment.Production,
       token: process.env.SQUARE_ACCESS_TOKEN,
     });
 

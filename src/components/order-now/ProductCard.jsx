@@ -8,6 +8,7 @@ import Image from "next/image";
 import BundleType from "./BundleType";
 import useProducts from "@hooks/custom/useProducts";
 import { addOnProducts, shortgunProducts } from "@utils/data";
+import { toast } from "react-toastify";
 
 const ProductCard = ({ productDetails }) => {
 	const { name, id, displayPrice, type, bundleTypes, images, isComboTherapyAvailable, textForProthera } = productDetails;
@@ -29,20 +30,33 @@ const ProductCard = ({ productDetails }) => {
 		setSelectedBundleType(bundle);
 	};
 
-	const addCartClick = () => {
-		if (isInCart) {
-			if (isInCart.bundleId !== selectedBundleType?.id) {
-				// If the bundle type is different, we need to remove the old one and add the new one
-				removeFromCart(id, isInCart.bundleId);
-				addToCart(id, selectedBundleType?.id, count);
-				return;
-			}
-			removeFromCart(id, selectedBundleType?.id);
-			setCount(0);
-		} else {
-			addToCart(id, selectedBundleType?.id, 1);
-		}
-	};
+const addCartClick = () => {
+	if (isInCart) {
+		removeFromCart(id, selectedBundleType?.id);
+		setCount(0);
+		toast.error("Item removed from cart", {
+			position: "top-right",
+			autoClose: 3000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+		});
+	} else {
+		addToCart(id, selectedBundleType?.id, 1);
+		toast.success("Item added to cart", {
+			position: "top-right",
+			autoClose: 3000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+		});
+	}
+};
+
 
 	const onCountChange = (e) => {
 		const newCount = parseInt(e.target.value, 10);
