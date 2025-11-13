@@ -1,6 +1,5 @@
 import React, { useCallback, useState, useEffect } from "react";
 import { PayPalScriptProvider, PayPalButtons, FUNDING } from "@paypal/react-paypal-js";
-import { CreditCard, PaymentForm, GooglePay } from 'react-square-web-payments-sdk';
 import useProducts from "@hooks/custom/useProducts";
 import { useRouter } from "next/router";
 import Navbar from "@layout/navbar/Navbar";
@@ -9,9 +8,6 @@ import { addOnProducts } from "@utils/data";
 import WhatsAppButton from "@components/whatsapp/WhatsAppButton";
 
 const CheckoutPage = () => {
-   const [user, setUser] = useState(null);
-  const appId = process.env.NEXT_PUBLIC_SQUARE_APPLICATION_ID;
-  const locationId = process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID;
   const shippingCost = 20;
   const taxRate = 0.13;
   const router = useRouter();
@@ -72,16 +68,6 @@ const CheckoutPage = () => {
       console.error("Error saving billing details to local storage:", error);
     }
   }, [billingDetails]);
-  
-  useEffect(() => {
-    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
-    if (!loggedInUser) {
-      router.push(`/login?redirect=/checkout`);
-    } else {
-      setUser(loggedInUser);
-    }
-  }, []);
-
 
   const handleOrderSuccess = async (details, data) => {
     // validate payment
@@ -250,366 +236,170 @@ const CheckoutPage = () => {
     setBillingDetails((prev) => ({ ...prev, [name]: value }));
   };
 
-const sendOrderConfirmationEmail = async (payerEmail, payerName, details) => {
-  try {
-    const billing = JSON.parse(localStorage.getItem("billingDetails") || "{}");
-
-    // Example static shipping/tax for demonstration
-    const shippingCharge = 20.00; // or dynamic if available
-    const taxRate = 0.13; // 13% tax for example
-    const subtotal = total;
-    const taxAmount = subtotal * taxRate;
-    const grandTotal = subtotal + shippingCharge + taxAmount;
-    const currency = "CAD";
-
-    const orderItems = cart.map((item) => {
-      const product = getProductDetails(item.productId);
-      const hasCombo = item?.addOns?.includes(1000);
-      const unitPrice = getPerUnitPrice(item);
-      const name = hasCombo ? `${product?.name} + Combo Care` : product?.name;
-
-      return {
-        name,
-        quantity: item.itemCount || 1,
-        price: unitPrice,
-      };
-    });
-
-    const orderDate = new Date().toLocaleDateString();
-
-    // 🧾 Full Invoice Table Layout
-    const emailHtml = `
-      <html>
-      <head>
-        <meta charset="UTF-8" />
-        <title>Order Confirmation</title>
-        <style>
-          body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            color: #333;
-            background: #f7f7f7;
-            padding: 0;
-            margin: 0;
-          }
-          .container {
-            max-width: 700px;
-            margin: 40px auto;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            padding: 30px;
-          }
-          h1 {
-            color: #4CAF50;
-            text-align: center;
-            border-bottom: 2px solid #4CAF50;
-            padding-bottom: 10px;
-          }
-          table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-          }
-          th, td {
-            text-align: left;
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-          }
-          th {
-            background-color: #f0f0f0;
-          }
-          .summary td {
-            font-weight: bold;
-          }
-          .total-row td {
-            border-top: 2px solid #4CAF50;
-            font-size: 1.1em;
-          }
-          .section-title {
-            color: #4CAF50;
-            margin-top: 20px;
-            font-size: 1.1em;
-            text-transform: uppercase;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 4px;
-          }
-          .footer {
-            font-size: 0.9em;
-            color: #777;
-            text-align: center;
-            margin-top: 30px;
-          }
-        </style>
-      </head>
-      <body>
-        <div class="container">
-          <h1>Order Confirmation</h1>
-          <p>Hi <strong>${payerName}</strong>, thank you for your order! Here’s a summary of your purchase placed on <strong>${orderDate}</strong>.</p>
-          
-          <div class="section-title">Billing Information</div>
-          <table>
-            <tr><td><strong>Name:</strong></td><td>${billing.firstName || ''} ${billing.lastName || ''}</td></tr>
-            <tr><td><strong>Email:</strong></td><td>${billing.email || ''}</td></tr>
-            <tr><td><strong>Phone:</strong></td><td>${billing.phone || ''}</td></tr>
-            <tr><td><strong>Doctor’s Name:</strong></td><td>${billing.doctorName || 'N/A'}</td></tr>
-            <tr><td><strong>Address:</strong></td><td>${billing.streetAddress || ''}${billing.apartment ? ', ' + billing.apartment : ''}</td></tr>
-            <tr><td><strong>City:</strong></td><td>${billing.city || ''}</td></tr>
-            <tr><td><strong>State:</strong></td><td>${billing.state || ''}</td></tr>
-            <tr><td><strong>Postcode:</strong></td><td>${billing.postcode || ''}</td></tr>
-            <tr><td><strong>Country:</strong></td><td>${billing.country || ''}</td></tr>
-          </table>
-
-          <div class="section-title">Order Summary</div>
-          <table>
-            <thead>
-              <tr>
-                <th>Item</th>
-                <th>Qty</th>
-                <th>Unit Price</th>
-                <th>Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              ${orderItems
-                .map(
-                  (item) => `
-                    <tr>
-                      <td>${item.name}</td>
-                      <td>${item.quantity}</td>
-                      <td>${currency} ${item.price.toFixed(2)}</td>
-                      <td>${currency} ${(item.price * item.quantity).toFixed(2)}</td>
-                    </tr>
-                  `
-                )
-                .join("")}
-            </tbody>
-            <tfoot>
-              <tr class="summary">
-                <td colspan="3">Shipping</td>
-                <td>${currency} ${shippingCharge.toFixed(2)}</td>
-              </tr>
-              <tr class="summary">
-                <td colspan="3">Tax</td>
-                <td>13%</td>
-              </tr>
-                   <tr class="summary">
-                <td colspan="3">Total</td>
-                <td>${currency} ${subtotal.toFixed(2)}</td>
-              </tr>
-            </tfoot>
-          </table>
-
-          <p>If you have any questions, feel free to reply to this email or contact our support team.</p>
-
-          <div class="footer">
-            <p>© 2025 Your Company Name. All rights reserved.</p>
-          </div>
-        </div>
-      </body>
-      </html>
-    `;
-
-    // Send via API
-    const response = await fetch("/api/sendEmail", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        to: payerEmail,
-        subject: "Order Confirmation",
-        html: emailHtml,
-      }),
-    });
-
-    if (!response.ok) {
-      console.error("Email send failed:", await response.text());
-    } else {
-      console.log("✅ Order confirmation email sent successfully.");
-    }
-  } catch (error) {
-    console.error("Error sending confirmation email:", error);
-  }
-};
-
-
   return (
     <div>
       <Navbar />
-      <div className="">
-        <div className="bg-green min-h-screen 2xl:py-32 lg:py-16 py-8">
-          <div className="container">
-            <p className="text-lg text-white">Billing Details</p>
-            <div className="max-w-6xl mx-auto rounded-lg grid grid-cols-1 lg:grid-cols-3 gap-8 py-6">
-              <div className="lg:col-span-2 space-y-4 bg-white md:p-8 p-4 rounded-xl">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label class="block text-gray-700">
-                      First name*
-                    </label>
-                    <input name="firstName" type="text" placeholder="Write your first name" className="text-sm w-full border-0 border-b border-gray-300 px-0 py-2 focus:border-gray-300 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400" value={billingDetails.firstName} onChange={handleInputChange} />
-                  </div>
-                  <div>
-                    <label class="block text-gray-700">
-                      Last name*
-                    </label>
-                    <input name="lastName" type="text" placeholder="Write your last name" className="w-full text-sm border-0 border-b border-gray-300 px-0 py-2 focus:border-gray-300 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400" value={billingDetails.lastName} onChange={handleInputChange} />
-                  </div>
-                  <div className="md:col-span-2">
-                    <label class="block text-gray-700">
-                      Company name (optional)
-                    </label>
-                    <input name="company" type="text" placeholder="Write your company name" className="w-full text-sm border-0 border-b border-gray-300 px-0 py-2 focus:border-gray-300 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400" value={billingDetails.company || ""} onChange={handleInputChange} />
-                  </div>
-                  <div className="md:col-span-2">
-                    <label class="block text-gray-700">
-                      Country / Region *
-                    </label>
-                    <select name="country" className="w-full text-sm border-0 border-b border-gray-300 px-0 py-2 focus:border-gray-300 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent text-gray-400" value={billingDetails.country} onChange={handleInputChange}>
-                      <option value="">Country / Region</option>
-                      <option value="USA">USA</option>
-                      <option value="India">India</option>
-                      <option value="UK">UK</option>
-                      <option value="Canada">Canada</option>
-                    </select>
-                  </div>
-                  <div className="md:col-span-2">
-                    <label class="block text-gray-700">
-                      Street Address *
-                    </label>
-                    <input name="streetAddress" type="text" placeholder="House number and street name" className="w-full text-sm border-0 border-b border-gray-300 px-0 py-2 focus:border-gray-300 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400 md:col-span-2" value={billingDetails.streetAddress} onChange={handleInputChange} />
-                    <input name="apartment" type="text" placeholder="Apartment, suite, unit (optional)" className="w-full text-sm border-0 border-b border-gray-300 px-0 py-2 focus:border-gray-300 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400 md:col-span-2" value={billingDetails.apartment || ""} onChange={handleInputChange} />
-                  </div>
-                  <div>
-                    <label class="block text-gray-700">
-                      Town / City *
-                    </label>
-                    <input name="city" type="text" placeholder="Town / City" className="w-full text-sm border-0 border-b border-gray-300 px-0 py-2 focus:border-gray-300 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400" value={billingDetails.city} onChange={handleInputChange} />
-                  </div>
-                  <div>
-                    <label class="block text-gray-700">
-                      State / County *
-                    </label>
-                    <input name="state" type="text" placeholder="State / County" className="w-full text-sm border-0 border-b border-gray-300 px-0 py-2 focus:border-gray-300 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400" value={billingDetails.state} onChange={handleInputChange} />
-                  </div>
-                  <div>
-                    <label class="block text-gray-700">
-                      Postcode / Zip *
-                    </label>
-                    <input name="postcode" type="text" placeholder="Write your post code" className="w-full text-sm border-0 border-b border-gray-300 px-0 py-2 focus:border-gray-300 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400" value={billingDetails.postcode} onChange={handleInputChange} />
-                  </div>
-                  <div>
-                    <label class="block text-gray-700">
-                      Phone *
-                    </label>
-                    <input name="phone" type="text" placeholder="Write your phone number" className="w-full text-sm border-0 border-b border-gray-300 px-0 py-2 focus:border-gray-300 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400" value={billingDetails.phone} onChange={handleInputChange} />
-                  </div>
-                  <div>
-                    <label class="block text-gray-700">
-                      Email address *
-                    </label>
-                    <input name="email" type="email" placeholder="Write your Email address" className="w-full text-sm border-0 border-b border-gray-300 px-0 py-2 focus:border-gray-300 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400" value={billingDetails.email} onChange={handleInputChange} />
-                  </div>
-                  <div>
-                    <label class="block text-gray-700">
-                      Doctor’s Name *
-                    </label>
-                    <input name="doctorName" type="text" placeholder="Write your Doctors name" className="w-full text-sm border-0 border-b border-gray-300 px-0 py-2 focus:border-gray-300 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400" value={billingDetails.doctorName || ""} onChange={handleInputChange} />
+      <PayPalScriptProvider
+        options={{
+          "client-id": "Af9PS1KArAfS9DCPCAPEbi4jmg7GnbeZ-Jl5mjApepfA3IWpIGCpHcVtzvEco4nqgjdq6Ksm4rzIsXUj",
+          currency: "CAD",
+        }}
+      >
+        <div className="">
+          <div className="bg-green min-h-screen 2xl:py-32 lg:py-16 py-8">
+            <div className="container">
+              <p className="text-lg text-white">Billing Details</p>
+              <div className="max-w-6xl mx-auto rounded-lg grid grid-cols-1 lg:grid-cols-3 gap-8 py-6">
+                <div className="lg:col-span-2 space-y-4 bg-white md:p-8 p-4 rounded-xl">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <label class="block text-gray-700">
+                        First name*
+                      </label>
+                      <input name="firstName" type="text" placeholder="Write your first name" className="text-sm w-full border-0 border-b border-gray-300 px-0 py-2 focus:border-gray-300 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400" value={billingDetails.firstName} onChange={handleInputChange} />
+                    </div>
+                    <div>
+                      <label class="block text-gray-700">
+                        Last name*
+                      </label>
+                      <input name="lastName" type="text" placeholder="Write your last name" className="w-full text-sm border-0 border-b border-gray-300 px-0 py-2 focus:border-gray-300 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400" value={billingDetails.lastName} onChange={handleInputChange} />
+                    </div>
+                    <div className="md:col-span-2">
+                      <label class="block text-gray-700">
+                        Company name (optional)
+                      </label>
+                      <input name="company" type="text" placeholder="Write your company name" className="w-full text-sm border-0 border-b border-gray-300 px-0 py-2 focus:border-gray-300 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400" value={billingDetails.company || ""} onChange={handleInputChange} />
+                    </div>
+                    <div className="md:col-span-2">
+                      <label class="block text-gray-700">
+                        Country / Region *
+                      </label>
+                      <select name="country" className="w-full text-sm border-0 border-b border-gray-300 px-0 py-2 focus:border-gray-300 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent text-gray-400" value={billingDetails.country} onChange={handleInputChange}>
+                        <option value="">Country / Region</option>
+                        <option value="USA">USA</option>
+                        <option value="India">India</option>
+                        <option value="UK">UK</option>
+                        <option value="Canada">Canada</option>
+                      </select>
+                    </div>
+                    <div className="md:col-span-2">
+                      <label class="block text-gray-700">
+                        Street Address *
+                      </label>
+                      <input name="streetAddress" type="text" placeholder="House number and street name" className="w-full text-sm border-0 border-b border-gray-300 px-0 py-2 focus:border-gray-300 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400 md:col-span-2" value={billingDetails.streetAddress} onChange={handleInputChange} />
+                      <input name="apartment" type="text" placeholder="Apartment, suite, unit (optional)" className="w-full text-sm border-0 border-b border-gray-300 px-0 py-2 focus:border-gray-300 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400 md:col-span-2" value={billingDetails.apartment || ""} onChange={handleInputChange} />
+                    </div>
+                    <div>
+                      <label class="block text-gray-700">
+                        Town / City *
+                      </label>
+                      <input name="city" type="text" placeholder="Town / City" className="w-full text-sm border-0 border-b border-gray-300 px-0 py-2 focus:border-gray-300 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400" value={billingDetails.city} onChange={handleInputChange} />
+                    </div>
+                    <div>
+                      <label class="block text-gray-700">
+                        State / County *
+                      </label>
+                      <input name="state" type="text" placeholder="State / County" className="w-full text-sm border-0 border-b border-gray-300 px-0 py-2 focus:border-gray-300 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400" value={billingDetails.state} onChange={handleInputChange} />
+                    </div>
+                    <div>
+                      <label class="block text-gray-700">
+                        Postcode / Zip *
+                      </label>
+                      <input name="postcode" type="text" placeholder="Write your post code" className="w-full text-sm border-0 border-b border-gray-300 px-0 py-2 focus:border-gray-300 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400" value={billingDetails.postcode} onChange={handleInputChange} />
+                    </div>
+                    <div>
+                      <label class="block text-gray-700">
+                        Phone *
+                      </label>
+                      <input name="phone" type="text" placeholder="Write your phone number" className="w-full text-sm border-0 border-b border-gray-300 px-0 py-2 focus:border-gray-300 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400" value={billingDetails.phone} onChange={handleInputChange} />
+                    </div>
+                    <div>
+                      <label class="block text-gray-700">
+                        Email address *
+                      </label>
+                      <input name="email" type="email" placeholder="Write your Email address" className="w-full text-sm border-0 border-b border-gray-300 px-0 py-2 focus:border-gray-300 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400" value={billingDetails.email} onChange={handleInputChange} />
+                    </div>
+                    <div>
+                      <label class="block text-gray-700">
+                        Doctor’s Name *
+                      </label>
+                      <input name="doctorName" type="text" placeholder="Write your Doctors name" className="w-full text-sm border-0 border-b border-gray-300 px-0 py-2 focus:border-gray-300 focus:outline-none focus:shadow-none focus:ring-0 focus:ring-transparent placeholder-gray-400" value={billingDetails.doctorName || ""} onChange={handleInputChange} />
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="border border-gray-200 rounded-lg p-4 bg-white shadow-sm h-fit">
-                <p className="text-lg mb-4">Your order</p>
-                {!productList || productList.length === 0 ? (
-                  <p className="text-gray-500 text-sm mb-4">Loading products...</p>
-                ) : (
-                  <div className="mb-4">
-                    {cart.map((item) => {
-                      const productDetails = getProductDetails(item.productId);
-                      const hasCombo = item?.addOns?.includes(1000);
-                      const unitPrice = getPerUnitPrice(item);
-                      const lineTotal = unitPrice * (item.itemCount || 1);
+                <div className="border border-gray-200 rounded-lg p-4 bg-white shadow-sm h-fit">
+                  <p className="text-lg mb-4">Your order</p>
+                  {!productList || productList.length === 0 ? (
+                    <p className="text-gray-500 text-sm mb-4">Loading products...</p>
+                  ) : (
+                    <div className="mb-4">
+                      {cart.map((item) => {
+                        const productDetails = getProductDetails(item.productId);
+                        const hasCombo = item?.addOns?.includes(1000);
+                        const unitPrice = getPerUnitPrice(item);
+                        const lineTotal = unitPrice * (item.itemCount || 1);
 
-                      return (
+                        return (
 
-                        <div key={`${item.productId}-${item.bundleId}`} className="flex justify-between border-b border-gray-200 py-2">
-                          <div className="flex">
-                            <p>
-                              {productDetails?.name}
-                              {hasCombo ? " + Ex Tablets" : ""}
-                            </p>
+                          <div key={`${item.productId}-${item.bundleId}`} className="flex justify-between border-b border-gray-200 py-2">
+                            <div className="flex">
+                              <p>
+                                {productDetails?.name}
+                                {hasCombo ? " + Ex Tablets" : ""}
+                              </p>
+                            </div>
+                            <p>${lineTotal.toFixed(2)}</p>
                           </div>
-                          <p>${lineTotal.toFixed(2)}</p>
-                        </div>
-                      );
-                    })}
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  <div className="flex justify-between border-b border-gray-200 pb-2 mb-4">
+                    <p>Items ({totalItems})</p>
+                    <p>${subtotal.toFixed(2)}</p>
                   </div>
-                )}
+                  <div className="flex justify-between border-b border-gray-200 pb-2 mb-4">
+                    <p>Shipping</p>
+                    <p>${shippingCost.toFixed(2)}</p>
+                  </div>
+                  <div className="flex justify-between border-b border-gray-200 pb-2 mb-4">
+                    <p>Tax</p>
+                    <p>{(taxRate * 100).toFixed(0)}%</p>
+                  </div>
+                  <div className="flex justify-between font-bold text-lg mb-4">
+                    <p>Total</p>
+                    <p>${total.toFixed(2)}</p>
+                  </div>
 
-                <div className="flex justify-between border-b border-gray-200 pb-2 mb-4">
-                  <p>Items ({totalItems})</p>
-                  <p>${subtotal.toFixed(2)}</p>
-                </div>
-                <div className="flex justify-between border-b border-gray-200 pb-2 mb-4">
-                  <p>Shipping</p>
-                  <p>${shippingCost.toFixed(2)}</p>
-                </div>
-                <div className="flex justify-between border-b border-gray-200 pb-2 mb-4">
-                  <p>Tax</p>
-                  <p>{(taxRate * 100).toFixed(0)}%</p>
-                </div>
-                <div className="flex justify-between font-bold text-lg mb-4">
-                  <p>Total</p>
-                  <p>${total.toFixed(2)}</p>
-                </div>
-
-                <PaymentForm
-                  applicationId={appId}
-                  locationId={locationId}
-                  createPaymentRequest={() => ({
-                    countryCode: "CA",
-                    currencyCode: "CAD",
-                    total: { amount: total.toFixed(2), label: "Order Total" },
-                  })}
-                  cardTokenizeResponseReceived={async (token) => {
-                    try {
-                      const response = await fetch("/api/square", {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                          sourceId: token.token,
-                          amount: total,
-                        }),
+                  <PayPalButtons
+                    style={{ layout: "vertical" }}
+                    fundingSource={FUNDING.PAYPAL}
+                    disabled={!isBillingComplete}
+                    createOrder={(data, actions) => {
+                      return actions.order.create({
+                        purchase_units: [
+                          {
+                            amount: {
+                              value: total.toString(),
+                            },
+                          },
+                        ],
+                        application_context: {
+                          shipping_preference: "NO_SHIPPING",
+                        },
                       });
-                      const result = await response.json();
-                      if (result.success && ["COMPLETED", "APPROVED", "CAPTURED"].includes(result.status)) {
-                        const billing = JSON.parse(localStorage.getItem("billingDetails") || "{}");
-                        const payerEmail = billing.email || "customer@example.com";
-                        const payerName = `${billing.firstName || ""} ${billing.lastName || ""}`.trim() || "Valued Customer";
-
-                        await sendOrderConfirmationEmail(payerEmail, payerName, result);
-
-                        localStorage.removeItem("cart");
-                        localStorage.removeItem("orderNowCart");
-                        localStorage.removeItem("add_on_details");
-                        window.location.href = "/payment-success";
-                      } else {
-                        window.location.href = "/payment-failed";
-                      }
-                    } catch (err) {
-                      console.error("Payment error:", err);
-                      window.location.href = "/payment-failed";
-                    }
-                  }}
-                >
-                  <GooglePay buttonColor="black" />
-                  <CreditCard />
-                </PaymentForm>
-
+                    }}
+                    onApprove={(data, actions) => {
+                      return actions.order.capture().then((details) => handleOrderSuccess(details, data));
+                    }}
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-
+      </PayPalScriptProvider>
       <Footer />
       <WhatsAppButton />
     </div>
