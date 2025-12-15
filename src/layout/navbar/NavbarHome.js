@@ -42,13 +42,13 @@ const NavbarHome = ({ videoRef }) => {
                 />
               </Link>
             </div>
-            <div className="lg:w-1/3 md:w-1/2 relative flex items-center gap-4">
+            <div className="relative flex items-center gap-4">
               <Link href="/order-now" className="hidden sm:block text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
                 order online
               </Link>
-              <Link href="/login" className="hidden sm:block text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
+              {/* <Link href="/login" className="hidden sm:block text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
                 Create Account
-              </Link>
+              </Link> */}
               <div className='h-[30px] w-[30px] ml-auto'>
                 <button
                   onClick={() => setIsOpen(!isOpen)}
