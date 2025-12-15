@@ -97,14 +97,14 @@ const OrderNow = () => {
 		<div>
 			<Navbar />
 			<div className="container my-16">
-
+{/* 
 				<Image
 					src="/video/application-bann.jpg"
 					alt="Banner"
 					className="w-full"
 					width={1517}
 					height={188}
-				/>
+				/> */}
 				<div className="grid md:grid-cols-3 grid-cols-1 items-end gap-4">
 					<div>
 						<video className="w-full my-8" playsInline loop controls muted>
@@ -125,8 +125,7 @@ const OrderNow = () => {
 						<p class="text-center">Q & A</p>
 					</div>
 				</div>
-				<div className="lg:w-[80%] w-full mx-auto text-sm text-gray-700 bg-limebg lg:p-20 sm:p-12 p-6 mt-12">
-					{/* <p className="text-right text-greyblack2">Free Sample Period : Aug 11  -  Sep 10</p> */}
+				{/* <div className="lg:w-[80%] w-full mx-auto text-sm text-gray-700 bg-limebg lg:p-20 sm:p-12 p-6 mt-12">
 					<h2 className="text-green text-center 2xl:text-5xl text-3xl lg:py-20 py-12">
 						REQUEST APPLICATION FOR <span className="block">FREE SHOGUN BLACK MAITAKE PROTHERA & EX TABLET SAMPLES</span>
 					</h2>
@@ -498,7 +497,7 @@ const OrderNow = () => {
 					<p>
 						John Jacob <span className="block">Shogun Maitake Canada Co., Ltd.</span> 6188 Colonel Talbot Road.<span className="block"> London ON N6P 1J1 </span>TEL:519-652-5783 <span className="block">jjacob@shogunmaitake.com</span>
 					</p>
-				</div>
+				</div> */}
 			</div>
 			<Footer />
 			<WhatsAppButton />
