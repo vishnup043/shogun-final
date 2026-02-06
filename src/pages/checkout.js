@@ -6,13 +6,17 @@ import Navbar from "@layout/navbar/Navbar";
 import Footer from "@layout/footer/Footer";
 import { addOnProducts } from "@utils/data";
 import WhatsAppButton from "@components/whatsapp/WhatsAppButton";
+import { toast } from "react-toastify";
 
 const CheckoutPage = () => {
   const shippingCost = 20;
   const taxRate = 0.13;
   const router = useRouter();
   const { cart, getCartItemTotal, productList } = useProducts();
-
+  const [couponCode, setCouponCode] = useState("");
+  const [discount, setDiscount] = useState(0);
+  const [couponApplied, setCouponApplied] = useState(false);
+  const DISCOUNT_PERCENT = 0.15;
   const getProductDetails = useCallback(
     (productId) => {
       if (!productList || productList.length === 0) return null;
@@ -32,15 +36,38 @@ const CheckoutPage = () => {
     // base per-unit price (1 unit)
     return getCartItemTotal(item.productId, item.bundleId, 1) || 0;
   };
+  const applyCoupon = () => {
+    if (couponCode.trim().toUpperCase() === "TANIA15") {
+      const discountAmount = subtotal * DISCOUNT_PERCENT;
+      setDiscount(discountAmount);
+      setCouponApplied(true);
 
-  // Subtotal consistent with per-unit logic above
-  const subtotal = cart.reduce((sum, item) => {
-    const unitPrice = getPerUnitPrice(item);
-    return sum + unitPrice * (item.itemCount || 1);
-  }, 0);
+      toast.success("Coupon applied! 15% discount added 🎉");
+    } else {
+      setDiscount(0);
+      setCouponApplied(false);
 
-  const taxAmount = +(subtotal * taxRate).toFixed(2);
-  const total = +(subtotal + shippingCost + taxAmount).toFixed(2);
+      toast.error("Invalid coupon code");
+    }
+  };
+
+const subtotal = cart.reduce((sum, item) => {
+  const unitPrice = getPerUnitPrice(item);
+  return sum + unitPrice * (item.itemCount || 1);
+}, 0);
+
+// ⭐ apply coupon BEFORE tax
+const discountedSubtotal = couponApplied
+  ? subtotal - discount
+  : subtotal;
+
+const taxAmount = +(discountedSubtotal * taxRate).toFixed(2);
+
+const total = +(
+  discountedSubtotal +
+  taxAmount +
+  shippingCost
+).toFixed(2);
 
   // Billing details (persist to localStorage)
   const [billingDetails, setBillingDetails] = useState(() => {
@@ -178,7 +205,7 @@ const CheckoutPage = () => {
     </p>
     <p>If you have any questions, reply to this email or contact our support team.</p>
     <div class="footer">
-      <p>© 2025 Your Company Name. All rights reserved.</p>
+      <p>© 2026 All rights reserved.</p>
     </div>
   </div>
 </body>
@@ -359,6 +386,49 @@ const CheckoutPage = () => {
                     <p>Items ({totalItems})</p>
                     <p>${subtotal.toFixed(2)}</p>
                   </div>
+                  <div className="mb-4">
+                    <div className="flex gap-2 items-center">
+
+                      <input
+                        type="text"
+                        placeholder="Coupon code"
+                        value={couponCode}
+                        onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
+                        className="w-full text-sm border border-gray-300 px-2 py-2 rounded focus:outline-none"
+                      />
+
+                      <button
+                        onClick={applyCoupon}
+                        disabled={couponApplied}
+                        className={`px-4 py-2 rounded text-white whitespace-nowrap ${couponApplied ? "bg-gray-400" : "bg-green"
+                          }`}
+                      >
+                        Apply
+                      </button>
+                    </div>
+
+                    {/* Coupon Hint */}
+                    {couponApplied ? (
+                      <p className="text-sm text-green-600 mt-1 font-medium">
+                        ✅ Coupon applied! You saved ${discount.toFixed(2)}
+                      </p>
+                    ) : (
+                      <p className="text-sm text-gray-500 mt-1">
+                        Try code:
+                        <span
+                          className="ml-1 font-semibold text-green-600 cursor-pointer"
+                          onClick={() => {
+                            setCouponCode("TANIA15");
+                            applyCoupon(); // optional auto-apply
+                          }}
+                        >
+                          TANIA15
+                        </span>
+                      </p>
+                    )}
+
+                  </div>
+
                   <div className="flex justify-between border-b border-gray-200 pb-2 mb-4">
                     <p>Shipping</p>
                     <p>${shippingCost.toFixed(2)}</p>
@@ -372,7 +442,7 @@ const CheckoutPage = () => {
                     <p>${total.toFixed(2)}</p>
                   </div>
 
-                  <PayPalButtons
+                  <PayPalButtons  key={total}
                     style={{ layout: "vertical" }}
                     fundingSource={FUNDING.PAYPAL}
                     disabled={!isBillingComplete}
