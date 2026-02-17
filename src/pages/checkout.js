@@ -414,7 +414,7 @@ const total = +(
                       </p>
                     ) : (
                       <p className="text-sm text-gray-500 mt-1">
-                        Try code:
+                      
                         <span
                           className="ml-1 font-semibold text-green-600 cursor-pointer"
                           onClick={() => {
@@ -422,7 +422,7 @@ const total = +(
                             applyCoupon(); // optional auto-apply
                           }}
                         >
-                          TANIA15
+                       
                         </span>
                       </p>
                     )}
