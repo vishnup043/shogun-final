@@ -163,9 +163,9 @@ const Navbar = () => {
 							<Link href="/order-now" className="w-max md:hidden block text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
 								Order online
 							</Link>
-							<Link href="/application-form" className="w-max md:hidden block text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
+							{/* <Link href="/application-form" className="w-max md:hidden block text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
 								Free Samples
-							</Link>
+							</Link> */}
 
 						</nav>
 					</div>
