@@ -37,7 +37,7 @@ const CheckoutPage = () => {
     return getCartItemTotal(item.productId, item.bundleId, 1) || 0;
   };
   const applyCoupon = () => {
-    if (couponCode.trim().toUpperCase() === "TANIA15") {
+    if (couponCode.trim().toUpperCase() === "TA15") {
       const discountAmount = subtotal * DISCOUNT_PERCENT;
       setDiscount(discountAmount);
       setCouponApplied(true);
@@ -418,7 +418,7 @@ const total = +(
                         <span
                           className="ml-1 font-semibold text-green-600 cursor-pointer"
                           onClick={() => {
-                            setCouponCode("TANIA15");
+                            setCouponCode("TA15");
                             applyCoupon(); // optional auto-apply
                           }}
                         >

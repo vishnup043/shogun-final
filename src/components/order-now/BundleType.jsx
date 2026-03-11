@@ -15,7 +15,7 @@ const BundleType = ({ bundleDetails, onSelect, selectedBundle, showPurchaseMode 
 					<span className="block">
 						{purchaseMode === "ONE_TIME"
 							? "One-time Purchase"
-							: "Monthly Auto Ship Subscription"}
+							: "Yearly one-time purchase"}
 					</span>
 				)}
 
