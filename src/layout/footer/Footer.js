@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useTranslation } from "react-i18next";
 import {
   faFacebook,
   faLinkedin,
@@ -10,7 +11,7 @@ import {
   faXTwitter
 } from "@fortawesome/free-brands-svg-icons";
 const Footer = () => {
-
+  const { t } = useTranslation("footer");
   return (
     <div className="footer bg-grey2 lg:py-20 py-12 relative">
       <div className="container">
@@ -26,7 +27,7 @@ const Footer = () => {
               </div>
             </div>
             <div className="col-span-12 flex gap-2 items-end border-gray-300 text-sm text-gray-600 hidden lg:flex">
-              <p>© 2025 Shogun Maitake.</p>
+              <p>{t("copy")}</p>
               <Link href="https://www.facebook.com/ShogunMaitakeMushroom" target="_blank"><FontAwesomeIcon icon={faFacebook} /></Link>
               <Link href="https://www.instagram.com/shogunmaitake_official" target="_blank"><FontAwesomeIcon icon={faInstagram} /></Link>
               <Link href="https://www.youtube.com/@shogunmaitakecanada" target="_blank"><FontAwesomeIcon icon={faYoutube} /></Link>
@@ -39,27 +40,27 @@ const Footer = () => {
           <div className="2xl:w-[400px] lg:w-[400px] w-full">
             <div className="grid grid-flow-col lg:gap-8 gap-4 items-end">
               <div className="grid gap-2">
-                <p className="font-bold">Quick Links</p>
-                <Link href="/about" className="block"><p>About</p></Link>
-                <Link href="/culinary-maitake" className="block"><p>Culinary Maitake</p></Link>
-                <Link href="/fresh-maitake" className="block"><p>Fresh Maitake & Recipes</p></Link>
-                <Link href="/maitake-supplement" className="block"><p>Maitake Supplements</p></Link>
-                <Link href="/order-now" className="block"><p>Order Now</p></Link>
-                <Link href="/our-affiliations" className="block"><p>Our Affiliations</p></Link>
-                <Link href="/news" className="block"><p>News & Publications</p></Link>
-                <Link href="allergen-information" className="block"><p>Allergen Information</p></Link>
-                <Link href="/contact-us" className="block"><p>Contact Us</p></Link>
+                <p className="font-bold">{t("link1")}</p>
+                <Link href="/about" className="block"><p>{t("link2")}</p></Link>
+                <Link href="/culinary-maitake" className="block"><p>{t("link3")}</p></Link>
+                <Link href="/fresh-maitake" className="block"><p>{t("link4")}</p></Link>
+                <Link href="/maitake-supplement" className="block"><p>{t("link5")}</p></Link>
+                <Link href="/order-now" className="block"><p>{t("link6")}</p></Link>
+                <Link href="/our-affiliations" className="block"><p>{t("link7")}</p></Link>
+                <Link href="/news" className="block"><p>{t("link8")}</p></Link>
+                <Link href="allergen-information" className="block"><p>{t("link9")}</p></Link>
+                <Link href="/contact-us" className="block"><p>{t("link10")}</p></Link>
               </div>
               <div>
                 <div>
-                  <p className="font-bold">Find Us</p>
-                  <p className="!mb-0 font-bold">Hours of Operation:</p>
-                  <p className="!mb-0">8:00 am – 17:00 pm</p>
-                  <p className="!mb-0"><span className="font-bold">Phone:</span> 519-652-5783</p>
-                  <p className="!mb-0"><span className="font-bold">Fax:</span> 519-488-4787</p>
+                  <p className="font-bold">{t("text1")}</p>
+                  <p className="!mb-0 font-bold">{t("text2")}</p>
+                  <p className="!mb-0">{t("text3")}</p>
+                  <p className="!mb-0"><span className="font-bold">{t("text4")}</span> 519-652-5783</p>
+                  <p className="!mb-0"><span className="font-bold">{t("text5")}</span> 519-488-4787</p>
                 </div>
                 <div className="mt-6">
-                  <p className="!mb-0 font-bold">Address: </p>
+                  <p className="!mb-0 font-bold">{t("address")}</p>
                   <p className="!mb-0">6188 Colonel Talbot Road, London, Ontario N6P 1J1</p>
                 </div>
               </div>

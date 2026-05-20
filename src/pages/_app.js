@@ -19,7 +19,6 @@ import { SidebarProvider } from "@context/SidebarContext";
 import SettingServices from "@services/SettingServices";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import GoogleTranslate from "../components/googletranslate/GoogleTranslate";
 
 let persistor = persistStore(store);
 
@@ -71,8 +70,7 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-       <GoogleTranslate />
-       
+   
       {/* Render TawkMessengerReact only if tawk_chat_status is enabled */}
       {storeSetting?.tawk_chat_status && (
         <TawkMessengerReact

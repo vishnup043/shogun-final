@@ -18,6 +18,7 @@ import {
 	FiPhoneIncoming,
 } from "react-icons/fi";
 
+import i18n from "../i18n";
 const pages = [
 	// {
 	//   title: 'User',
@@ -194,13 +195,13 @@ const contactData = [
 const shortgunProducts = [
 	{
 		id: 1,
-		name: "Prothera + EX",
+		name: i18n.t("ordernow:protheraex"),
 		type: false,
 		displayPrice: "$ 260",
 		textForProthera: false,
 		isComboTherapyAvailable: false,
 		bundleTypes: [
-			{ id: "ProtheraB1", price: 260, unit: "300 ml Combo Pack" },
+			{ id: "ProtheraB1", price: 260, unit: i18n.t("ordernow:combo") },
 			{ id: "Prothera+ex", price: 2860, unit: "1EX + 1Prothera -(24 Bottles)", purchaseMode: "SUBSCRIPTION", finalPrice: 2860 },
 
 		],

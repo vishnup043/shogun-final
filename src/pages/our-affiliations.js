@@ -9,9 +9,11 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import WhatsAppButton from "@components/whatsapp/WhatsAppButton";
+import { useTranslation } from "react-i18next";
+import { Trans } from "react-i18next";
 
 const Affiliation = () => {
-
+  const { t } = useTranslation("affiliation");
   return (
 
     <div>
@@ -19,7 +21,7 @@ const Affiliation = () => {
       <section className="lg:py-24 py-16">
         <div className="container">
           <div>
-            <h2 className="text-center text-green 2xl:text-7xl lg:text-5xl text-4xl sm:mb-8 mb-4 uppercase">Affiliation</h2>
+            <h2 className="text-center text-green 2xl:text-7xl lg:text-5xl text-4xl sm:mb-8 mb-4 uppercase">{t("affiliation")}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 sm:divide-x max-w-4xl mx-auto">
               <div className="flex flex-col items-center py-8 px-8">
                 <div className="text-center">
@@ -30,7 +32,15 @@ const Affiliation = () => {
                     className='w-full'
                     src="/affiliation/logo-4.png"
                   />
-                  <span className="block text-center md:text-3xl text-2xl mt-4 leading-none">Patterson Institute for <span className="block">Integrative Cancer Research</span></span>
+                  <span className="block text-center md:text-3xl text-2xl mt-4 leading-none">
+                    <Trans
+                      i18nKey="subtxt"
+                      ns="affiliation"
+                      components={{
+                        span: <span className="block" />,
+                      }}
+                    />
+                  </span>
                 </div>
               </div>
               <div className="flex flex-col items-center py-8 px-8">
@@ -42,7 +52,7 @@ const Affiliation = () => {
                     className='w-full'
                     src="/affiliation/logo-3.png"
                   />
-                  <span className="block text-center md:text-3xl text-2xl mt-4">CCNM</span>
+                  <span className="block text-center md:text-3xl text-2xl mt-4">{t("ccnm")}</span>
                 </div>
               </div>
             </div>
@@ -74,7 +84,7 @@ const Affiliation = () => {
           />
         </div>
       </section>
-      <Footer/>
+      <Footer />
       <WhatsAppButton />
     </div>
   );

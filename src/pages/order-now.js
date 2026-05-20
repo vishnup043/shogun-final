@@ -10,9 +10,10 @@ import useProducts from "@hooks/custom/useProducts";
 import ProductCard from "@components/order-now/ProductCard";
 import WhatsAppButton from "@components/whatsapp/WhatsAppButton";
 
+
+
 const OrderNow = () => {
 	const { productList } = useProducts();
-
 	const highlightedProducts = productList.filter((product) => product.highlighted);
 	const nonHighlightedProducts = productList.filter((product) => !product.highlighted);
 

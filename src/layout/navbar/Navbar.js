@@ -8,25 +8,33 @@ import { FiUser } from "react-icons/fi";
 import { getUserSession } from "@lib/auth";
 import useProducts from "@hooks/custom/useProducts";
 import { usePathname } from "next/navigation";
+import { useTranslation } from "react-i18next";
+import "../../i18n";
 
 const Navbar = () => {
+	const { t, i18n } = useTranslation("navbar");
+
+	const changeLanguage = (event) => {
+		i18n.changeLanguage(event.target.value);
+	};
+
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 	const [loggedInUser, setLoggedInUser] = useState(null);
 	const pathname = usePathname();
 	const routeNames = {
-		"/about": "About Us",
-		"/culinary-maitake": "Culinary Maitake",
-		"/maitake-supplement": "Maitake Supplements",
-		"/our-affiliations": "Our Affiliations",
-		"/news": "News & Publications",
-		"/allergen-information": "Allergen Information",
-		"/order-now": "Order Now",
-		"/fresh-maitake": "Fresh Maitake",
-		"/2025-news": "2025 News",
-		"/cart": "Cart",
-		"/checkout": "Checkout",
-		"/application-form": "Application Form",
-		"/contact-us": "Contact Us",
+		"/about": t("link1"),
+		"/culinary-maitake": t("link2"),
+		"/maitake-supplement": t("link3"),
+		"/our-affiliations": t("link4"),
+		"/news": t("link5"),
+		"/allergen-information": t("link6"),
+		"/order-now": t("ordernow"),
+		"/fresh-maitake": t("freshmaitake"),
+		"/2025-news": t("2025news"),
+		"/cart": t("cart"),
+		"/checkout": t("checkout"),
+		"/application-form": t("application"),
+		"/contact-us": t("link7"),
 
 	};
 
@@ -53,6 +61,8 @@ const Navbar = () => {
 		document.addEventListener("click", handleClickOutside);
 		return () => document.removeEventListener("click", handleClickOutside);
 	}, []);
+
+
 	return (
 		<nav className="bg-white border-b border-gray-200 shadow-md relative z-50 2xl:py-12 xl:py-6 sticky top-0">
 			<div className="container">
@@ -62,8 +72,20 @@ const Navbar = () => {
 					</Link >
 					{/* Desktop Menu */}
 					<div className="grid grid-flow-col gap-4 items-center">
+
+						<div className="bg-darkgreen2 flex items-center ">
+							<p className="text-white p-2">{t("language")}</p>
+
+							<select className="border-sm"
+								onChange={changeLanguage}
+								value={i18n.language}
+							>
+								<option value="en">English</option>
+								<option value="ja">日本語</option>
+							</select>
+						</div>
 						<Link href="/order-now" className="hidden md:block text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
-							order online
+							{t("orderonline")}
 						</Link>
 
 						<Link href={pathname} className="text-greyblack hidden md:block">
@@ -116,7 +138,7 @@ const Navbar = () => {
 												setIsDropdownOpen(false); // close dropdown
 											}}
 										>
-											Logout
+											{t("logout")}
 										</button>
 									</div>
 								)}
@@ -126,7 +148,7 @@ const Navbar = () => {
 								href="/login"
 								className="text-sm font-semibold text-green-700 md:px-3 hover:underline"
 							>
-								Login
+								{t("login")}
 							</Link>
 						)}
 
@@ -140,28 +162,28 @@ const Navbar = () => {
 
 						<nav className="grid grid-flow-row  gap-4 text-lg text-greyblack">
 							<Link href="about" className="block">
-								<p>About</p>
+								<p>{t("link1")}</p>
 							</Link>
 							<Link href="/culinary-maitake" className="block">
-								<p>Culinary Maitake</p>
+								<p>{t("link2")}</p>
 							</Link>
 							<Link href="/maitake-supplement" className="block">
-								<p>Maitake Supplements</p>
+								<p>{t("link3")}</p>
 							</Link>
 							<Link href="/our-affiliations" className="block">
-								<p>Our Affiliations</p>
+								<p>{t("link4")}</p>
 							</Link>
 							<Link href="/news" className="block">
-								<p>News & Publications</p>
+								<p>{t("link5")}</p>
 							</Link>
 							<Link href="allergen-information" className="block">
-								<p>Allergen Information</p>
+								<p>{t("link6")}</p>
 							</Link>
 							<Link href="/contact-us" className="block">
-								<p>Contact Us</p>
+								<p>{t("link7")}</p>
 							</Link>
 							<Link href="/order-now" className="w-max md:hidden block text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
-								Order online
+								{t("orderonline")}
 							</Link>
 							{/* <Link href="/application-form" className="w-max md:hidden block text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
 								Free Samples

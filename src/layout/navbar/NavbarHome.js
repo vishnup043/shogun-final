@@ -1,8 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import "../../i18n";
 
 const NavbarHome = ({ videoRef }) => {
+  const { i18n } = useTranslation();
+
+  const { t } = useTranslation("navbar");
+  const changeLanguage = (event) => {
+    i18n.changeLanguage(event.target.value);
+  };
   const [isAfterSeconds, setIsAfterSeconds] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
 
@@ -42,12 +50,24 @@ const NavbarHome = ({ videoRef }) => {
                 />
               </Link>
             </div>
+
             <div className="relative flex items-center gap-4">
+              <div className="bg-darkgreen2 flex items-center ">
+                <p className="text-white p-2">{t("language")}</p>
+
+                <select className="border-sm"
+                  onChange={changeLanguage}
+                  value={i18n.language}
+                >
+                  <option value="en">English</option>
+                  <option value="ja">日本語</option>
+                </select>
+              </div>
               <Link href="/order-now" className="hidden sm:block text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
-                order online
+                {t("orderonline")}
               </Link>
               <Link href="/login" className="hidden sm:block text-white bg-darkgreen2 text-uppercase 2xl:text-2xl xl:text-lg px-6 rounded-3xl">
-                Create Account
+                {t("account")}
               </Link>
               <div className='h-[30px] w-[30px] ml-auto'>
                 <button
@@ -80,13 +100,13 @@ const NavbarHome = ({ videoRef }) => {
                   <nav className=
                     {`grid grid-flow-row gap-2 text-lg ${isAfterSeconds ? "text-black" : "text-white"
                       }`}>
-                    <Link href="about" className="block"><p>About</p></Link>
-                    <Link href="/culinary-maitake" className="block"><p>Culinary Maitake</p></Link>
-                    <Link href="/maitake-supplement" className="block"><p>Maitake Supplements</p></Link>
-                    <Link href="/our-affiliations" className="block"><p>Our Affiliations</p></Link>
-                    <Link href="/news" className="block"><p>News & Publications</p></Link>
-                    <Link href="allergen-information" className="block"><p>Allergen Information</p></Link>
-                    <Link href="/contact-us" className="block"><p>Contact Us</p></Link>
+                    <Link href="about" className="block"><p>{t("link1")}</p></Link>
+                    <Link href="/culinary-maitake" className="block"><p>{t("link2")}</p></Link>
+                    <Link href="/maitake-supplement" className="block"><p>{t("link3")}</p></Link>
+                    <Link href="/our-affiliations" className="block"><p>{t("link4")}</p></Link>
+                    <Link href="/news" className="block"><p>{t("link5")}</p></Link>
+                    <Link href="allergen-information" className="block"><p>{t("link6")}</p></Link>
+                    <Link href="/contact-us" className="block"><p>{t("link7")}</p></Link>
                     <div className="grid gap-4 w-max ml-auto">
                     </div>
                   </nav>

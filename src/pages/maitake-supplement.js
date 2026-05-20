@@ -4,15 +4,17 @@ import Navbar from "@layout/navbar/Navbar";
 import Footer from "@layout/footer/Footer";
 import Link from 'next/link';
 import WhatsAppButton from "@components/whatsapp/WhatsAppButton";
+import { useTranslation } from "react-i18next";
+import { Trans } from "react-i18next";
 
 const MaitakeSuppliment = () => {
-
+  const { t } = useTranslation("maitakesuppliment");
   return (
 
     <div>
       <Navbar />
       <div className="about-banner relative">
-        <h1 className="text-greenLeaf xl:text-[80px] md:text-[50px] text-[35px] text-center md:leading-[75px] leading-[35px] pb-6 pt-12 sm:px-0 px-8">Black Maitake can keep your doctor away!</h1>
+        <h1 className="text-greenLeaf xl:text-[80px] md:text-[50px] text-[35px] text-center md:leading-[75px] leading-[35px] pb-6 pt-12 sm:px-0 px-8">{t("maintext")}</h1>
         <Image
           src="/maitake-suppliment/suppliment-banner.png"
           alt="Banner"
@@ -23,37 +25,84 @@ const MaitakeSuppliment = () => {
       </div>
       <div className="lg:py-36 lg:pb-48 py-12 lg:pb-20 relative bg-white">
         <div className="container">
-          <p className="text-center 2xl:w-2/5 xl:w-1/2 mx-auto text-grey 2xl:text-2xl text-lg">Surprised! The value of Maitake mushroom is not just about the price, but the rich health benefits it can provide to the humankind.</p>
+          <p className="text-center 2xl:w-2/5 xl:w-1/2 mx-auto text-grey 2xl:text-2xl text-lg">{t("subtext")}</p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-16">
             <div className="box bg-limebg lg:p-8 p-4">
-              <h2 className="2xl:text-[40px] lg:text-[30px] lg:leading-[35px] leading-[25px] text-2xl text-forestGreen text-forestGreen">Boosts Immune <span className="block">System</span></h2>
-              <p className="text-grey 2xl:text-2xl text-lg pt-6"> Now, the world truly knows the importance of immunity and the ways it helps to keep diseases away. Black Maitake mushrooms will help human body to up the immune defense with the help of beta-glucans. As a polysaccharide fibre, it helps to activate and enhance the production of immune system cells, which helps to prevent and fight against external factors.</p>
+              <h2 className="2xl:text-[40px] lg:text-[30px] lg:leading-[35px] leading-[25px] text-2xl text-forestGreen text-forestGreen">
+                <Trans
+                  i18nKey="immuneTitle"
+                  ns="maitakesuppliment"
+                  components={{
+                    span: <span className="block" />,
+                  }}
+                /></h2>
+              <p className="text-grey 2xl:text-2xl text-lg pt-6">{t("immuneText")}</p>
             </div>
             <div className="box bg-limebg lg:p-8 p-4">
-              <h2 className="2xl:text-[40px] lg:text-[30px] lg:leading-[35px] leading-[25px] text-2xl text-forestGreen text-forestGreen">FIGHTS <span className="block">CANCER</span></h2>
-              <p className="text-grey 2xl:text-2xl text-lg pt-6">A simple, natural solution, which helps the world in the fight against cancer. Black Maitake mushroom studies show that the beta-glucans helps to activate and produce macrophages. These white blood cells help the body to target and destroy tumour cells. It can go hand in hand with chemotherapy and allows the treatment to work more effectively. Maitake can also reduce the side-effects of cancer treatments.</p>
+              <h2 className="2xl:text-[40px] lg:text-[30px] lg:leading-[35px] leading-[25px] text-2xl text-forestGreen text-forestGreen">  <Trans
+                i18nKey="cancerTitle"
+                ns="maitakesuppliment"
+                components={{
+                  span: <span className="block" />,
+                }}
+              /></h2>
+              <p className="text-grey 2xl:text-2xl text-lg pt-6">
+                {t("cancerText")}
+              </p>
             </div>
             <div className="box bg-limebg lg:p-8 p-4">
-              <h2 className="2xl:text-[40px] lg:text-[30px] lg:leading-[35px] leading-[25px] text-2xl text-forestGreen text-forestGreen">FOR GOOD HEART & <span className="block">WEIGHT LOSS</span></h2>
-              <p className="text-grey 2xl:text-2xl text-lg pt-6">By having Fresh Black Maitake as a delicacy, people can experience the benefits easily. It helps to lower blood pressure, total cholesterol and helps to keep heart health. As it is low in calories and high in fibre, you can feel fuller for longer, thus helping in weight loss.</p>
+              <h2 className="2xl:text-[40px] lg:text-[30px] lg:leading-[35px] leading-[25px] text-2xl text-forestGreen text-forestGreen">
+                <Trans
+                  i18nKey="heartTitle"
+                  ns="maitakesuppliment"
+                  components={{
+                    span: <span className="block" />,
+                  }}
+                />
+              </h2>
+              <p className="text-grey 2xl:text-2xl text-lg pt-6">{t("heartText")}</p>
             </div>
           </div>
           <div className="2xl:mt-28 xl:mt-24 mt-16">
-            <h2 class="text-greenLeaf xl:text-[80px] md:text-[60px] text-[35px] md:leading-[75px] leading-[35px] text-center ">Dietary Supplements</h2>
-            <h4 class="text-grey md:text-5xl text-2xl text-center">Our history is all about Black Maitake</h4>
-            <p className="text-grey 2xl:text-2xl text-lg text-center md:py-16 py-8">The benefits of Black Maitake are realized and approved by modern science. The beta-glucans in these rarest kinds of mushrooms offers medicinal benefits. It can boost the immune response against cancer cells, reduce tumour growth and enhance the effects of other cancer treatments. Shogun Maitake, make use of organically grown Black Maitake mushrooms, for extracts, ensuring maximum benefits. Making use of the purest fruiting body, Shogun Maitake ensures the best. To get the maximum out of Maitake, we make of 2-step water-ethanol extraction method, ensuring high quantity of beta-glucan levels. Our products for general immunity and clinical use are Gmp certified.</p>
+            <h2 class="text-greenLeaf xl:text-[80px] md:text-[60px] text-[35px] md:leading-[75px] leading-[35px] text-center ">{t("dietaryTitle")}</h2>
+            <h4 class="text-grey md:text-5xl text-2xl text-center">{t("dietarySubtitle")}</h4>
+            <p className="text-grey 2xl:text-2xl text-lg text-center md:py-16 py-8">{t("dietaryDescription")}</p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               <div className="box bg-limebg lg:p-8 p-4">
-                <h2 className="2xl:text-[40px] lg:text-[30px] lg:leading-[35px] leading-[25px] text-2xl text-forestGreen">Immunity &  <span className="block">functions</span></h2>
-                <p className="text-grey 2xl:text-2xl text-lg pt-6">Our body is equipped with its own defense system. When a disease or an infection comes up, it activates the defense system, which is called the immune system. This helps our body to fight against diseases and other external elements. A weakened immune system makes people prone to different kinds of infections.</p>
+                <h2 className="2xl:text-[40px] lg:text-[30px] lg:leading-[35px] leading-[25px] text-2xl text-forestGreen">
+                  <Trans
+                    i18nKey="immunityTitle"
+                    ns="maitakesuppliment"
+                    components={{
+                      span: <span className="block" />,
+                    }}
+                  />
+                </h2>
+                <p className="text-grey 2xl:text-2xl text-lg pt-6">{t("immunityText")}</p>
               </div>
               <div className="box bg-limebg lg:p-8 p-4">
-                <h2 className="2xl:text-[40px] lg:text-[30px] lg:leading-[35px] leading-[25px] text-2xl text-forestGreen">Immunity declines<span className="block"> with age </span></h2>
-                <p className="text-grey 2xl:text-2xl text-lg pt-6">Age is not just a number when it comes to immunity. As the age progress, the immunity also declines. According to studies immunity reaches maturity by 30 and starts to decline. Beyond 40, immunity comes down. Several other factors like continued mental and physical stress can also contribute to this.</p>
+                <h2 className="2xl:text-[40px] lg:text-[30px] lg:leading-[35px] leading-[25px] text-2xl text-forestGreen">
+                  <Trans
+                    i18nKey="ageTitle"
+                    ns="maitakesuppliment"
+                    components={{
+                      span: <span className="block" />,
+                    }}
+                  />
+                </h2>
+                <p className="text-grey 2xl:text-2xl text-lg pt-6">{t("ageText")}</p>
               </div>
               <div className="box bg-limebg lg:p-8 p-4">
-                <h2 className="2xl:text-[40px] lg:text-[30px] lg:leading-[35px] leading-[25px] text-2xl text-forestGreen">Black Maitake & <span className="block">immunity boosting </span></h2>
-                <p className="text-grey 2xl:text-2xl text-lg pt-6">Black Maitake, when organically cultivated can bring amazing benefits. Active fractions from Black Maitake Mushroom have got the biological benefits, like immunomodulatory and anti-tumour activities, with its main active constituent as beta-glucans. This can directly activate the immune system by stimulating macrophages, T cells and other white blood cells.</p>
+                <h2 className="2xl:text-[40px] lg:text-[30px] lg:leading-[35px] leading-[25px] text-2xl text-forestGreen">
+                  <Trans
+                    i18nKey="boostTitle"
+                    ns="maitakesuppliment"
+                    components={{
+                      span: <span className="block" />,
+                    }}
+                  />
+                </h2>
+                <p className="text-grey 2xl:text-2xl text-lg pt-6">{t("boostText")}</p>
               </div>
             </div>
           </div>
@@ -63,12 +112,12 @@ const MaitakeSuppliment = () => {
         <div className="container">
           <div className="lg:flex block justify-between items-center relative 2xl:pb-36 2xl:pb-28 xl:pb-24 md:pb-16 pb-12" >
             <div className="2xl:w-[34%] lg:w-1/2 w-full">
-              <h4 className="text-sblack 2xl:text-5xl text-3xl">Shogun Black Maitake</h4>
-              <h2 className="bg-greenLeaf text-white 2xl:text-[80px] 2xl:leading-[80px] xl:text-[60px] xl:leading-[50px] text-[40px] leading-none 2xl:py-2 2xl:px-4 p-2 my-4 max-w-max">Synergy Extract</h2>
-              <h4 className="text-sblack 2xl:text-5xl text-3xl">Liquid & capsule</h4>
-              <p className="text-grey 2xl:text-2xl text-lg 2xl:pt-8 2xl:pb-16 xl:pt-6 xl:pb-12">Immunity decreases with age. There are several factors that make the body a breeding ground of diseases. Shogun Maitake Synergy Extract helps to boost immunity as it contains beta-glucans that helps to activate the immune system of our body.</p>
-              <div className="2xl:text-4xl xl:text-xl text-grey">Immunity Booster</div>
-              <div className="2xl:text-4xl xl:text-xl text-grey">Rich in Multi-Vitamins</div>
+              <h4 className="text-sblack 2xl:text-5xl text-3xl">{t("synergytext")}</h4>
+              <h2 className="bg-greenLeaf text-white 2xl:text-[80px] 2xl:leading-[80px] xl:text-[60px] xl:leading-[50px] text-[40px] leading-none 2xl:py-2 2xl:px-4 p-2 my-4 max-w-max">{t("synergytext2")}</h2>
+              <h4 className="text-sblack 2xl:text-5xl text-3xl">{t("synergytext3")}</h4>
+              <p className="text-grey 2xl:text-2xl text-lg 2xl:pt-8 2xl:pb-16 xl:pt-6 xl:pb-12">{t("synergydescription")}</p>
+              <div className="2xl:text-4xl xl:text-xl text-grey">{t("synergydescription1")}</div>
+              <div className="2xl:text-4xl xl:text-xl text-grey">{t("synergydescription2")}</div>
             </div>
             <div className="2xl:w-[54%] lg:w-[40%] w-full">
               <Image
@@ -82,10 +131,10 @@ const MaitakeSuppliment = () => {
           </div>
           <div className="lg:flex block justify-between items-center ">
             <div className="2xl:w-[34%] lg:w-1/2 w-full">
-              <h4 className="text-sblack 2xl:text-5xl text-3xl">Shogun Black Maitake</h4>
-              <h2 className="bg-greenLeaf text-white 2xl:text-[80px] 2xl:leading-[80px] xl:text-[60px] xl:leading-[50px] text-[40px] leading-none 2xl:py-2 2xl:px-4 p-2 my-4 max-w-max">Prothera</h2>
-              <h4 className="text-sblack 2xl:text-5xl text-3xl">Liquid</h4>
-              <p className="text-grey 2xl:text-2xl text-lg 2xl:pt-8 xl:pt-6">Black Maitake has proved its worth by helping in the prevention and treating cancer along with other health benefits. Studies have shown its multiple benefits, including the fight against various types of cancers. Shogun Maitake developed Prothera based on a formula that has been used in several cancer studies. Prothera liquid is exclusively for clinical purpose and naturopaths.</p>
+              <h4 className="text-sblack 2xl:text-5xl text-3xl">{t("synergytext")}</h4>
+              <h2 className="bg-greenLeaf text-white 2xl:text-[80px] 2xl:leading-[80px] xl:text-[60px] xl:leading-[50px] text-[40px] leading-none 2xl:py-2 2xl:px-4 p-2 my-4 max-w-max">{t("prothera")}</h2>
+              <h4 className="text-sblack 2xl:text-5xl text-3xl">{t("liquid")}</h4>
+              <p className="text-grey 2xl:text-2xl text-lg 2xl:pt-8 xl:pt-6">{t("protheradescription")}</p>
             </div>
             <div className="2xl:w-[54%] lg:w-[40%] w-full">
               <Image
@@ -112,10 +161,10 @@ const MaitakeSuppliment = () => {
               />
             </div>
             <div className="2xl:w-[39%] lg:w-[36%] sm:w-[63%] w-full lg:pr-0 sm:pr-12 pr-0">
-              <h1 className="xl:text-[80px] md:text-[50px] text-[30px] md:leading-[75px] leading-[35px] text-greenLeaf">Words from Founder</h1>
-              <p className="text-black 2xl:text-2xl text-lg 2xl:pt-8 2xl:pb-6 xl:pt-8 xl:pb-6">“Maitake mushrooms need the natural setting to grow. To cultivate it without any pesticides or chemicals we brought the nature inside our factory. Our technology allows to carefully control and manipulate the temperature and humidity, so that mushrooms can be grown naturally. Maitake mushrooms and its benefits must be provided to the wellness of humanity. I believe health is our own responsibility”</p>
-              <h4 className="text-darkgrey 2xl:text-5xl sm:text-3xl text-2xl">Mr. Yoshinobu Odaira</h4>
-              <h5 className="2xl:text-4xl xl:text-xl text-darkgrey"> CEO & Founder</h5>
+              <h1 className="xl:text-[80px] md:text-[50px] text-[30px] md:leading-[75px] leading-[35px] text-greenLeaf">{t("foundertitle")}</h1>
+              <p className="text-black 2xl:text-2xl text-lg 2xl:pt-8 2xl:pb-6 xl:pt-8 xl:pb-6">{t("founderdescription")}</p>
+              <h4 className="text-darkgrey 2xl:text-5xl sm:text-3xl text-2xl">{t("founder")}</h4>
+              <h5 className="2xl:text-4xl xl:text-xl text-darkgrey">{t("ceo")}</h5>
             </div>
           </div>
         </div>
@@ -124,8 +173,15 @@ const MaitakeSuppliment = () => {
         <div className="container">
           <div className="justify-center sm:gap-[70px] gap-[30px] flex flex-col sm:flex-row">
             <div className="2xl:w-[350px] xl:w-[262px]">
-              <h2 className="2xl:text-[80px] 2xl:leading-[80px] sm:text-[60px] xl:leading-[50px] text-[35px] leading-[35px] text-green">Health Benefit</h2>
-              <h3 className="text-black lg:text-5xl sm:text-3xl text-2xl leading-[26px] py-6">Peace of mind,<span className="block">the Maitake way</span></h3>
+              <h2 className="2xl:text-[80px] 2xl:leading-[80px] sm:text-[60px] xl:leading-[50px] text-[35px] leading-[35px] text-green">{t("health")}</h2>
+              <h3 className="text-black lg:text-5xl sm:text-3xl text-2xl leading-[26px] py-6">
+                <Trans
+                  i18nKey="healthsub"
+                  ns="maitakesuppliment"
+                  components={{
+                    span: <span className="block" />,
+                  }}
+                /></h3>
               <div className="grid gap-2">
                 <div className="flex items-center gap-3">
                   <div className="2xl:w-[112px] w-[75px]">
@@ -136,7 +192,13 @@ const MaitakeSuppliment = () => {
                       height={112}
                     />
                   </div>
-                  <h6 className="2xl:text-3xl text-2xl leading-[28px] text-green">Anti-tumour & <span className="block">Anti-cancer benefits</span></h6>
+                  <h6 className="2xl:text-3xl text-2xl leading-[28px] text-green">  <Trans
+                    i18nKey="sub1"
+                    ns="maitakesuppliment"
+                    components={{
+                      span: <span className="block" />,
+                    }}
+                  /></h6>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="2xl:w-[112px] w-[75px]">
@@ -147,7 +209,13 @@ const MaitakeSuppliment = () => {
                       height={112}
                     />
                   </div>
-                  <h6 className="2xl:text-3xl text-2xl leading-[28px] text-green">Strengthen <span className="block">immune system</span></h6>
+                  <h6 className="2xl:text-3xl text-2xl leading-[28px] text-green"><Trans
+                    i18nKey="sub2"
+                    ns="maitakesuppliment"
+                    components={{
+                      span: <span className="block" />,
+                    }}
+                  /></h6>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="2xl:w-[112px] w-[75px]">
@@ -158,7 +226,13 @@ const MaitakeSuppliment = () => {
                       height={112}
                     />
                   </div>
-                  <h6 className="2xl:text-3xl text-2xl leading-[28px] text-green">Reduces the <span className="block">cancer spread</span></h6>
+                  <h6 className="2xl:text-3xl text-2xl leading-[28px] text-green"><Trans
+                    i18nKey="sub3"
+                    ns="maitakesuppliment"
+                    components={{
+                      span: <span className="block" />,
+                    }}
+                  /></h6>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="2xl:w-[112px] w-[75px]">
@@ -169,7 +243,13 @@ const MaitakeSuppliment = () => {
                       height={112}
                     />
                   </div>
-                  <h6 className="2xl:text-3xl text-2xl leading-[28px] text-green">Anti-oxidant <span className="block">effects </span></h6>
+                  <h6 className="2xl:text-3xl text-2xl leading-[28px] text-green"><Trans
+                    i18nKey="sub4"
+                    ns="maitakesuppliment"
+                    components={{
+                      span: <span className="block" />,
+                    }}
+                  /></h6>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="2xl:w-[112px] w-[75px]">
@@ -180,15 +260,21 @@ const MaitakeSuppliment = () => {
                       height={112}
                     />
                   </div>
-                  <h6 className="2xl:text-3xl text-2xl leading-[28px] text-green">Anti-inflammatory<span className="block">benefits</span></h6>
+                  <h6 className="2xl:text-3xl text-2xl leading-[28px] text-green"><Trans
+                    i18nKey="sub5"
+                    ns="maitakesuppliment"
+                    components={{
+                      span: <span className="block" />,
+                    }}
+                  /></h6>
                 </div>
               </div>
             </div>
             <div className="sm:w-[41%] w-full">
               <div className="text-grey 2xl:text-2xl text-lg grid sm:gap-6 gap-0">
-                <p>Black Maitake Mushroom is a one-of-a-kind health insurance policy that will give people an opportunity to live with a peace of mind. Maitake is loaded with enormous health benefits and some of them are truly beneficial. With the most recent bug scare we all know that everyone must give top priority to immunity. Otherwise, diseases can easily catch us. </p>
-                <p>Immunotherapeutic benefits of Black Maitake help to keep the immunity strength, beyond normal. As we age, the immunity will decrease naturally. Beta-glucans in Maitake can activate the T-cells in the body to strengthen your immune defense. It also has Cancer and tumour resisting qualities and several studies suggest about the help it provides in treatment stages.</p>
-                <p> Shogun Maitake, helps everyone to extract these benefits through its supplement range. Our extracts are 100% from the fruiting body of Maitake.</p>
+                <p>{t("healthp1")}</p>
+                <p>{t("healthp2")}</p>
+                <p>{t("healthp3")}</p>
               </div>
             </div>
           </div>
@@ -196,7 +282,7 @@ const MaitakeSuppliment = () => {
       </section>
       <section className="feature-panel xl:py-36 md:py-24 py-12">
         <div className="container">
-          <h2 className="text-white text-5xl text-center">Salient Features</h2>
+          <h2 className="text-white text-5xl text-center">{t("features")}</h2>
           <div className="lg:flex grid sm:grid-cols-2 flex-wrap lg:w-[855px] w-full mx-auto sm:gap-y-12 gap-y-6 mt-16">
             <div className="flex items-center sm:px-4 gap-4 lg:w-[280px]  lg:border-r lg:border-l">
               <div className="sm:w-[80px] w-[62px]">
@@ -209,7 +295,15 @@ const MaitakeSuppliment = () => {
                 />
               </div>
               <div>
-                <h6 className="text-white text-2xl leading-7">100% organic <span className="block"> mushroom extracts</span></h6>
+                <h6 className="text-white text-2xl leading-7">
+                  <Trans
+                    i18nKey="feat1"
+                    ns="maitakesuppliment"
+                    components={{
+                      span: <span className="block" />,
+                    }}
+                  />
+                </h6>
               </div>
             </div>
             <div className="flex items-center sm:px-4 gap-4 lg:w-[332px] lg:border-r">
@@ -223,7 +317,15 @@ const MaitakeSuppliment = () => {
                 />
               </div>
               <div>
-                <h6 className="text-white text-2xl leading-7">Extracted out of<span className="block"> pure Fruiting body</span></h6>
+                <h6 className="text-white text-2xl leading-7">
+                  <Trans
+                    i18nKey="feat2"
+                    ns="maitakesuppliment"
+                    components={{
+                      span: <span className="block" />,
+                    }}
+                  />
+                </h6>
               </div>
             </div>
             <div className="flex items-center sm:px-4 gap-4 lg:w-[240px] lg:border-r">
@@ -236,7 +338,7 @@ const MaitakeSuppliment = () => {
                 />
               </div>
               <div>
-                <h6 className="text-white text-2xl leading-7">Quality grown</h6>
+                <h6 className="text-white text-2xl leading-7">{t("feat3")}</h6>
               </div>
             </div>
 
@@ -251,7 +353,7 @@ const MaitakeSuppliment = () => {
                 />
               </div>
               <div>
-                <h6 className="text-white text-2xl leading-7">No mycelium</h6>
+                <h6 className="text-white text-2xl leading-7">{t("feat4")}</h6>
               </div>
             </div>
             <div className="flex items-center sm:px-4 gap-4 lg:w-[332px] lg:border-r">
@@ -265,7 +367,13 @@ const MaitakeSuppliment = () => {
                 />
               </div>
               <div>
-                <h6 className="text-white text-2xl leading-7">Certified safe & effective in<span className="block">  Clinical trials 1 & 2</span></h6>
+                <h6 className="text-white text-2xl leading-7">     <Trans
+                  i18nKey="feat5"
+                  ns="maitakesuppliment"
+                  components={{
+                    span: <span className="block" />,
+                  }}
+                /></h6>
               </div>
             </div>
             <div className="flex items-center sm:px-4 gap-4 lg:w-[240px] lg:border-r">
@@ -278,7 +386,7 @@ const MaitakeSuppliment = () => {
                 />
               </div>
               <div>
-                <h6 className="text-white text-2xl leading-7">Eco certified</h6>
+                <h6 className="text-white text-2xl leading-7">{t("feat6")}</h6>
               </div>
             </div>
           </div>
@@ -287,24 +395,43 @@ const MaitakeSuppliment = () => {
       <section className="bg-limebg 2xl:pt-44 2xl:pb-32 lg:pt-36 lg:pb-28 pt-16 pb-16">
         <div className="container">
           <div>
-            <h2 class="text-greenLeaf lg:text-[70px] md:text-[40px] text-[30px] leading-[32px] md:leading-[70px] text-center lg:pb-16 pb-8">Shogun Black Maitake Functional Extracts</h2>
+            <h2 class="text-greenLeaf lg:text-[70px] md:text-[40px] text-[30px] leading-[32px] md:leading-[70px] text-center lg:pb-16 pb-8">{t("Extracts")}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               <div className="box bg-darkgreen lg:p-8 p-4">
-                <h2 className="2xl:text-[40px] lg:text-[30px] lg:leading-[35px] leading-[25px] text-2xl text-white">Quality of research & <span className="block">experience</span></h2>
-                <p className="text-white 2xl:text-2xl text-lg pt-6">Shogun Maitake is in to the research and production of Black Maitake mushroom, spanning over 3 long decades. We work in coordination with world’s best Maitake scientists and researchers. Our standard protocols are developed by Dr. Hiroaki Nanba, the renowned researcher, who extracted MD fraction from Maitake.</p>
+                <h2 className="2xl:text-[40px] lg:text-[30px] lg:leading-[35px] leading-[25px] text-2xl text-white"><Trans
+                  i18nKey="extract1"
+                  ns="maitakesuppliment"
+                  components={{
+                    span: <span className="block" />,
+                  }} /></h2>
+                <p className="text-white 2xl:text-2xl text-lg pt-6">{t("extractp1")}</p>
               </div>
               <div className="box bg-darkgreen lg:p-8 p-4">
-                <h2 className="2xl:text-[40px] lg:text-[30px] lg:leading-[35px] leading-[25px] text-2xl text-white">100% Organic<span className="block">Maitake</span></h2>
-                <p className="text-white 2xl:text-2xl text-lg pt-6">Shogun Maitake have its own state-of-the-art facility in London, Ontario, to grow Black Maitake mushrooms. So we have total control over the quality of our produce. Fresh Maitake are cultivated organically without any pesticides or chemicals and fruiting bodies are handpicked avoiding all kinds of impurities.</p>
+                <h2 className="2xl:text-[40px] lg:text-[30px] lg:leading-[35px] leading-[25px] text-2xl text-white">
+                  <Trans
+                    i18nKey="extract2"
+                    ns="maitakesuppliment"
+                    components={{
+                      span: <span className="block" />,
+                    }} />
+                </h2>
+                <p className="text-white 2xl:text-2xl text-lg pt-6">{t("extractp2")}</p>
               </div>
               <div className="box bg-darkgreen lg:p-8 p-4">
-                <h2 className="2xl:text-[40px] lg:text-[30px] lg:leading-[35px] leading-[25px] text-2xl text-white">Beta-Glucan<span className="block">effect</span></h2>
-                <p className="text-white 2xl:text-2xl text-lg pt-6">Black Maitake, when organically cultivated can bring amazing benefits. Active fractions from Black Maitake Mushroom have got the biological benefits, like immunomodulatory and anti-tumour activities, with its main active constituent as beta-glucans. This can directly activate the immune system by stimulating macrophages, T cells and other white blood cells.</p>
+                <h2 className="2xl:text-[40px] lg:text-[30px] lg:leading-[35px] leading-[25px] text-2xl text-white">
+                  <Trans
+                    i18nKey="extract3"
+                    ns="maitakesuppliment"
+                    components={{
+                      span: <span className="block" />,
+                    }} />
+                </h2>
+                <p className="text-white 2xl:text-2xl text-lg pt-6">{t("extractp3")}</p>
               </div>
             </div>
             <div className="w-max mx-auto">
               <Link href="/order-now" className="2xl:mt-24 lg:mt-20 mt-12 block link-btn bg-greenLeaf text-white px-12 py-1 2xl:text-5xl lg:text-3xl text-2xl">
-                ORDER NOW
+                {t("ordernow")}
               </Link>
             </div>
           </div>

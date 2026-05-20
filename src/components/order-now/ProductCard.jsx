@@ -9,8 +9,11 @@ import BundleType from "./BundleType";
 import useProducts from "@hooks/custom/useProducts";
 import { addOnProducts, shortgunProducts } from "@utils/data";
 import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
+import { Trans } from "react-i18next";
 
 const ProductCard = ({ productDetails }) => {
+		const { t } = useTranslation("ordernow");
 	const { name, id, displayPrice, type, bundleTypes, images, isComboTherapyAvailable, textForProthera } = productDetails;
 	const { cart, removeFromCart, addToCart, updateItemCount, getCartItemTotal, addAddOnToCartItem, removeAddOnFromCartItem } = useProducts();
 
@@ -93,14 +96,14 @@ const addCartClick = () => {
 	return (
 		<div className="product-list grid md:grid-cols-2 grid-cols-1 lg:py-28 py-12 border-b last:border-0" key={id}>
 			<div className="product-box">
-				<h5 className="text-greyblack 2xl:text-5xl lg:text-3xl text-2xl">Shogun Black Maitake</h5>
+				<h5 className="text-greyblack 2xl:text-5xl lg:text-3xl text-2xl">{t("shoguntext")}</h5>
 				<h2 className="xl:text-[80px] md:text-[50px] text-[40px] leading-none">{name}</h2>
 				<h3 className="text-greyblack 2xl:text-5xl lg:text-3xl text-2xl">
 					{type} <span className="block">{displayPrice}</span>
 				</h3>
 
 				<div className="relative inline-block text-left">
-					<p className="2xl:text-xl text-lg md:pt-8 pt-0">Select The Product Bundle Type</p>
+					<p className="2xl:text-xl text-lg md:pt-8 pt-0">{t("bundletype")}</p>
 					<div className="space-y-4">
 						{bundleTypes.map((bundle, index) => (
 							<BundleType selectedBundle={selectedBundleType} onSelect={handleBundleTypeChange} key={index} bundleDetails={bundle} />
