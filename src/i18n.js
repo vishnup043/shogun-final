@@ -31,6 +31,9 @@ import jaContact from "./locales/ja/contact.json";
 import enNavbar from "./locales/en/navbar.json";
 import jaNavbar from "./locales/ja/navbar.json";
 
+import enMaitake from "./locales/en/freshmaitake.json";
+import jaMaitake from "./locales/ja/freshmaitake.json";
+
 i18n.use(initReactI18next).init({
   resources: {
     en: {
@@ -43,7 +46,8 @@ i18n.use(initReactI18next).init({
       news: enNews,
       allergen: enAllergen,
       contact: enContact,
-      navbar: enNavbar
+      navbar: enNavbar,
+      freshmaitake: enMaitake
     },
 
     ja: {
@@ -56,7 +60,8 @@ i18n.use(initReactI18next).init({
       news: jaNews,
       allergen: jaAllergen,
       contact: jaContact,
-      navbar: jaNavbar
+      navbar: jaNavbar,
+      freshmaitake: jaMaitake
     },
   },
 
@@ -64,7 +69,7 @@ i18n.use(initReactI18next).init({
 
   fallbackLng: "en",
 
-  ns: ["culinary", "about", "footer", "maitakesuppliment", "ordernow", "news", "allergen","navbar"],
+  ns: ["culinary", "about", "footer", "maitakesuppliment", "ordernow", "news", "allergen", "navbar" ,"freshmaitake"],
 
 
   interpolation: {

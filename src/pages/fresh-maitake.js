@@ -11,9 +11,11 @@ import "swiper/css/pagination";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import WhatsAppButton from "@components/whatsapp/WhatsAppButton";
+import { useTranslation } from "react-i18next";
+import { Trans } from "react-i18next";
 
 const FreshMaitake = () => {
-
+  const { t, i18n } = useTranslation("freshmaitake");
   return (
 
     <div>
@@ -26,13 +28,21 @@ const FreshMaitake = () => {
           width={732}
           height={365}
         />
-        <h1 className="2xl:text-[340px] xl:text-[300px] lg:text-[230px] md:text-[180px] sm:text-[134px] text-[72px] absolute left-0 right-0 text-center text-limeGreen absolute lg:top-0 top-[22%]">Fresh Maitake</h1>
 
-  
+<h1
+  className={`absolute left-0 right-0 text-center text-limeGreen lg:top-0 top-[22%]
+  ${
+    i18n.language === "ja"
+      ? "2xl:text-[205px] xl:text-[220px] lg:text-[180px] md:text-[140px] sm:text-[100px] text-[56px]"
+      : "2xl:text-[340px] xl:text-[300px] lg:text-[230px] md:text-[180px] sm:text-[134px] text-[72px]"
+  }`}
+>
+  {t("bannertitle")}
+</h1>
       </div>
       <div className="text-center 2xl:py-36 xl:py-28 md:py-16 py-12 relative">
         <div className="container mx-auto relative z-10">
-          <h2 className="md:mb-8 mb-0 text-greenLeaf xl:text-[80px] md:text-[50px] text-[30px] md:leading-[75px] leading-[35px]">Fresh Maitake comes as the following</h2>
+          <h2 className="md:mb-8 mb-0 text-greenLeaf xl:text-[80px] md:text-[50px] text-[30px] md:leading-[75px] leading-[35px]">{t("freshtitle")}</h2>
         </div>
       </div>
       <section className="bg-limebg md:pb-32 pb-12">
@@ -65,7 +75,7 @@ const FreshMaitake = () => {
                 width={300}
                 height={330}
               />
-              <span className="text-xl text-grey text-center block mt-4">1LB</span>
+              <span className="text-xl text-grey text-center block mt-4">{t("card1txt")}</span>
             </SwiperSlide>
             <SwiperSlide>
               <Image
@@ -75,7 +85,7 @@ const FreshMaitake = () => {
                 width={300}
                 height={330}
               />
-              <span className="text-xl text-grey text-center block mt-4">3 lb (for restaurant)</span>
+              <span className="text-xl text-grey text-center block mt-4">{t("card2txt")}</span>
             </SwiperSlide>
             <SwiperSlide>
               <Image
@@ -85,7 +95,7 @@ const FreshMaitake = () => {
                 width={300}
                 height={330}
               />
-              <span className="text-xl text-grey text-center block mt-4">85 G</span>
+              <span className="text-xl text-grey text-center block mt-4">{t("card3txt")}</span>
             </SwiperSlide>
             <SwiperSlide>
               <Image
@@ -95,7 +105,7 @@ const FreshMaitake = () => {
                 width={300}
                 height={330}
               />
-              <span className="text-xl text-grey text-center block mt-4">230 G</span>
+              <span className="text-xl text-grey text-center block mt-4">{t("card4txt")}</span>
             </SwiperSlide>
             <SwiperSlide>
               <Image
@@ -105,22 +115,32 @@ const FreshMaitake = () => {
                 width={300}
                 height={330}
               />
-              <span className="text-xl text-grey text-center block mt-4">Dry Maitake</span>
+              <span className="text-xl text-grey text-center block mt-4">{t("card5txt")}</span>
             </SwiperSlide>
           </Swiper>
           <div className="px-12">
             <div className="flex flex-col sm:flex-row  gap-8 sm:gap-12 2xl:justify-between xl:justify-center text-black">
               <div className="text-left 2xl:w-[35%] xl:w[28%]">
                 <h3 className="2xl:text-[40px] lg:text-[30px] text-xl text-forestGreen leading-none">
-                  Fresh Maitake is available for <span className="block">purchase at the following grocers</span>
+                  <Trans
+                    i18nKey="text1"
+                    ns="freshmaitake"
+                    components={{
+                      span: <span className="block" />,
+                    }}
+                  />
                 </h3>
                 <div className="2xl:text-[40px] lg:text-[30px] text-xl mt-8 grid gap-4 leading-none">
-                  <Link href="https://www.farmboy.ca/" target="_blank"><h5><span className="text-black">FARM BOY</span></h5></Link>
+                  <Link href="https://www.farmboy.ca/" target="_blank"><h5><span className="text-black">{t("text2")}</span></h5></Link>
                   <h5>
                     <span className="text-black">
-                      Costco – Select Locations
-                      <br />
-                      (GTA, QC, AB)
+                      <Trans
+                        i18nKey="text3"
+                        ns="freshmaitake"
+                        components={{
+                          span: <span className="block" />,
+                        }}
+                      />
                     </span>
                   </h5>
                 </div>
@@ -138,18 +158,18 @@ const FreshMaitake = () => {
 
               <div className="text-left 2xl:w-[35%] xl:w[28%]">
                 <h3 className="2xl:text-[40px] lg:text-[30px] text-xl text-forestGreen leading-none">
-                  Fresh Maitake is served at <span className="block">the following restaurants</span>
+                  {t("text4")}
                 </h3>
                 <div className="2xl:text-[40px] lg:text-[30px] text-xl mt-8 grid gap-4 leading-none">
-                  <Link href="https://www.abruzzi.ca/" target="_blank"><h5><span className="text-black">Abruzzi</span></h5></Link>
+                  <Link href="https://www.abruzzi.ca/" target="_blank"><h5><span className="text-black">  {t("text5")}</span></h5></Link>
                   <Link href="https://www.gracelondon.ca/" target="_blank"><h5>
                     <span className="text-black">
-                      Grace Restaurant
+                      {t("text6")}
                     </span>
                   </h5>
                   </Link>
-                  <Link href="https://www.taverna1331.ca/" target="_blank"><h5><span className="text-black">Taverna 1331</span></h5></Link>
-                 <Link href="https://wolfpackbars.com/" target="_blank"><h5><span className="text-black">Wolfe Pack Company Bar</span></h5></Link>
+                  <Link href="https://www.taverna1331.ca/" target="_blank"><h5><span className="text-black">  {t("text7")}</span></h5></Link>
+                  <Link href="https://wolfpackbars.com/" target="_blank"><h5><span className="text-black">  {t("text8")}</span></h5></Link>
 
                 </div>
               </div>
@@ -161,21 +181,21 @@ const FreshMaitake = () => {
       <section className="2xl:pb-[272px] pb-[200px] relative bg-limebg">
         <div className="bg-white 2xl:pt-[155px] xl:pt-[100px] pt-20">
           <div className="container">
-            <h1 className="text-greenLeaf  xl:text-[80px] md:text-[50px] text-[30px] md:leading-[75px] leading-[35px] ">Maitake Recipes</h1>
+            <h1 className="text-greenLeaf  xl:text-[80px] md:text-[50px] text-[30px] md:leading-[75px] leading-[35px] ">{t("text9")}</h1>
             <div className="lg:w-[26%] md:w-[47%] w-full">
               <div className="grid gap-6">
                 <div>
-                  <h2 className="text-forestGreen 2xl:text-5xl text-3xl">How to prepare</h2>
+                  <h2 className="text-forestGreen 2xl:text-5xl text-3xl">{t("text10")}</h2>
                   <div className="2xl:text-2xl text-lg">
-                    <p className="!mb-0">Do not eat Maitake raw. </p>
-                    <p className="!mb-0">Maitake stems are delicious and edible. Pull apart from the bottom by hands into smaller sizes.</p>
+                    <p className="!mb-0">{t("text11")}</p>
+                    <p className="!mb-0">{t("text12")}</p>
                   </div>
                 </div>
                 <div className="mb-6">
-                  <h2 className="text-forestGreen 2xl:text-5xl text-3xl">How to prepare</h2>
+                  <h2 className="text-forestGreen 2xl:text-5xl text-3xl">{t("text10")}</h2>
                   <div className="2xl:text-2xl text-lg">
-                    <p className="!mb-0">It can be kept refrigerated for 10-12 days.</p>
-                    <p className="!mb-0">Maitake can be kept frozen. Break apart into smaller parts and keep them frozen in a sealed bag. Cook from frozen, do not defrost.</p>
+                    <p className="!mb-0">{t("text13")}</p>
+                    <p className="!mb-0">{t("text14")}</p>
                   </div>
                 </div>
               </div>
@@ -256,7 +276,7 @@ const FreshMaitake = () => {
       <section className="relative z-10 md:pt-28 pt-12 md:pb-32 pb-16 bg-limebg">
         <div className="container">
           <div className="flex flex-col sm:flex-row gap-12 sm:items-center items-start relative">
-             <div className="2xl:w-[53%] sm:w-[45%] w-full">
+            <div className="2xl:w-[53%] sm:w-[45%] w-full">
               <h3 className="text-sblack 2xl:text-5xl text-3xl pb-4">CHICKEN FRIED MAITAKES</h3>
 
               <Image
