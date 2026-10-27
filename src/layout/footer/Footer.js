@@ -24,6 +24,8 @@ const Footer = () => {
                 <Image width={120} height={50} alt="logo" src="/footer/logo-2.png" />
                 <Image width={65} height={50} alt="logo" src="/footer/logo-3.png" />
                 <Image width={93} height={50} alt="logo" src="/footer/logo-4.png" />
+                <Image width={93} height={50} alt="logo" src="/footer/logo-5.jpeg" />
+                 <Image width={93} height={50} alt="logo" src="/footer/logo-6.png" />
               </div>
             </div>
             <div className="col-span-12 flex gap-2 items-end border-gray-300 text-sm text-gray-600 hidden lg:flex">

@@ -464,6 +464,7 @@ const total = +(
                       return actions.order.capture().then((details) => handleOrderSuccess(details, data));
                     }}
                   />
+                  <p className="text-center text-red-500">Click PayPal, choose Pay with Debit or Credit card and check out as guest</p>
                 </div>
               </div>
             </div>
